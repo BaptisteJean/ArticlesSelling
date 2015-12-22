@@ -1,0 +1,54 @@
+
+<div>
+    <h2><span translate="articleSellingApp.categorie.detail.title">Categorie</span> {{categorie.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.categorie.nameCategorie">NameCategorie</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{categorie.nameCategorie}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.categorie.parent">Parent</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{categorie.parent}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.categorie.description">Description</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{categorie.description}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.categorie.nbreAds">NbreAds</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{categorie.nbreAds}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

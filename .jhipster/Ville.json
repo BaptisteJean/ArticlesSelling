@@ -1,0 +1,21 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "pays",
+            "otherEntityName": "pays",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "namePays"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "nameVille",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20151222143330",
+    "dto": "mapstruct",
+    "pagination": "pagination"
+}

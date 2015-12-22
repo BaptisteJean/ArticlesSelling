@@ -1,0 +1,20 @@
+{
+    "articleSellingApp": {
+        "ville" : {
+            "home": {
+                "title": "Villes",
+                "createLabel": "Créer un nouveau Ville",
+                "createOrEditLabel": "Créer ou éditer un Ville"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Ville {{ id }} ?"
+            },
+            "detail": {
+                "title": "Ville"
+            },
+            "nameVille": "NameVille",
+            "pays": "Pays"
+        }
+    }
+}
+

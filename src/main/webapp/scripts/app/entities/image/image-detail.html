@@ -1,0 +1,56 @@
+
+<div>
+    <h2><span translate="articleSellingApp.image.detail.title">Image</span> {{image.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.image.imgThumbnail">ImgThumbnail</span>
+                </td>
+                <td>
+                    <img data-ng-src="{{'data:' + image.imgThumbnailContentType + ';base64,' + image.imgThumbnail}}" style="max-width: 100%;" ng-if="image.imgThumbnail"/>
+                    <div>{{image.imgThumbnailContentType}}  {{byteSize(image.imgThumbnail)}}</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.image.imgNormal">ImgNormal</span>
+                </td>
+                <td>
+                    <img data-ng-src="{{'data:' + image.imgNormalContentType + ';base64,' + image.imgNormal}}" style="max-width: 100%;" ng-if="image.imgNormal"/>
+                    <div>{{image.imgNormalContentType}}  {{byteSize(image.imgNormal)}}</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.image.identif">Identif</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{image.identif}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.image.ads">ads</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="ads.detail({id:image.adsId})">{{image.adsNameAds}}</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

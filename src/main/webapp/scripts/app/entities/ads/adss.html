@@ -1,0 +1,112 @@
+<div>
+    <h2 translate="articleSellingApp.ads.home.title">Adss</h2>
+    <jh-alert></jh-alert>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" ui-sref="ads.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="articleSellingApp.ads.home.createLabel">Create a new Ads</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteAdsConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="confirmDelete(ads.id)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p translate="articleSellingApp.ads.delete.question" translate-values="{id: '{{ads.id}}'}">Are you sure you want to delete this Ads?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="global.field.id">ID</th>
+                    <th translate="articleSellingApp.ads.nameAds">NameAds</th>
+                    <th translate="articleSellingApp.ads.identif">Identif</th>
+                    <th translate="articleSellingApp.ads.dateAjout">DateAjout</th>
+                    <th translate="articleSellingApp.ads.pays">Pays</th>
+                    <th translate="articleSellingApp.ads.ville">Ville</th>
+                    <th translate="articleSellingApp.ads.price">Price</th>
+                    <th translate="articleSellingApp.ads.etat">Etat</th>
+                    <th translate="articleSellingApp.ads.description">Description</th>
+                    <th translate="articleSellingApp.ads.nbreImage">NbreImage</th>
+                    <th translate="articleSellingApp.ads.nbreVue">NbreVue</th>
+                    <th translate="articleSellingApp.ads.mainImage">MainImage</th>
+                    <th translate="articleSellingApp.ads.negociable">Negociable</th>
+                    <th translate="articleSellingApp.ads.categorie">categorie</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="ads in adss track by ads.id">
+                    <td><a ui-sref="ads.detail({id:ads.id})">{{ads.id}}</a></td>
+                    <td>{{ads.nameAds}}</td>
+                    <td>{{ads.identif}}</td>
+                        <td>{{ads.dateAjout | date:'mediumDate'}}</td>
+                    <td>{{ads.pays}}</td>
+                    <td>{{ads.ville}}</td>
+                    <td>{{ads.price}}</td>
+                    <td>{{ads.etat}}</td>
+                    <td>{{ads.description}}</td>
+                    <td>{{ads.nbreImage}}</td>
+                    <td>{{ads.nbreVue}}</td>
+                    <td>{{ads.mainImage}}</td>
+                    <td>{{ads.negociable}}</td>
+                    <td>
+                        <a ui-sref="categorie.detail({id:ads.categorieId})">{{ads.categorieNameCategorie}}</a>
+                    </td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="ads.detail({id:ads.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="ads.edit({id:ads.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="delete(ads.id)"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <nav>
+            <ul class="pagination">
+                <li ng-show="links['first'] >= 0" ng-click="loadPage(links['first'])"><a>&lt;&lt;</a></li>
+                <li ng-show="page > 0" ng-click="loadPage(links['prev'] || 0)"><a>&lt;</a></li>
+                <li ng-show="page > 1" ng-click="loadPage(page - 2)"><a>{{page - 1}}</a></li>
+                <li ng-show="page > 0" ng-click="loadPage(page - 1)"><a>{{page}}</a></li>
+                <li class="active"><a>{{page + 1}}</a></li>
+                <li ng-show="page < links['last']" ng-click="loadPage(page + 1)"><a>{{page + 2}}</a></li>
+                <li ng-show="page < links['last'] - 1" ng-click="loadPage(page + 2)"><a>{{page + 3}}</a></li>
+                <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a>&gt;</a></li>
+                <li ng-show="links['last'] > 0" ng-click="loadPage(links['last'])"><a>&gt;&gt;</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>

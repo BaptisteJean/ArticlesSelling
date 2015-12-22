@@ -1,0 +1,126 @@
+
+<div>
+    <h2><span translate="articleSellingApp.ads.detail.title">Ads</span> {{ads.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.ads.nameAds">NameAds</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ads.nameAds}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.ads.identif">Identif</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ads.identif}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.ads.dateAjout">DateAjout</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ads.dateAjout | date:'mediumDate'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.ads.pays">Pays</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ads.pays}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.ads.ville">Ville</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ads.ville}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.ads.price">Price</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ads.price}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.ads.etat">Etat</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ads.etat}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.ads.description">Description</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ads.description}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.ads.nbreImage">NbreImage</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ads.nbreImage}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.ads.nbreVue">NbreVue</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ads.nbreVue}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.ads.mainImage">MainImage</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ads.mainImage}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.ads.negociable">Negociable</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ads.negociable}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="articleSellingApp.ads.categorie">categorie</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="categorie.detail({id:ads.categorieId})">{{ads.categorieNameCategorie}}</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

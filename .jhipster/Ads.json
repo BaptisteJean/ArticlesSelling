@@ -1,0 +1,92 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "categorie",
+            "otherEntityName": "categorie",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "nameCategorie"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "image",
+            "otherEntityName": "image",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "ads"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "nameAds",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "identif",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "dateAjout",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "pays",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "ville",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "price",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "etat",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 9,
+            "fieldName": "nbreImage",
+            "fieldType": "Long"
+        },
+        {
+            "fieldId": 10,
+            "fieldName": "nbreVue",
+            "fieldType": "Long"
+        },
+        {
+            "fieldId": 11,
+            "fieldName": "mainImage",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 12,
+            "fieldName": "negociable",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20151222151634",
+    "dto": "mapstruct",
+    "pagination": "pagination"
+}

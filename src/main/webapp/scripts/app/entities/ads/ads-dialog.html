@@ -1,0 +1,126 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myAdsLabel" translate="articleSellingApp.ads.home.createOrEditLabel">Create or edit a Ads</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="ads.id" readonly />
+        </div>
+        <div class="form-group">
+            <label translate="articleSellingApp.ads.nameAds" for="field_nameAds">NameAds</label>
+            <input type="text" class="form-control" name="nameAds" id="field_nameAds"
+                    ng-model="ads.nameAds"
+                    required />
+            <div ng-show="editForm.nameAds.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.nameAds.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="articleSellingApp.ads.identif" for="field_identif">Identif</label>
+            <input type="text" class="form-control" name="identif" id="field_identif"
+                    ng-model="ads.identif"
+                    required />
+            <div ng-show="editForm.identif.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.identif.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="articleSellingApp.ads.dateAjout" for="field_dateAjout">DateAjout</label>
+            <input type="date" class="form-control" name="dateAjout" id="field_dateAjout"
+                    ng-model="ads.dateAjout"
+                     />
+        </div>
+        <div class="form-group">
+            <label translate="articleSellingApp.ads.pays" for="field_pays">Pays</label>
+            <input type="text" class="form-control" name="pays" id="field_pays"
+                    ng-model="ads.pays"
+                     />
+        </div>
+        <div class="form-group">
+            <label translate="articleSellingApp.ads.ville" for="field_ville">Ville</label>
+            <input type="text" class="form-control" name="ville" id="field_ville"
+                    ng-model="ads.ville"
+                     />
+        </div>
+        <div class="form-group">
+            <label translate="articleSellingApp.ads.price" for="field_price">Price</label>
+            <input type="number" class="form-control" name="price" id="field_price"
+                    ng-model="ads.price"
+                    required />
+            <div ng-show="editForm.price.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.price.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.price.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="articleSellingApp.ads.etat" for="field_etat">Etat</label>
+            <input type="text" class="form-control" name="etat" id="field_etat"
+                    ng-model="ads.etat"
+                     />
+        </div>
+        <div class="form-group">
+            <label translate="articleSellingApp.ads.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                    ng-model="ads.description"
+                     />
+        </div>
+        <div class="form-group">
+            <label translate="articleSellingApp.ads.nbreImage" for="field_nbreImage">NbreImage</label>
+            <input type="number" class="form-control" name="nbreImage" id="field_nbreImage"
+                    ng-model="ads.nbreImage"
+                     />
+        </div>
+        <div class="form-group">
+            <label translate="articleSellingApp.ads.nbreVue" for="field_nbreVue">NbreVue</label>
+            <input type="number" class="form-control" name="nbreVue" id="field_nbreVue"
+                    ng-model="ads.nbreVue"
+                     />
+        </div>
+        <div class="form-group">
+            <label translate="articleSellingApp.ads.mainImage" for="field_mainImage">MainImage</label>
+            <input type="text" class="form-control" name="mainImage" id="field_mainImage"
+                    ng-model="ads.mainImage"
+                     />
+        </div>
+        <div class="form-group">
+            <label translate="articleSellingApp.ads.negociable" for="field_negociable">Negociable</label>
+            <input type="checkbox" class="form-control" name="negociable" id="field_negociable"
+                    ng-model="ads.negociable"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label translate="articleSellingApp.ads.categorie" for="field_categorie">categorie</label>
+            <select class="form-control" id="field_categorie" name="categorie" ng-model="ads.categorieId" ng-options="categorie.id as categorie.nameCategorie for categorie in categories">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

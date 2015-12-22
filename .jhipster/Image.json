@@ -1,0 +1,36 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "ads",
+            "otherEntityName": "ads",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "nameAds"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "imgThumbnail",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "imgNormal",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "identif",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20151222152103",
+    "dto": "mapstruct",
+    "pagination": "pagination"
+}

@@ -1,0 +1,39 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "ads",
+            "otherEntityName": "ads",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "categorie"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "nameCategorie",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "parent",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "nbreAds",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20151222144112",
+    "dto": "mapstruct",
+    "pagination": "pagination"
+}

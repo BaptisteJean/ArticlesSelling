@@ -1,0 +1,32 @@
+{
+    "articleSellingApp": {
+        "ads" : {
+            "home": {
+                "title": "Adss",
+                "createLabel": "Créer un nouveau Ads",
+                "createOrEditLabel": "Créer ou éditer un Ads"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Ads {{ id }} ?"
+            },
+            "detail": {
+                "title": "Ads"
+            },
+            "nameAds": "NameAds",
+            "identif": "Identif",
+            "dateAjout": "DateAjout",
+            "pays": "Pays",
+            "ville": "Ville",
+            "price": "Price",
+            "etat": "Etat",
+            "description": "Description",
+            "nbreImage": "NbreImage",
+            "nbreVue": "NbreVue",
+            "mainImage": "MainImage",
+            "negociable": "Negociable",
+            "categorie": "Categorie",
+            "image": "Image"
+        }
+    }
+}
+
