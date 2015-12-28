@@ -11,4 +11,7 @@ import java.util.List;
  */
 public interface PaysRepository extends JpaRepository<Pays,Long> {
 
+    Pays findByNamePaysEquals(String namepays);
+    Pays findByNamePays(String namepays);
+
 }

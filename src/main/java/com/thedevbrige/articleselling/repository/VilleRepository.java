@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface VilleRepository extends JpaRepository<Ville,Long> {
 
+    Ville findByNameVille(String nameville);
+
 }

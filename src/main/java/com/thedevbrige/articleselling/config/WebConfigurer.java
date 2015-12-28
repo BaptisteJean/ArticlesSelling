@@ -5,6 +5,7 @@ import com.codahale.metrics.servlet.InstrumentedFilter;
 import com.codahale.metrics.servlets.MetricsServlet;
 import com.thedevbrige.articleselling.web.filter.CachingHttpHeadersFilter;
 import com.thedevbrige.articleselling.web.filter.StaticResourcesProductionFilter;
+import org.apache.catalina.filters.CorsFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +46,11 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
         if (env.acceptsProfiles(Constants.SPRING_PROFILE_PRODUCTION)) {
             initCachingHttpHeadersFilter(servletContext, disps);
             initStaticResourcesProductionFilter(servletContext, disps);
+            initCorsFilter(servletContext, disps);
         }
         if (env.acceptsProfiles(Constants.SPRING_PROFILE_DEVELOPMENT)) {
             initH2Console(servletContext);
+            initCorsFilter(servletContext, disps);
         }
         log.info("Web application fully configured");
     }
@@ -65,6 +68,17 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
         container.setMimeMappings(mappings);
     }
 
+    /**
+     * Initializes the CORS
+     */
+    private void initCorsFilter(ServletContext servletContext, EnumSet<DispatcherType> disps) {
+        log.debug("Registering CORS Filter");
+        FilterRegistration.Dynamic corsFilter = servletContext.addFilter("CORS", new CorsFilter());
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("cors.supportedMethods", "GET, HEAD, POST, OPTIONS, PUT, DELETE");
+        corsFilter.setInitParameters(parameters);
+        corsFilter.addMappingForUrlPatterns(disps, true, "/*");
+    }
     /**
      * Initializes the static resources production Filter.
      */
