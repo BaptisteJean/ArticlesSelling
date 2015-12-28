@@ -1,7 +1,9 @@
 package com.thedevbrige.articleselling.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.thedevbrige.articleselling.domain.Pays;
 import com.thedevbrige.articleselling.domain.Ville;
+import com.thedevbrige.articleselling.repository.PaysRepository;
 import com.thedevbrige.articleselling.repository.VilleRepository;
 import com.thedevbrige.articleselling.web.rest.util.HeaderUtil;
 import com.thedevbrige.articleselling.web.rest.util.PaginationUtil;
@@ -22,7 +24,7 @@ import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -37,6 +39,9 @@ public class VilleResource {
 
     @Inject
     private VilleRepository villeRepository;
+
+    @Inject
+    private PaysRepository paysRepository;
 
     @Inject
     private VilleMapper villeMapper;
@@ -106,6 +111,20 @@ public class VilleResource {
     public List<Ville> getAll(){
         List<Ville> page = villeRepository.findAll();
         return page;
+    }
+
+    /**
+     * GET  /villes -> get all the villes.
+     */
+    @RequestMapping(value = "/listvillesforcountry/{pays}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<Ville> getVillesForPays(@PathVariable String pays){
+        List<Ville> list = new ArrayList<Ville>();
+       Pays pays1 = paysRepository.findByNamePaysEquals(pays);
+        list = villeRepository.findByPays(pays1);
+        return list;
     }
 
 
