@@ -27,7 +27,7 @@ public class DataSheetLoader {
     String dataSheetFile = "collection.xls";
     InputStream stream = DataSheetLoader.class.getResourceAsStream("/" + dataSheetFile);
 
-    @PostConstruct
+//    @PostConstruct
     public void loadDataSheet(){
 
         try {

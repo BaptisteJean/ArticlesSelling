@@ -97,6 +97,18 @@ public class PaysResource {
     }
 
     /**
+     * GET  /payss -> get all the payss.
+     */
+    @RequestMapping(value = "/pays/findAll",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<Pays> getAll() {
+        List<Pays> page = paysRepository.findAll();
+        return page;
+    }
+
+    /**
      * GET  /payss/:id -> get the "id" pays.
      */
     @RequestMapping(value = "/payss/{id}",

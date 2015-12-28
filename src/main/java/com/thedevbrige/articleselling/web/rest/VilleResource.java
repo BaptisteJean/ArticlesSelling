@@ -97,6 +97,19 @@ public class VilleResource {
     }
 
     /**
+     * GET  /villes -> get all the villes.
+     */
+    @RequestMapping(value = "/villes/findAll",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<Ville> getAll(){
+        List<Ville> page = villeRepository.findAll();
+        return page;
+    }
+
+
+    /**
      * GET  /villes/:id -> get the "id" ville.
      */
     @RequestMapping(value = "/villes/{id}",
