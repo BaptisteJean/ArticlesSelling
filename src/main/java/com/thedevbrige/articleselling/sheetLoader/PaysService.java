@@ -29,8 +29,6 @@ public class PaysService {
           }else{
         return;
           }
-        if(paysExist == null) {
-            paysRepository.save(pays);
-        }
+        paysRepository.save(pays);
    }
 }
