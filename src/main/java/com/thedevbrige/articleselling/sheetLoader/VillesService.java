@@ -39,8 +39,6 @@ public class VillesService {
         if(cell != null && StringUtils.isNotBlank(cell.getStringCellValue())){
             ville.setPays(paysRepository.findByNamePaysEquals(cell.getStringCellValue().trim()));
         }
-        if(villeExist == null) {
-            villeRepository.save(ville);
-        }
+        villeRepository.save(ville);
     }
 }
