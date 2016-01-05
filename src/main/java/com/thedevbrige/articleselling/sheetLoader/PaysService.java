@@ -17,13 +17,13 @@ public class PaysService {
 
     @Inject
     PaysRepository paysRepository;
-    Pays paysExist;
+    //Pays paysExist;
 
     public void update(Row row){
 
         Pays pays = new Pays();
         Cell cell = row.getCell(0);
-        paysExist = paysRepository.findByNamePays(cell.getStringCellValue());
+        //paysExist = paysRepository.findByNamePays(cell.getStringCellValue());
         if(cell != null && StringUtils.isNotBlank(cell.getStringCellValue())){
         pays.setNamePays(cell.getStringCellValue().trim());
           }else{

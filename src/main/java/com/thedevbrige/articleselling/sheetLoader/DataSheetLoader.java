@@ -42,11 +42,15 @@ public class DataSheetLoader {
         try {
             HSSFWorkbook workbook = new HSSFWorkbook(stream);
             List<Pays> listPays = paysRepository.findAll();
-            if(listPays == null){
-	            updatePays(workbook);
-	            updateVille(workbook);
-	            updateVille2(workbook);
-            }
+            //System.out.println("------------ All pays--------------- " + listPays);
+            //for(Pays pays : listPays){
+            	//System.out.println("------------ All pays--------------- " + pays);
+	            //if(listPays.isEmpty()){
+		            updatePays(workbook);
+		            updateVille(workbook);
+		            updateVille2(workbook);
+	            //}
+            //}
             IOUtils.closeQuietly(stream);
         } catch (IOException e) {
             throw new IllegalStateException(e);
