@@ -21,5 +21,22 @@ angular.module('articleSellingApp')
                         return $translate.refresh();
                     }]
                 }
+            })
+            .state('category', {
+                url: '/category',
+                data: {
+                    authorities: []
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/pages/category.html'
+                        //controller: 'CategoryController'
+                    }
+                },
+                resolve: {
+                    mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate) {
+                        return $translate.refresh();
+                    }]
+                }
             });
     });
