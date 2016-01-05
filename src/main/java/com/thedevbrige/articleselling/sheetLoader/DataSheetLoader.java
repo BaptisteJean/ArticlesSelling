@@ -33,20 +33,20 @@ public class DataSheetLoader {
     @Inject
     PaysRepository paysRepository;
 
-    String dataSheetFile = "collection.xls";
+    String dataSheetFile = "colection.xls";
     InputStream stream = DataSheetLoader.class.getResourceAsStream("/" + dataSheetFile);
 
-//   @PostConstruct
+    @PostConstruct
     public void loadDataSheet(){
 
         try {
             HSSFWorkbook workbook = new HSSFWorkbook(stream);
             List<Pays> listPays = paysRepository.findAll();
-            if(listPays == null){
+           if(listPays == null){
 	            updatePays(workbook);
 	            updateVille(workbook);
 	            updateVille2(workbook);
-            }
+           }
             IOUtils.closeQuietly(stream);
         } catch (IOException e) {
             throw new IllegalStateException(e);
