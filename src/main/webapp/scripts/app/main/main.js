@@ -34,7 +34,41 @@ angular.module('articleSellingApp')
                     }
                 },
                 resolve: {
-                    mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate) {
+                    mainTranslatePartialLoader: ['$translate', function ($translate) {
+                        return $translate.refresh();
+                    }]
+                }
+            })
+            .state('ads-details', {
+                url: '/ads-details',
+                data: {
+                    authorities: []
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/pages/ads-details.html'
+                        //controller: 'AdsDetailsController'
+                    }
+                },
+                resolve: {
+                    mainTranslatePartialLoader: ['$translate', function ($translate) {
+                        return $translate.refresh();
+                    }]
+                }
+            })
+            .state('sub-category-sub-location', {
+                url: '/sub-category-sub-location',
+                data: {
+                    authorities: []
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/pages/sub-category-sub-location.html'
+                        //controller: 'AdsDetailsController'
+                    }
+                },
+                resolve: {
+                    mainTranslatePartialLoader: ['$translate', function ($translate) {
                         return $translate.refresh();
                     }]
                 }

@@ -11,7 +11,7 @@
 <link rel="shortcut icon" href="asset/ico/favicon.png">
 <title>BOOTCLASIFIED - Responsive Classified Theme</title>
 <!-- Bootstrap core CSS -->
-<link href="asset/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="asset/bootstrap/css/bootstrap.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
 <link href="asset/css/style.css" rel="stylesheet">
@@ -19,6 +19,12 @@
 <!-- styles needed for carousel slider -->
 <link href="asset/css/owl.carousel.css" rel="stylesheet">
 <link href="asset/css/owl.theme.css" rel="stylesheet">
+<link href="asset/css/font-awesome.css" rel="stylesheet">
+<link href="asset/css/fontello.css" rel="stylesheet">
+<link href="asset/css/longshadow.css" rel="stylesheet">
+<link href="asset/plugins/jquery.fs.selecter/jquery.fs.selecter.css" rel="stylesheet">
+<link href="asset/plugins/jquery.fs.scroller/jquery.fs.scroller.css" rel="stylesheet">
+<link href="asset/plugins/bxslider/jquery.bxslider.css" rel="stylesheet">
 
 <!-- Just for debugging purposes. -->
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -35,12 +41,10 @@
     };
 </script>
 <script src="asset/js/pace.min.js"></script>
-
 </head>
 <body ng-app="articleSellingApp">
 
 <div id="wrapper">
-
   <div class="header">
     <nav class="navbar   navbar-site navbar-default" role="navigation">
       <div class="container">
@@ -66,8 +70,6 @@
 
     <div ui-view="content"></div>
 
-
-
 <!--footer -->
   <div class="footer" id="footer">
     <div class="container">
@@ -88,7 +90,6 @@
 ================================================== -->
 <!-- bower:js -->
 <script src="bower_components/modernizr/modernizr.js"></script>
-<script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-aria/angular-aria.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
@@ -104,7 +105,6 @@
 <script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
 <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
 <script src="bower_components/json3/lib/json3.js"></script>
 <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
 <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
@@ -211,7 +211,7 @@
 <!-- endbuild -->
 <!-- Placed at the end of the document so the pages load faster -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"> </script>
+<script src="asset/js/jquery/1.8.3/jquery.js"></script>
 <script src="asset/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- include carousel slider plugin  -->
@@ -222,17 +222,14 @@
 
 <!-- include jquery list shorting plugin plugin  -->
 <script src="asset/js/hideMaxListItem.js"></script>
+<script src="asset/js/adsdetails.js"></script>
 
 <!-- include jquery.fs plugin for custom scroller and selecter  -->
 <script src="asset/plugins/jquery.fs.scroller/jquery.fs.scroller.js"></script>
 <script src="asset/plugins/jquery.fs.selecter/jquery.fs.selecter.js"></script>
 
-
 <!-- include custom script for site  -->
 <script src="asset/js/script.js"></script>
-
-
-
 
 <!-- include jquery autocomplete plugin  -->
 
