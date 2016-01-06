@@ -42,7 +42,7 @@
 </script>
 <script src="asset/js/pace.min.js"></script>
 </head>
-<body ng-app="articleSellingApp">
+<body ng-app="articleSellingApp" ng-controller="MainController">
 
 <div id="wrapper">
   <div class="header">
@@ -74,15 +74,16 @@
   <div class="footer" id="footer">
     <div class="container">
       <ul class=" pull-left navbar-link footer-nav">
-        <li><a href="index.html"> Home </a> <a href="about-us.html"> About us </a> <a href="#"> Terms and Conditions </a> <a href="#"> Privacy Policy </a> <a href="contact.html"> Contact us </a> <a href="faq.html"> FAQ </a>
+        <li><a href="index.html"> Home </a> <a ui-sref="about-us"> About us </a> <a href="#"> Terms and Conditions </a> <a href="#"> Privacy Policy </a> <a ui-sref="contact"> Contact us </a> <a ui-sref="faq"> FAQ </a>
       </ul>
       <ul class=" pull-right navbar-link footer-nav">
-        <li> &copy; 2015 BootClassified </li>
+        <li> &copy; 2015 BootClassified  </li>
       </ul>
     </div>
 
   </div>
   <!-- /.footer -->
+ 
 </div>
 <!-- /.wrapper -->
 
