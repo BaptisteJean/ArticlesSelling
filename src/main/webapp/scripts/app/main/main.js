@@ -23,14 +23,15 @@ angular.module('articleSellingApp')
                 }
             })
             .state('category', {
+                parent: 'site',
                 url: '/category',
                 data: {
                     authorities: []
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/pages/category.html'
-                        //controller: 'CategoryController'
+                        templateUrl: 'scripts/app/pages/category.html',
+                        controller: 'CategorieController'
                     }
                 },
                 resolve: {
@@ -64,7 +65,7 @@ angular.module('articleSellingApp')
                 views: {
                     'content@': {
                         templateUrl: 'scripts/app/pages/sub-category-sub-location.html'
-                        //controller: 'AdsDetailsController'
+                        //controller: 'SubCategoryController'
                     }
                 },
                 resolve: {
@@ -80,7 +81,7 @@ angular.module('articleSellingApp')
                 views: {
                     'content@': {
                         templateUrl: 'scripts/app/pages/about-us.html'
-                        //controller: 'CategoryController'
+                        //controller: 'AboutUsController'
                     }
                 },
                 resolve: {
@@ -96,7 +97,7 @@ angular.module('articleSellingApp')
                 views: {
                     'content@': {
                         templateUrl: 'scripts/app/pages/contact.html'
-                        //controller: 'CategoryController'
+                        //controller: 'ContactController'
                     }
                 },
                 resolve: {
@@ -112,7 +113,7 @@ angular.module('articleSellingApp')
                 views: {
                     'content@': {
                         templateUrl: 'scripts/app/pages/faq.html'
-                        //controller: 'CategoryController'
+                        //controller: 'FagController'
                     }
                 },
                 resolve: {
