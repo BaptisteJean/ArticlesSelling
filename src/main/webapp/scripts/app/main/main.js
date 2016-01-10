@@ -38,7 +38,7 @@ angular.module('articleSellingApp')
                     mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
                         $translatePartialLoader.addPart('main');
                         return $translate.refresh();
-                    }]
+                    }
                 }
             })
             .state('forgot-password', {
@@ -133,7 +133,7 @@ angular.module('articleSellingApp')
                     mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
                         $translatePartialLoader.addPart('main');
                         return $translate.refresh();
-                    }]
+                    }
                 }
             })
             .state('account-archived-ads', {
