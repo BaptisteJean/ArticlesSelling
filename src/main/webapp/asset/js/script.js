@@ -19,7 +19,7 @@ $(document).ready(function() {
 	====================================*/
 
     // Featured Listings  carousel || HOME PAGE
-    var owlitem = $(".item-carousel");
+   /* var owlitem = $(".item-carousel");
 
     owlitem.owlCarousel({
         //navigation : true, // Show next and prev buttons
@@ -41,7 +41,7 @@ $(document).ready(function() {
     $("#prevItem").click(function() {
         owlitem.trigger('owl.prev');
     })
-
+*/
 
 
 

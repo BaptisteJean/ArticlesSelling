@@ -11,8 +11,8 @@ angular.module('articleSellingApp')
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/pages/landing.html'
-                        //controller: 'MainController'
+                        templateUrl: 'scripts/app/pages/landing.html',
+                        controller: 'MainController'
                     }
                 },
                 resolve: {
