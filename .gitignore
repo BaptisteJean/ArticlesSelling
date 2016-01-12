@@ -33,7 +33,7 @@ local.properties
 .settings/**
 .loadpath
 /src/main/resources/rebel.xml
-/src/main/resources/colection.xls
+/src/main/resources/collection.xls
 
 # External tool builders
 .externalToolBuilders/**
