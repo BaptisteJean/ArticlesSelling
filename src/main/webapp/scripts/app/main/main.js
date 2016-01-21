@@ -129,13 +129,13 @@ angular.module('articleSellingApp')
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/pages/login.html'
-                        //controller: 'MainController'
+                        templateUrl: 'scripts/app/pages/login.html',
+                        controller: 'LoginController'
                     }
                 },
                 resolve: {
                     mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
-                        $translatePartialLoader.addPart('main');
+                        $translatePartialLoader.addPart('login');
                         return $translate.refresh();
 
                     }]
@@ -150,8 +150,8 @@ angular.module('articleSellingApp')
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/pages/forgot-password.html'
-                        //controller: 'MainController'
+                        templateUrl: 'scripts/app/pages/forgot-password.html',
+                        controller: 'RequestResetController'
                     }
                 },
                 resolve: {
@@ -165,7 +165,7 @@ angular.module('articleSellingApp')
                 parent: 'site',
                 url: '/account-home',
                 data: {
-                    authorities: []
+                    authorities: ['ROLE_USER']
                 },
                 views: {
                     'content@': {
@@ -182,9 +182,9 @@ angular.module('articleSellingApp')
             })
             .state('account-myads', {
                 parent: 'site',
-                url: '/account-home/account-myads',
+                url: '/account-myads',
                 data: {
-                    authorities: []
+                    authorities: ['ROLE_USER']
                 },
                 views: {
                     'content@': {
@@ -201,9 +201,9 @@ angular.module('articleSellingApp')
             })
             .state('account-favourite-ads', {
                 parent: 'site',
-                url: '/account-home/account-favourite-ads',
+                url: '/account-favourite-ads',
                 data: {
-                    authorities: []
+                    authorities: ['ROLE_USER']
                 },
                 views: {
                     'content@': {
@@ -220,9 +220,9 @@ angular.module('articleSellingApp')
             })
             .state('account-saved-search', {
                 parent: 'site',
-                url: '/account-home/account-saved-search',
+                url: '/account-saved-search',
                 data: {
-                    authorities: []
+                    authorities: ['ROLE_USER']
                 },
                 views: {
                     'content@': {
@@ -241,9 +241,9 @@ angular.module('articleSellingApp')
             })
             .state('account-archived-ads', {
                 parent: 'site',
-                url: '/account-home/account-archived-ads',
+                url: '/account-archived-ads',
                 data: {
-                    authorities: []
+                    authorities: ['ROLE_USER']
                 },
                 views: {
                     'content@': {
@@ -260,9 +260,9 @@ angular.module('articleSellingApp')
             })
             .state('account-pending-approval-ads', {
                 parent: 'site',
-                url: '/account-home/account-pending-approval-ads',
+                url: '/account-pending-approval-ads',
                 data: {
-                    authorities: []
+                    authorities: ['ROLE_USER']
                 },
                 views: {
                     'content@': {
@@ -279,9 +279,9 @@ angular.module('articleSellingApp')
             })
             .state('account-close', {
                 parent: 'site',
-                url: '/account-home/account-close',
+                url: '/account-close',
                 data: {
-                    authorities: []
+                    authorities: ['ROLE_USER']
                 },
                 views: {
                     'content@': {
@@ -319,7 +319,7 @@ angular.module('articleSellingApp')
                 parent: 'site',
                 url: '/post-ads',
                 data: {
-                    authorities: []
+                    authorities: ['ROLE_USER']
                 },
                 views: {
                     'content@': {
