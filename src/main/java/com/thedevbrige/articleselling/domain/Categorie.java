@@ -89,6 +89,15 @@ public class Categorie implements Serializable {
         this.adss = adss;
     }
 
+    public Categorie(String nameCategorie, String parent) {
+        super();
+        this.nameCategorie = nameCategorie;
+        this.parent = parent;
+    }
+    public Categorie() {
+        super();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
