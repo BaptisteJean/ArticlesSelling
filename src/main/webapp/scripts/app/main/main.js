@@ -169,8 +169,8 @@ angular.module('articleSellingApp')
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/pages/account-home.html'
-                        //controller: 'MainController'
+                        templateUrl: 'scripts/app/pages/account-home.html',
+                        controller: 'SettingsController'
                     }
                 },
                 resolve: {

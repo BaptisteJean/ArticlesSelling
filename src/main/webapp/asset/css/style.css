@@ -78,9 +78,9 @@ Base Theme Color || If you want to replace a specific known color
 
 */
 
-@media (min-width:1124px) {
+@media (min-width:1250px) {
   .container {
-    max-width: 1124px;
+    max-width: 1250px;
   }
 }
 

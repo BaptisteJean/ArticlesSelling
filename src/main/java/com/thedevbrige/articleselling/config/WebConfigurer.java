@@ -92,7 +92,7 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
 
         staticResourcesProductionFilter.addMappingForUrlPatterns(disps, true, "/");
         staticResourcesProductionFilter.addMappingForUrlPatterns(disps, true, "/index.html");
-        staticResourcesProductionFilter.addMappingForUrlPatterns(disps, true, "/assets/*");
+        staticResourcesProductionFilter.addMappingForUrlPatterns(disps, true, "/asset/*");
         staticResourcesProductionFilter.addMappingForUrlPatterns(disps, true, "/scripts/*");
         staticResourcesProductionFilter.setAsyncSupported(true);
     }
@@ -107,7 +107,7 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
             servletContext.addFilter("cachingHttpHeadersFilter",
                 new CachingHttpHeadersFilter(env));
 
-        cachingHttpHeadersFilter.addMappingForUrlPatterns(disps, true, "/assets/*");
+        cachingHttpHeadersFilter.addMappingForUrlPatterns(disps, true, "/asset/*");
         cachingHttpHeadersFilter.addMappingForUrlPatterns(disps, true, "/scripts/*");
         cachingHttpHeadersFilter.setAsyncSupported(true);
     }
