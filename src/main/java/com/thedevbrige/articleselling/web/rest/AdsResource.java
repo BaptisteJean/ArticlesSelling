@@ -79,6 +79,28 @@ public class AdsResource {
             .headers(HeaderUtil.createEntityUpdateAlert("ads", adsDTO.getId().toString()))
             .body(adsMapper.adsToAdsDTO(result));
     }
+    
+    
+    //incrémentation et sauvegarde du nbre de vues à partir de l'id venant du front
+    @RequestMapping(value = "nbreVue/ads/{id}",
+            method = RequestMethod.PUT,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+        @Timed
+        public void nbreVue(@PathVariable Long id){
+        	Ads ads = new Ads();
+        	ads = adsRepository.findById(id);
+        	Long nbreVue = ads.getNbreVue();
+        	if(nbreVue != null){
+        	nbreVue = nbreVue + 1;
+        	ads.setNbreVue(nbreVue);
+        	}
+        	else{
+        		nbreVue = (long) 1;
+        	}
+        	adsRepository.save(ads);
+        	
+        }
+    
 
     /**
      * GET  /adss -> get all the adss.
@@ -97,6 +119,8 @@ public class AdsResource {
             .collect(Collectors.toCollection(LinkedList::new)), headers, HttpStatus.OK);
     }
 
+     
+    
     /**
      * GET  /adss/:id -> get the "id" ads.
      */

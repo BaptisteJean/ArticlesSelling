@@ -10,5 +10,7 @@ import java.util.List;
  * Spring Data JPA repository for the Ads entity.
  */
 public interface AdsRepository extends JpaRepository<Ads,Long> {
+	
+	public Ads  findById(Long id);
 
 }

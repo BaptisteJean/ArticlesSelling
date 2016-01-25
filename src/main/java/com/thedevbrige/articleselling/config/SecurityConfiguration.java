@@ -80,6 +80,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
             .authorizeRequests()
+            .antMatchers("/api/nbreVue/ads/**").permitAll()
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/pays/*").permitAll()
             .antMatchers("/api/listvillesforcountry/*").permitAll()
