@@ -153,5 +153,16 @@ public class CategorieResource {
          categorieRepository.save(cat);
     }
     
+    /*
+     * get amount of click on parent category
+     * */
+    @RequestMapping(value = "/categories/parentVu/{parent}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+       @Timed
+       public long getCountForparent(@PathVariable String parent){
+    	
+    	return categorieRepository.countByParent(parent);
+    }
     
 }
