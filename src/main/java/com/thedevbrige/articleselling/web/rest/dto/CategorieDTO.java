@@ -1,6 +1,7 @@
 package com.thedevbrige.articleselling.web.rest.dto;
 
 import javax.validation.constraints.*;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,12 +23,27 @@ public class CategorieDTO implements Serializable {
     private String description;
 
     private Long nbreAds;
+    private Long nbre_vu;
 
     public Long getId() {
         return id;
     }
+    
+    
 
-    public void setId(Long id) {
+    public Long getNbre_vu() {
+		return nbre_vu;
+	}
+
+
+
+	public void setNbre_vu(Long nbre_vu) {
+		this.nbre_vu = nbre_vu;
+	}
+
+
+
+	public void setId(Long id) {
         this.id = id;
     }
 

@@ -23,7 +23,7 @@ angular.module('articleSellingApp')
                 }
             }) .state('category', {
                 parent: 'site',
-                url: '/category',
+                url: '/category/{id}',
                 data: {
                     authorities: []
                 },

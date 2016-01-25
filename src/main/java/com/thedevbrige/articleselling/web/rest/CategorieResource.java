@@ -7,6 +7,7 @@ import com.thedevbrige.articleselling.web.rest.util.HeaderUtil;
 import com.thedevbrige.articleselling.web.rest.util.PaginationUtil;
 import com.thedevbrige.articleselling.web.rest.dto.CategorieDTO;
 import com.thedevbrige.articleselling.web.rest.mapper.CategorieMapper;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.LinkedList;
@@ -106,6 +108,7 @@ public class CategorieResource {
     @Timed
     public ResponseEntity<CategorieDTO> getCategorie(@PathVariable Long id) {
         log.debug("REST request to get Categorie : {}", id);
+       
         return Optional.ofNullable(categorieRepository.findOne(id))
             .map(categorieMapper::categorieToCategorieDTO)
             .map(categorieDTO -> new ResponseEntity<>(
@@ -126,4 +129,29 @@ public class CategorieResource {
         categorieRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("categorie", id.toString())).build();
     }
+    
+    //////////////////////////////
+    /**
+     * put  /categories/:id -> get the "id" categorie.
+     */
+    @RequestMapping(value = "/categories/addvue/{id}",
+        method = RequestMethod.PUT,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public void getCategorieAddnumberOfvu(@PathVariable Long id) {
+        log.debug("REST request to get Categorie : {}", id);
+         Categorie cat= categorieRepository.findById(id);
+         Long nuvue = cat.getNbre_vu();
+         if(nuvue!=null){
+         nuvue+=1;
+         cat.setNbre_vu(nuvue);
+         }else {
+        	 nuvue=(long) 1;
+        	 cat.setNbre_vu(nuvue);
+         }
+         
+         categorieRepository.save(cat);
+    }
+    
+    
 }

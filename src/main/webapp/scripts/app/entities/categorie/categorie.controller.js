@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('articleSellingApp')
-    .controller('CategorieController', function ($scope, Categorie, ParseLinks) {
+    .controller('CategorieController', function ($http,$stateParams,$scope, Categorie, ParseLinks) {
         $scope.categories = [];
         $scope.page = 0;
         $scope.loadAll = function() {
@@ -9,12 +9,24 @@ angular.module('articleSellingApp')
                 $scope.links = ParseLinks.parse(headers('link'));
                 $scope.categories = result;
             });
+            console.log($stateParams.id);
         };
         $scope.loadPage = function(page) {
             $scope.page = page;
             $scope.loadAll();
         };
         $scope.loadAll();
+        
+        
+        $scope.numbreVue=function(){
+    		$http.put("/api/categories/addvue/"+$stateParams.id).success(function(response){ 
+    			console.log("succes count"+ $stateParams.id);
+    		}).error(function(reason){
+    			console.log(reason);
+    		});
+    		
+    	}
+        $scope.numbreVue();
 
         $scope.delete = function (id) {
             Categorie.get({id: id}, function(result) {
