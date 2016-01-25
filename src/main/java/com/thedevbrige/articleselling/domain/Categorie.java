@@ -35,13 +35,29 @@ public class Categorie implements Serializable {
 
     @Column(name = "nbre_ads")
     private Long nbreAds;
+    
+    @Column(name = "nbre_vu")
+    private Long nbre_vu;
+    
 
     @OneToMany(mappedBy = "categorie")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Ads> adss = new HashSet<>();
 
-    public Long getId() {
+    
+    public Long getNbre_vu() {
+		return nbre_vu;
+	}
+
+	public void setNbre_vu(Long nbre_vu) {
+		this.nbre_vu = nbre_vu;
+	}
+	public void addNbre_vu(){
+		this.nbre_vu++;
+	}
+
+	public Long getId() {
         return id;
     }
 

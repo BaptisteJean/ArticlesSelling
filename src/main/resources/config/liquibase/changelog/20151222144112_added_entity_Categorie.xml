@@ -27,6 +27,7 @@
             <column name="parent" type="varchar(255)"/>
             <column name="description" type="varchar(255)"/>
             <column name="nbre_ads" type="bigint"/>
+            <column name="nbre_vu" type="bigint"/>
         </createTable>
         
     </changeSet>

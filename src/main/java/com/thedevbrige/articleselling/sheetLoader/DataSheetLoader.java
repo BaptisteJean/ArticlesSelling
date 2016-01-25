@@ -33,7 +33,7 @@ public class DataSheetLoader {
     @Inject
     PaysRepository paysRepository;
 
-    String dataSheetFile = "colection.xls";
+    String dataSheetFile = "collection.xls";
     InputStream stream = DataSheetLoader.class.getResourceAsStream("/" + dataSheetFile);
 
     @PostConstruct
