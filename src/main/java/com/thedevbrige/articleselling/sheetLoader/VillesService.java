@@ -26,7 +26,7 @@ public class VillesService {
     public void update(Row row){
 
         Ville ville = new Ville();
-        Pays pays = new Pays();
+        //Pays pays = new Pays();
 
         Cell cell = row.getCell(0);
         //villeExist = villeRepository.findByNameVille(cell.getStringCellValue());

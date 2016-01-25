@@ -1,0 +1,57 @@
+<div id="wrapper">
+
+  <div class="main-container">
+    <div class="container">
+      <div class="row">
+          <div class="alert alert-danger" ng-show="authenticationError">
+              <strong>Failed to sign in!</strong> Please check your credentials and try again.
+          </div>
+        <div class="col-sm-5 login-box">
+          <div class="panel panel-default">
+            <div class="panel-intro text-center">
+              <h2 class="logo-title">
+                <!-- Original Logo will be placed here  -->
+                <span class="logo-icon"><i class="icon icon-search-1 ln-shadow-logo shape-0"></i> </span> BOOT<span>CLASSIFIED </span> </h2>
+            </div>
+            <div class="panel-body">
+              <form role="form" ng-submit="login($event)">
+                <div class="form-group">
+                  <label for="sender-email" class="control-label">Username:</label>
+                  <div class="input-icon"> <i class="icon-user fa"></i>
+                    <input id="sender-email" type="text"  ng-model="username" placeholder="Username" class="form-control email">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="user-pass"  class="control-label">Password:</label>
+                  <div class="input-icon"> <i class="icon-lock fa"></i>
+                    <input type="password" ng-model="password" class="form-control" placeholder="Password"  id="user-pass">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <!--<a  href="#/account-home" class="btn btn-primary  btn-block">Submit</a>-->
+                  <button type="submit" class="btn btn-primary  btn-block">Submit</button>
+                </div>
+              </form>
+            </div>
+            <div class="panel-footer">
+
+              <div class="checkbox pull-left">
+                <label> <input type="checkbox" ng-model="rememberMe" value="false"  id="rememberMe"> Keep me logged in</label>
+              </div>
+
+
+              <p class="text-center pull-right"> <a href="#/authenticated/forgot-password"> Lost your password? </a> </p>
+              <div style=" clear:both"></div>
+            </div>
+          </div>
+          <div class="login-box-btm text-center">
+            <p> Don't have an account? <br>
+              <a href="#/signup"><strong>Sign Up !</strong> </a> </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.main-container -->
+
+</div>

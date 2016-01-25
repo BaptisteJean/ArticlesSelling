@@ -32,6 +32,10 @@ angular.module('articleSellingApp')
                 });
         };
 
+        $scope.selectRegion = function(){
+            $('#selectRegion').modal('show');
+        };
+
         $scope.refresh = function () {
             $scope.loadAll();
             $scope.clear();
