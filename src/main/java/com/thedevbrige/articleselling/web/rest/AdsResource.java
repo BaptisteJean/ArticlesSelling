@@ -117,6 +117,17 @@ public class AdsResource {
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+    
+    /**
+     * GET  /adss/:id -> get the "id" ads.
+     */
+    @RequestMapping(value = "/allAdss",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<Ads> getAll(){
+    	return adsRepository.findAll();
+    }
 
     /**
      * DELETE  /adss/:id -> delete the "id" ads.

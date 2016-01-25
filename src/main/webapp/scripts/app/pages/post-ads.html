@@ -333,12 +333,15 @@
                     <div class="form-group">
                       <label class="col-md-3 control-label" for="seller-Location">Location</label>
                       <div class="col-md-8">
-                        <select id="seller-Location" name="seller-Location" class="form-control">
-                          <option value="1">Option one</option>
-                          <option value="2">Option two</option>
+                        <select id="seller-Location" name="seller-Location" required class="form-control" ng-model="ads.pays" ng-options="pays.id as pays.namePays for pays in payss">
+                          <option value="">Select a location... </option>
                         </select>
                       </div>
                     </div>
+                    
+                    <!-- <select class="form-control" id="category-group" required name="category-group" ng-model="ads.categorieId" ng-options="categorie.id as categorie.nameCategorie for categorie in categories">
+			                <option value="">Select a category... </option>
+			            </select> -->
                     
                     <!-- Select Basic -->
                     <div class="form-group">

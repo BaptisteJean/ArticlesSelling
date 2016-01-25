@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('articleSellingApp').controller('PostAdsController',
-		['$scope', '$stateParams', 'Ads', 'Categorie', 'Image', 'Principal', 'ParseLinks',
-	        function($scope, $stateParams, Ads, Categorie, Image, Principal, ParseLinks) {
+		['$state','$scope', '$http', '$stateParams', 'Ads', 'Categorie', 'Pays', 'Image', 'Principal', 'ParseLinks',
+	        function($state, $scope, $http, $stateParams, Ads, Categorie, Pays, Image, Principal, ParseLinks) {
 
 	        $scope.ads = {
 	        		categorieId: null,
@@ -32,19 +32,33 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	        $scope.ok = true;
 	        $scope.adss = [];
 	        $scope.categories = [];
+	        $scope.payss = [];
 	        $scope.page = 0;
 	        
 	        $scope.loadAll = function() {
-	            Ads.query({page: $scope.page}, function(result, headers) {
-	                $scope.links = ParseLinks.parse(headers('link'));
-	                $scope.adss = result;
-	            });
+//	            Ads.query({page: $scope.page, size: 1000000}, function(result, headers) {
+//	                $scope.links = ParseLinks.parse(headers('link'));
+//	                $scope.adss = result;
+//	            });
+	        	
+	        	$http.get("/api/allAdss")
+	        		.success(function(response){
+	        			$scope.adss = response;
+		            	$scope.image.adsId = $scope.adss.length + 1;
+	        		})
+	        		.error(function(reason){
+	        			
+	        		});
 	            
-	            Categorie.query({page: $scope.page}, function(result, headers) {
+	            Categorie.query({page: $scope.page, size: 63}, function(result, headers) {
 	                $scope.links = ParseLinks.parse(headers('link'));
 	                $scope.categories = result;
 	            });
-	            console.log($scope.categories.length);
+	            
+	            Pays.query({page: $scope.page, size: 243}, function(result, headers) {
+	                $scope.links = ParseLinks.parse(headers('link'));
+	                $scope.payss = result;
+	            });
 	        };
 	        $scope.loadAll();
 	        
@@ -79,13 +93,13 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	                Ads.update($scope.ads, onSaveAdFinished);
 	                Image.update($scope.image, onSaveImgFinished);
 	            } else {
+	            	
 	            	$scope.ads.nameCategorie = $scope.categories[$scope.ads.categorieId - 1].nameCategorie;
 	            	$scope.ads.identif = $scope.image.identif;
-	            	$scope.image.adsId = $scope.adss.length + 1;
 	            	$scope.image.nameAds = $scope.ads.nameAds;
 	                Ads.save($scope.ads, onSaveAdFinished);
 	                Image.save($scope.image, onSaveImgFinished);
-	                //console.log($scope.image.adsId + " and " + $scope.image.nameAds);
+	                $state.go("posting-success");
 	            }
 	        	
 	        };
