@@ -33,7 +33,7 @@ public class DataSheetLoader {
     @Inject
     PaysRepository paysRepository;
 
-    String dataSheetFile = "colection.xls";
+    String dataSheetFile = "collection.xls";
     InputStream stream = DataSheetLoader.class.getResourceAsStream("/" + dataSheetFile);
 
     @PostConstruct
@@ -42,7 +42,7 @@ public class DataSheetLoader {
         try {
             HSSFWorkbook workbook = new HSSFWorkbook(stream);
             List<Pays> listPays = paysRepository.findAll();
-           if(listPays == null){
+           if(listPays.isEmpty()){
 	            updatePays(workbook);
 	            updateVille(workbook);
 	            updateVille2(workbook);

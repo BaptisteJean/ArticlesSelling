@@ -21,7 +21,7 @@ public class VillesService {
     @Inject
     PaysRepository paysRepository;
 
-    Ville villeExist;
+    //Ville villeExist;
 
     public void update(Row row){
 
@@ -29,7 +29,7 @@ public class VillesService {
         Pays pays = new Pays();
 
         Cell cell = row.getCell(0);
-        villeExist = villeRepository.findByNameVille(cell.getStringCellValue());
+        //villeExist = villeRepository.findByNameVille(cell.getStringCellValue());
         if(cell != null && StringUtils.isNotBlank(cell.getStringCellValue())){
             ville.setNameVille(cell.getStringCellValue().trim());
         }else{
