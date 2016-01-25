@@ -1,7 +1,9 @@
 package com.thedevbrige.articleselling.web.rest.dto;
 
 import java.time.LocalDate;
+
 import javax.validation.constraints.*;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -37,6 +39,8 @@ public class AdsDTO implements Serializable {
     private Long nbreImage;
 
     private Long nbreVue;
+    
+    private String login;
 
     private String mainImage;
 
@@ -132,6 +136,14 @@ public class AdsDTO implements Serializable {
 
     public void setNbreVue(Long nbreVue) {
         this.nbreVue = nbreVue;
+    }
+    
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getMainImage() {

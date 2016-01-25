@@ -1,12 +1,15 @@
 package com.thedevbrige.articleselling.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import java.time.LocalDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -56,6 +59,9 @@ public class Ads implements Serializable {
 
     @Column(name = "nbre_vue")
     private Long nbreVue;
+    
+    @Column(name = "login")
+    private String login;
 
     @Column(name = "main_image")
     private String mainImage;
@@ -157,6 +163,14 @@ public class Ads implements Serializable {
 
     public void setNbreVue(Long nbreVue) {
         this.nbreVue = nbreVue;
+    }
+    
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getMainImage() {
