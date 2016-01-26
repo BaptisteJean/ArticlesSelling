@@ -59,7 +59,7 @@ public class Ads implements Serializable {
 
     @Column(name = "nbre_vue")
     private Long nbreVue;
-    
+
     @Column(name = "login")
     private String login;
 
@@ -68,6 +68,9 @@ public class Ads implements Serializable {
 
     @Column(name = "negociable")
     private Boolean negociable;
+
+    @Column(name = "blocked")
+    private boolean blocked = false;
 
     @ManyToOne
     private Categorie categorie;
@@ -164,13 +167,17 @@ public class Ads implements Serializable {
     public void setNbreVue(Long nbreVue) {
         this.nbreVue = nbreVue;
     }
-    
+
     public String getLogin() {
         return login;
     }
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public boolean isBlocked() {
+        return blocked;
     }
 
     public String getMainImage() {
@@ -180,7 +187,6 @@ public class Ads implements Serializable {
     public void setMainImage(String mainImage) {
         this.mainImage = mainImage;
     }
-
     public Boolean getNegociable() {
         return negociable;
     }
@@ -199,6 +205,14 @@ public class Ads implements Serializable {
 
     public Set<Image> getImages() {
         return images;
+    }
+
+    public boolean getBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
     }
 
     public void setImages(Set<Image> images) {
@@ -230,18 +244,22 @@ public class Ads implements Serializable {
     public String toString() {
         return "Ads{" +
             "id=" + id +
-            ", nameAds='" + nameAds + "'" +
-            ", identif='" + identif + "'" +
-            ", dateAjout='" + dateAjout + "'" +
-            ", pays='" + pays + "'" +
-            ", ville='" + ville + "'" +
-            ", price='" + price + "'" +
-            ", etat='" + etat + "'" +
-            ", description='" + description + "'" +
-            ", nbreImage='" + nbreImage + "'" +
-            ", nbreVue='" + nbreVue + "'" +
-            ", mainImage='" + mainImage + "'" +
-            ", negociable='" + negociable + "'" +
+            ", nameAds='" + nameAds + '\'' +
+            ", identif='" + identif + '\'' +
+            ", dateAjout=" + dateAjout +
+            ", pays='" + pays + '\'' +
+            ", ville='" + ville + '\'' +
+            ", price=" + price +
+            ", etat='" + etat + '\'' +
+            ", description='" + description + '\'' +
+            ", nbreImage=" + nbreImage +
+            ", nbreVue=" + nbreVue +
+            ", login='" + login + '\'' +
+            ", mainImage='" + mainImage + '\'' +
+            ", negociable=" + negociable +
+            ", blocked=" + blocked +
+            ", categorie=" + categorie +
+            ", images=" + images +
             '}';
     }
 }

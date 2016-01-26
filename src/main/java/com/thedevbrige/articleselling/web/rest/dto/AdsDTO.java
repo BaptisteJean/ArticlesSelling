@@ -2,6 +2,7 @@ package com.thedevbrige.articleselling.web.rest.dto;
 
 import java.time.LocalDate;
 
+import javax.persistence.Lob;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
@@ -39,7 +40,7 @@ public class AdsDTO implements Serializable {
     private Long nbreImage;
 
     private Long nbreVue;
-    
+
     private String login;
 
     private String mainImage;
@@ -49,6 +50,8 @@ public class AdsDTO implements Serializable {
     private Long categorieId;
 
     private String categorieNameCategorie;
+
+    private boolean blocked;
 
     public Long getId() {
         return id;
@@ -137,7 +140,7 @@ public class AdsDTO implements Serializable {
     public void setNbreVue(Long nbreVue) {
         this.nbreVue = nbreVue;
     }
-    
+
     public String getLogin() {
         return login;
     }
@@ -178,6 +181,14 @@ public class AdsDTO implements Serializable {
         this.categorieNameCategorie = categorieNameCategorie;
     }
 
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -203,18 +214,22 @@ public class AdsDTO implements Serializable {
     public String toString() {
         return "AdsDTO{" +
             "id=" + id +
-            ", nameAds='" + nameAds + "'" +
-            ", identif='" + identif + "'" +
-            ", dateAjout='" + dateAjout + "'" +
-            ", pays='" + pays + "'" +
-            ", ville='" + ville + "'" +
-            ", price='" + price + "'" +
-            ", etat='" + etat + "'" +
-            ", description='" + description + "'" +
-            ", nbreImage='" + nbreImage + "'" +
-            ", nbreVue='" + nbreVue + "'" +
-            ", mainImage='" + mainImage + "'" +
-            ", negociable='" + negociable + "'" +
+            ", nameAds='" + nameAds + '\'' +
+            ", identif='" + identif + '\'' +
+            ", dateAjout=" + dateAjout +
+            ", pays='" + pays + '\'' +
+            ", ville='" + ville + '\'' +
+            ", price=" + price +
+            ", etat='" + etat + '\'' +
+            ", description='" + description + '\'' +
+            ", nbreImage=" + nbreImage +
+            ", nbreVue=" + nbreVue +
+            ", login='" + login + '\'' +
+            ", mainImage='" + mainImage + '\'' +
+            ", negociable=" + negociable +
+            ", categorieId=" + categorieId +
+            ", categorieNameCategorie='" + categorieNameCategorie + '\'' +
+            ", blocked=" + blocked +
             '}';
     }
 }
