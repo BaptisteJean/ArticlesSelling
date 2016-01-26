@@ -37,6 +37,7 @@
             <column name="description" type="varchar(255)"/>
             <column name="nbre_image" type="bigint"/>
             <column name="nbre_vue" type="bigint"/>
+            <column name="login" type="varchar(255)"/>
             <column name="main_image" type="varchar(255)"/>
             <column name="negociable" type="bit"/>
             <column name="categorie_id" type="bigint"/>

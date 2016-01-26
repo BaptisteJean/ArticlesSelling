@@ -3,10 +3,12 @@ package com.thedevbrige.articleselling.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.thedevbrige.articleselling.domain.Ads;
 import com.thedevbrige.articleselling.repository.AdsRepository;
+import com.thedevbrige.articleselling.security.SecurityUtils;
 import com.thedevbrige.articleselling.web.rest.util.HeaderUtil;
 import com.thedevbrige.articleselling.web.rest.util.PaginationUtil;
 import com.thedevbrige.articleselling.web.rest.dto.AdsDTO;
 import com.thedevbrige.articleselling.web.rest.mapper.AdsMapper;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.LinkedList;
@@ -55,6 +58,7 @@ public class AdsResource {
             return ResponseEntity.badRequest().header("Failure", "A new ads cannot already have an ID").body(null);
         }
         Ads ads = adsMapper.adsDTOToAds(adsDTO);
+        ads.setLogin(SecurityUtils.getCurrentUserLogin());
         Ads result = adsRepository.save(ads);
         return ResponseEntity.created(new URI("/api/adss/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("ads", result.getId().toString()))

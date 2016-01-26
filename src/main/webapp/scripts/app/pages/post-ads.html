@@ -8,13 +8,17 @@
             <h2 class="title-2 uppercase"><strong> <i class="icon-docs"></i> Post a Free Classified Ad</strong> </h2>
             <div class="row">
               <div class="col-sm-12">
-                <form class="form-horizontal">
+                <form class="form-horizontal" ng-submit="save()">
                   <fieldset>
                     <!-- Select Basic -->
+                    
                     <div class="form-group">
                       <label class="col-md-3 control-label" >Category</label>
                       <div class="col-md-8">
-                        <select name="category-group" id="category-group" class="form-control">
+                      	<select class="form-control" id="category-group" required name="category-group" ng-model="ads.categorieId" ng-options="categorie.id as categorie.nameCategorie for categorie in categories">
+			                <option value="">Select a category... </option>
+			            </select>
+                        <!-- <select name="category-group" id="category-group" ng-model="ads.categorieId" class="form-control">
                           <option value="0" selected="selected"> Select a category... </option>
                           <option value="Vehicles" style="background-color:#E9E9E9;font-weight:bold;" disabled="disabled"> - Vehicles - </option>
                           <option value="Cars"> Cars </option>
@@ -50,8 +54,19 @@
                           <option value="Professional"> Professional equipment  </option>
                           <option value="dropoff" style="background-color:#E9E9E9;font-weight:bold;" disabled="disabled"> - Extra - </option>
                           <option value="Other"> Other </option>
-                        </select>
+                        </select> -->
                       </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" >Etat</label>
+                      <div class="col-md-8">
+                      	<select class="form-control" id="category-group" name="category-group" ng-model="ads.etat">
+                      		<option value="">Select a state... </option>
+			                <option value="New"> New </option>
+			                <option value="Occasion"> Occasion </option>
+			            </select>
+			          </div>
                     </div>
                     
                     <!-- Multiple Radios (inline) -->
@@ -71,15 +86,24 @@
                     <div class="form-group">
                       <label class="col-md-3 control-label" for="Adtitle">Ad title</label>
                       <div class="col-md-8">
-                        <input id="Adtitle" name="Adtitle" placeholder="Ad title" class="form-control input-md" required="" type="text">
-                        <span class="help-block">A great title needs at least 60 characters. </span> </div>
+                        <input id="Adtitle" name="Adtitle" placeholder="Ad title" class="form-control input-md" ng-model="ads.nameAds" required type="text">
+                        <span class="help-block">A great title needs at least 60 characters. </span> 
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="Adtitle">Ad Identifant</label>
+                      <div class="col-md-8">
+                        <input id="Adtitle" name="Adtitle" placeholder="Ad Identifant" class="form-control input-md" ng-model="image.identif" required type="text">
+                        <span class="help-block">A great identifiant needs at most 10 characters. </span> 
+                      </div>
                     </div>
                     
                     <!-- Textarea -->
                     <div class="form-group">
                       <label class="col-md-3 control-label" for="textarea">Describe ad </label>
                       <div class="col-md-8">
-                        <textarea class="form-control" id="textarea" name="textarea">Describe what makes your ad unique</textarea>
+                        <textarea class="form-control" id="textarea" ng-model="ads.description" name="textarea" placeholder="Describe what makes your ad unique"></textarea>
                       </div>
                     </div>
                     
@@ -88,23 +112,77 @@
                       <label class="col-md-3 control-label" for="Price">Price</label>
                       <div class="col-md-4">
                         <div class="input-group"> <span class="input-group-addon">$</span>
-                          <input id="Price" name="Price" class="form-control" placeholder="placeholder" required="" type="text">
+                          <input id="Price" name="Price" class="form-control" placeholder="placeholder" ng-model="ads.price" required type="number">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="checkbox">
                           <label>
-                            <input type="checkbox">
+                            <input type="checkbox" ng-model="ads.negociable">
                             Negotiable </label>
                         </div>
                       </div>
                     </div>
                     
                     <!-- photo -->
+                    
                     <div class="form-group">
                       <label class="col-md-3 control-label" for="textarea"> Picture </label>
                       <div class="col-md-8">
                       
+                    
+                    <div class="form-group" ngf-drop ngf-change="setImgThumbnail($file, image)" ngf-pattern="'image/*'">
+			            <!-- <label translate="" for="field_imgThumbnail">ImgThumbnail</label> -->
+			            <div class="col-md-5">
+			                <img data-ng-src="{{'data:' + image.imgThumbnailContentType + ';base64,' + image.imgThumbnail}}" style="max-height: 100px;" ng-if="image.imgThumbnail"/>
+			                <div class="help-block clearfix">
+			                    <span class="pull-left">{{image.imgThumbnailContentType}} {{byteSize(image.imgThumbnail)}}</span>
+			                    <button ng-click="image.imgThumbnail=null;image.imgThumbnailContentType=null;"
+			                            ng-if="image.imgThumbnail"
+			                            class="btn btn-default btn-xs pull-right">
+			                        <span class="glyphicon glyphicon-remove"></span>
+			                    </button>
+			                </div>
+			             </div>
+			             <div class="col-md-3">
+			                <button type="file" ngf-select class="btn btn-primary btn-file glyphicon glyphicon-folder-open"
+			                        ngf-change="setImgThumbnail($file, image)" accept="image/*" translate="">
+			                    &nbsp;Browse …
+			                </button>
+			            </div>
+			            <input type="hidden" class="form-control" name="imgThumbnail" id="field_imgThumbnail"
+			                    ng-model="image.imgThumbnail"
+			                     />
+			            <input type="hidden" class="form-control" name="imgThumbnailContentType" id="field_imgThumbnailContentType"
+			                    ng-model="image.imgThumbnailContentType" />
+			        </div>
+			        <div class="form-group" ngf-drop ngf-change="setImgNormal($file, image)" ngf-pattern="'image/*'">
+			            <!-- <label translate="" for="field_imgNormal">ImgNormal</label> -->
+			            <div class="col-md-5">
+			                <img data-ng-src="{{'data:' + image.imgNormalContentType + ';base64,' + image.imgNormal}}" style="max-height: 100px;" ng-if="image.imgNormal"/>
+			                <div class="help-block clearfix">
+			                    <span class="pull-left">{{image.imgNormalContentType}} {{byteSize(image.imgNormal)}}</span>
+			                    <button ng-click="image.imgNormal=null;image.imgNormalContentType=null;"
+			                            ng-if="image.imgNormal"
+			                            class="btn btn-default btn-xs pull-right">
+			                        <span class="glyphicon glyphicon-remove"></span>
+			                    </button>
+			                </div>
+			            </div>
+			            <div class="col-md-3">
+			                <button type="file" ngf-select class="btn btn-primary btn-file glyphicon glyphicon-folder-open"
+			                        ngf-change="setImgNormal($file, image)" accept="image/*" translate="">
+			                    &nbsp;Browse …
+			                </button>
+			            </div>
+			            <input type="hidden" class="form-control" name="imgNormal" id="field_imgNormal"
+			                    ng-model="image.imgNormal"
+			                     />
+			            <input type="hidden" class="form-control" name="imgNormalContentType" id="field_imgNormalContentType"
+			                    ng-model="image.imgNormalContentType" />
+			        </div>
+                      
+                      <!-- 
                       	<div class="mb10">
                           <span class="file-input file-input-new">
                           	<div class="file-preview">
@@ -216,7 +294,8 @@
                         </div>
                         
                         <p class="help-block">Add up to 5 photos. Use a real image of your product, not catalogs.</p>
-                      
+                       -->
+                       
                       </div>
                     </div>
                     <div class="content-subheading"> <i class="icon-user fa"></i> <strong>Seller information</strong> </div>
@@ -225,7 +304,7 @@
                     <div class="form-group">
                       <label class="col-md-3 control-label" for="textinput-name">Name</label>
                       <div class="col-md-8">
-                        <input id="textinput-name" name="textinput-name" placeholder="Seller Name" class="form-control input-md" required="" type="text">
+                        <input id="textinput-name" ng-model="settingsAccount.firstName" readonly name="textinput-name" placeholder="Seller Name" class="form-control input-md" required="" type="text">
                       </div>
                     </div>
                     
@@ -233,7 +312,7 @@
                     <div class="form-group">
                       <label class="col-md-3 control-label" for="seller-email"> Seller Email</label>
                       <div class="col-md-8">
-                        <input id="seller-email" name="seller-email" class="form-control" placeholder="Email" required="" type="text">
+                        <input id="seller-email" ng-model="settingsAccount.email" readonly name="seller-email" class="form-control" placeholder="Email" required="" type="text">
                         <div class="checkbox">
                           <label>
                             <input type="checkbox" value="">
@@ -246,7 +325,7 @@
                     <div class="form-group">
                       <label class="col-md-3 control-label" for="seller-Number">Phone Number</label>
                       <div class="col-md-8">
-                        <input id="seller-Number" name="seller-Number" placeholder="Phone Number" class="form-control input-md" required="" type="text">
+                        <input id="seller-Number" readonly name="seller-Number" placeholder="Phone Number" class="form-control input-md" required="" type="text">
                       </div>
                     </div>
                     
@@ -341,7 +420,20 @@
                     <!-- Button  -->
                     <div class="form-group">
                       <label class="col-md-3 control-label"></label>
-                      <div class="col-md-8"> <a href="#/post-ads/posting-success" id="button1id" class="btn btn-success btn-lg">Submit</a> </div>
+                      <div class="col-md-8"> 
+                      	<!-- <a href="#/post-ads/posting-success" id="button1id" class="btn btn-success btn-lg"> -->
+                      		
+                      		<button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+					            <span class="glyphicon glyphicon-save"></span>&nbsp;
+					            <span>
+					            <!-- <a href="#/post-ads/posting-success" id="button1id" class="btn btn-success btn-lg">  -->
+					            	Submit
+					            <!-- </a> -->
+					            </span>
+					        </button>
+					        
+                      	<!-- </a> --> 
+                      </div>
                     </div>
                   </fieldset>
                 </form>

@@ -23,7 +23,7 @@ angular.module('articleSellingApp')
                 }
             }) .state('category', {
                 parent: 'site',
-                url: '/category',
+                url: '/category/{id}',
                 data: {
                     authorities: []
                 },
@@ -321,10 +321,33 @@ angular.module('articleSellingApp')
                 data: {
                     authorities: ['ROLE_USER']
                 },
+//                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+//                    $modal.open({
+//                        templateUrl: 'scripts/app/pages/post-ads.html',
+//                        controller: 'ImageDialogController',
+//                        size: 'lg',
+//                        resolve: {
+//                            entity: function () {
+//                                return {
+//                                    imgThumbnail: null,
+//                                    imgThumbnailContentType: null,
+//                                    imgNormal: null,
+//                                    imgNormalContentType: null,
+//                                    identif: null,
+//                                    id: null
+//                                };
+//                            }
+//                        }
+//                    }).result.then(function(result) {
+//                        $state.go('image', null, { reload: true });
+//                    }, function() {
+//                        $state.go('image');
+//                    })
+//                }]
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/pages/post-ads.html'
-                        //controller: 'MainController'
+                        templateUrl: 'scripts/app/pages/post-ads.html',
+                        controller: 'PostAdsController'
                     }
                 },
                 resolve: {
