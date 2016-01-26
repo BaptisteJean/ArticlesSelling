@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('articleSellingApp')
-    .controller('AdsController', function ($scope, Ads, ParseLinks) {
+    .controller('AdsController', function ($http,$scope, Ads, ParseLinks) {
         $scope.adss = [];
         $scope.page = 0;
         $scope.loadAll = function() {
@@ -21,6 +21,17 @@ angular.module('articleSellingApp')
                 $scope.ads = result;
                 $('#deleteAdsConfirmation').modal('show');
             });
+        };
+
+        $scope.blockerOrDeblocker = function(index){
+            $http.put('api/ads/blockedOrDeblocked/' + $scope.adss[index].id)
+                .success(function(response){
+                    $scope.adss[index].blocked = response.blocked;
+                    $scope.loadAll();
+                })
+                .error(function(reason){
+                    console.log(reason);
+                });
         };
 
         $scope.confirmDelete = function (id) {
