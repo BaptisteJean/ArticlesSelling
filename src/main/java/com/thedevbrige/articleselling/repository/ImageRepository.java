@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface ImageRepository extends JpaRepository<Image,Long> {
 
+    Image findByAdsId(Long adsId);
+
 }
