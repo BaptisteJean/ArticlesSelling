@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface AdsRepository extends JpaRepository<Ads,Long> {
 
+    Ads findById(Long id);
+    List<Ads> findByLoginAndBlocked(String login, boolean blocked);
 }

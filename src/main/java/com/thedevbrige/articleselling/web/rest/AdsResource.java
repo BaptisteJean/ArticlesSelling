@@ -130,4 +130,44 @@ public class AdsResource {
         adsRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("ads", id.toString())).build();
     }
+
+    /**
+     * PUT  /ads/blockedOrDeblocked/:id -> get the "id" user.
+     */
+    @RequestMapping(value = "/ads/blockedOrDeblocked/{id}",
+        method = RequestMethod.PUT,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public void blockedOrDeblocked(@PathVariable Long id) {
+        log.debug("REST request to blocked Or Deblocked ads : {}", id);
+
+        Ads ads = adsRepository.findById(id);
+
+        if(ads.getBlocked() == true) {
+
+            ads.setBlocked(false);
+
+        }else {
+
+            ads.setBlocked(true);
+        }
+
+        adsRepository.save(ads);
+
+    }
+
+    /**
+     * GET  /myads
+     */
+    @RequestMapping(value = "/myads",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<Ads> getMyAds() {
+        log.debug("REST request to get all my ads : {}");
+        boolean blocked = false;
+        List<Ads> myads = adsRepository.findByLoginAndBlocked(SecurityUtils.getCurrentUserLogin(),blocked);
+        return myads;
+    }
+
 }

@@ -54,6 +54,7 @@
                     <th translate="articleSellingApp.ads.mainImage">MainImage</th>
                     <th translate="articleSellingApp.ads.negociable">Negociable</th>
                     <th translate="articleSellingApp.ads.categorie">categorie</th>
+                    <th>Blocker</th>
                     <th></th>
                 </tr>
             </thead>
@@ -62,7 +63,7 @@
                     <td><a ui-sref="ads.detail({id:ads.id})">{{ads.id}}</a></td>
                     <td>{{ads.nameAds}}</td>
                     <td>{{ads.identif}}</td>
-                        <td>{{ads.dateAjout | date:'mediumDate'}}</td>
+                    <td>{{ads.dateAjout | date:'mediumDate'}}</td>
                     <td>{{ads.pays}}</td>
                     <td>{{ads.ville}}</td>
                     <td>{{ads.price}}</td>
@@ -70,11 +71,14 @@
                     <td>{{ads.description}}</td>
                     <td>{{ads.nbreImage}}</td>
                     <td>{{ads.nbreVue}}</td>
-                    <td>{{ads.mainImage}}</td>
+                    <td>
+                        {{ads.mainImage}}
+                    </td>
                     <td>{{ads.negociable}}</td>
                     <td>
                         <a ui-sref="categorie.detail({id:ads.categorieId})">{{ads.categorieNameCategorie}}</a>
                     </td>
+                    <td>{{ads.blocked}}</td>
                     <td>
                         <button type="submit"
                                 ui-sref="ads.detail({id:ads.id})"
@@ -90,6 +94,11 @@
                                 ng-click="delete(ads.id)"
                                 class="btn btn-danger btn-sm">
                             <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="blockerOrDeblocker($index)"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span> Bloquer & Debloquer</span>
                         </button>
                     </td>
                 </tr>
