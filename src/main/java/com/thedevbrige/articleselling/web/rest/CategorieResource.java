@@ -8,6 +8,14 @@ import com.thedevbrige.articleselling.web.rest.util.PaginationUtil;
 import com.thedevbrige.articleselling.web.rest.dto.CategorieDTO;
 import com.thedevbrige.articleselling.web.rest.mapper.CategorieMapper;
 
+
+
+
+
+
+
+
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -24,8 +32,11 @@ import javax.validation.Valid;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -153,5 +164,54 @@ public class CategorieResource {
          categorieRepository.save(cat);
     }
     
+    /*
+     * get amount of click on parent category
+     * */
+    @RequestMapping(value = "/categories/parentVu/{parent}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+       @Timed
+       public String getCountForAllparent(@PathVariable String parent){
+    	List<Categorie> list= categorieRepository.findAll();
+    	ArrayList<String> listOfparent = new ArrayList<String> ();
+    	String jesonobject=null;
+    	
+    	
+    	for(int i=0; i<list.size(); i++){
+    		if(!listOfparent.contains(list.get(i).getParent()) )
+    		listOfparent.add(list.get(i).getParent());
+    	}
+    	String[][] tab=catparentByVu( listOfparent);
+    	int j=0,i = 0,find=0;
+    	do{
+    		if(parent.equals(tab[0][i])){
+    			j=i;find=1;
+    		}
+    		i++;
+    	}while (i<listOfparent.size()&& find==0);
+    	
+    	return tab[1][j];
+    	}
+    	
     
+    public long getCountForparent( String parent){
+    	List<Categorie> list= categorieRepository.findByParent(parent);
+    	long amtvu=0;
+    	for(int i=0; i<list.size(); i++){
+    		if(list.get(i).getNbre_vu()!=null)
+    		amtvu+=list.get(i).getNbre_vu();
+    	}
+    	//return categorieRepository.countByParent(parent);
+    	return amtvu;
+    }
+    
+    public String[][] catparentByVu(ArrayList<String> listOfparent){
+    	String[][] tab= new String[listOfparent.size()][listOfparent.size()];
+    	for(int i=0; i<listOfparent.size(); i++){
+    		tab[0][i]=listOfparent.get(i);
+    		tab[1][i]=getCountForparent(listOfparent.get(i))+"";
+    	}
+		return tab;
+    	
+    }
 }
