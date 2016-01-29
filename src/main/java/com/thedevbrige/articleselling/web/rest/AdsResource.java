@@ -67,7 +67,6 @@ public class AdsResource {
             return ResponseEntity.badRequest().header("Failure", "Thi image already exist").body(null);
         }
         Ads ads = adsMapper.adsDTOToAds(adsDTO);
-        //ads.setId(UUID.randomUUID().toString());
         ads.setLogin(SecurityUtils.getCurrentUserLogin());
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
@@ -140,14 +139,6 @@ public class AdsResource {
     @Timed
     public Ads getAll(){
     	Ads ad = new Ads();
-//    	List<Ads> allAds = adsRepository.findAll();
-//    	if(allAds.size() != 0){
-//	    	for(int i = 1; i <= allAds.size(); i++){
-//	    		if(i == allAds.size()){
-//	    			ad = allAds.get(i - 1);
-//	    		}
-//	    	}
-//    	}
     	ad.setId(UUID.randomUUID().toString());
     	return ad;
     }
@@ -164,4 +155,44 @@ public class AdsResource {
         adsRepository.delete(adsRepository.findById(id));
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("ads", id.toString())).build();
     }
+
+    /**
+     * PUT  /ads/blockedOrDeblocked/:id -> get the "id" user.
+     */
+    @RequestMapping(value = "/ads/blockedOrDeblocked/{id}",
+        method = RequestMethod.PUT,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public void blockedOrDeblocked(@PathVariable String id) {
+        log.debug("REST request to blocked Or Deblocked ads : {}", id);
+
+        Ads ads = adsRepository.findById(id);
+
+        if(ads.getBlocked() == true) {
+
+            ads.setBlocked(false);
+
+        }else {
+
+            ads.setBlocked(true);
+        }
+
+        adsRepository.save(ads);
+
+    }
+
+    /**
+     * GET  /myads
+     */
+    @RequestMapping(value = "/myads",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<Ads> getMyAds() {
+        log.debug("REST request to get all my ads : {}");
+        boolean blocked = false;
+        List<Ads> myads = adsRepository.findByLoginAndBlocked(SecurityUtils.getCurrentUserLogin(),blocked);
+        return myads;
+    }
+
 }

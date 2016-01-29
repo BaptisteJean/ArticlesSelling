@@ -37,8 +37,9 @@
             <column name="login" type="varchar(255)"/>
             <column name="negociable" type="bit"/>
             <column name="categorie_id" type="bigint"/>
+            <column name="blocked" type="bit"/>
         </createTable>
-        
+
         <addForeignKeyConstraint baseColumnNames="categorie_id"
                                  baseTableName="ads"
                                  constraintName="fk_ads_categorie_id"

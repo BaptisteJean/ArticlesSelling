@@ -31,7 +31,7 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	        $scope.categories = [];
 	        $scope.payss = [];
 	        $scope.page = 0;
-	        
+
 	        $scope.loadAll = function() {
 //	            Ads.query({page: $scope.page}, function(result, headers) {
 //	                $scope.links = ParseLinks.parse(headers('link'));
@@ -47,11 +47,8 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	        	
 	        	$http.get("/api/adId")
 	        	.success(function(response){
-	        		console.log(response.id);
 	        		$scope.ads.id = response.id;
 		            $scope.image.adsId = response.id;
-		            console.log($scope.ads.id);
-		            console.log($scope.image.adsId);
 	        	})
 	        	.error(function(reason){
 	        			
@@ -68,10 +65,19 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	            });
 	        };
 	        $scope.loadAll();
-	        
+
 	        //$scope.categories = Categorie.query();
 	        //$scope.images = Image.query();
 	        
+	        $scope.load = function(id) {
+	            Ads.get({id : id}, function(result) {
+	                $scope.ads = result;
+	            });
+	            Image.get({id : id}, function(result) {
+	                $scope.image = result;
+	            });
+	        };
+
 	        Principal.identity(true).then(function(account) {
 	            $scope.settingsAccount = account;
 	        });
@@ -80,14 +86,14 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	            $scope.$emit('articleSellingApp:adsUpdate', result);
 	            //$modalInstance.close(result);
 	        };
-	        
+
 	        var onSaveImgFinished = function (result) {
 	            $scope.$emit('articleSellingApp:imageUpdate', result);
 	            //$modalInstance.close(result);
 	        };
-	        
+
 	        $scope.save = function () {
-	        	
+
 	        	if ($scope.ads.id != null && $scope.image.id != null) {
 	                Ads.update($scope.ads, onSaveAdFinished);
 	                Image.update($scope.image, onSaveImgFinished);
@@ -100,7 +106,7 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	            	Image.save($scope.image, onSaveImgFinished);
 	                $state.go("posting-success");
 	            }
-	        	
+
 	        };
 	        
 //	        $scope.searcCity = function(){
@@ -108,6 +114,7 @@ angular.module('articleSellingApp').controller('PostAdsController',
 //	        	console.log($scope.ads.pays);
 //	        }
 	        
+
 	        $scope.byteSize = function (base64String) {
 	            if (!angular.isString(base64String)) {
 	                return '';
@@ -133,7 +140,7 @@ angular.module('articleSellingApp').controller('PostAdsController',
 
 	            return formatAsBytes(size(base64String));
 	        };
-	        
+
 	        $scope.setImgThumbnail = function ($file, image) {
 	            if ($file && $file.$error == 'pattern') {
 	                return;
@@ -150,7 +157,7 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	                };
 	            }
 	        };
-	        
+
 	        $scope.setImgNormal = function ($file, image) {
 	            if ($file && $file.$error == 'pattern') {
 	                return;
