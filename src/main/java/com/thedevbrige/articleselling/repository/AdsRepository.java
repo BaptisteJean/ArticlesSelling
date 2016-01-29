@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface AdsRepository extends JpaRepository<Ads,Long> {
 
+	public Ads findById(String id);
+
 }

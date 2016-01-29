@@ -18,17 +18,14 @@
     -->
     <changeSet id="20151222152103" author="jhipster">
         <createTable tableName="image">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+            <column name="id" type="varchar(50)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="img_thumbnail" type="blob"/>
             <column name="img_thumbnail_content_type" type="varchar(50)"/>
             <column name="img_normal" type="blob"/>
             <column name="img_normal_content_type" type="varchar(50)"/>
-            <column name="identif" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-            <column name="ads_id" type="bigint"/>
+            <column name="ads_id" type="varchar(50)"/>
         </createTable>
         
         <addForeignKeyConstraint baseColumnNames="ads_id"

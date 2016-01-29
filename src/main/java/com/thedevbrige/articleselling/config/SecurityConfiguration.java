@@ -81,7 +81,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .and()
             .authorizeRequests()
             .antMatchers("/api/categories/addvue/**").permitAll()
-            .antMatchers("/api/allAdss").permitAll()
+            .antMatchers("/api/adId").permitAll()
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/pays/*").permitAll()
             .antMatchers("/api/listvillesforcountry/*").permitAll()

@@ -1,6 +1,7 @@
 package com.thedevbrige.articleselling.web.rest.dto;
 
 import java.time.LocalDate;
+//import org.joda.time.LocalDate;
 
 import javax.validation.constraints.*;
 
@@ -15,15 +16,12 @@ import java.util.Objects;
  */
 public class AdsDTO implements Serializable {
 
-    private Long id;
+    private String id;
 
     @NotNull
     private String nameAds;
 
-    @NotNull
-    private String identif;
-
-    private LocalDate dateAjout;
+    private String dateAjout;
 
     private String pays;
 
@@ -42,19 +40,17 @@ public class AdsDTO implements Serializable {
     
     private String login;
 
-    private String mainImage;
-
     private Boolean negociable;
 
     private Long categorieId;
 
     private String categorieNameCategorie;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -66,19 +62,11 @@ public class AdsDTO implements Serializable {
         this.nameAds = nameAds;
     }
 
-    public String getIdentif() {
-        return identif;
-    }
-
-    public void setIdentif(String identif) {
-        this.identif = identif;
-    }
-
-    public LocalDate getDateAjout() {
+    public String getDateAjout() {
         return dateAjout;
     }
 
-    public void setDateAjout(LocalDate dateAjout) {
+    public void setDateAjout(String dateAjout) {
         this.dateAjout = dateAjout;
     }
 
@@ -146,14 +134,6 @@ public class AdsDTO implements Serializable {
         this.login = login;
     }
 
-    public String getMainImage() {
-        return mainImage;
-    }
-
-    public void setMainImage(String mainImage) {
-        this.mainImage = mainImage;
-    }
-
     public Boolean getNegociable() {
         return negociable;
     }
@@ -204,7 +184,6 @@ public class AdsDTO implements Serializable {
         return "AdsDTO{" +
             "id=" + id +
             ", nameAds='" + nameAds + "'" +
-            ", identif='" + identif + "'" +
             ", dateAjout='" + dateAjout + "'" +
             ", pays='" + pays + "'" +
             ", ville='" + ville + "'" +
@@ -213,7 +192,6 @@ public class AdsDTO implements Serializable {
             ", description='" + description + "'" +
             ", nbreImage='" + nbreImage + "'" +
             ", nbreVue='" + nbreVue + "'" +
-            ", mainImage='" + mainImage + "'" +
             ", negociable='" + negociable + "'" +
             '}';
     }

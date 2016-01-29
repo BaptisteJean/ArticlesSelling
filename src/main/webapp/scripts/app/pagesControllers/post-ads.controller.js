@@ -8,7 +8,6 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	        		categorieId: null,
 	        		nameCategorie: null,
                     nameAds: null,
-                    identif: null,
                     dateAjout: null,
                     pays: null,
                     ville: null,
@@ -25,30 +24,38 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	        	    adsId: null,
 	        	    nameAds: null,
 	        	    id: null,
-	        	    identif: null,
 	        	    imgNormalContentType: null,
 	        	    imgThumbnailContentType: null
 	        	  };
-	        $scope.ok = true;
 	        $scope.adss = [];
 	        $scope.categories = [];
 	        $scope.payss = [];
 	        $scope.page = 0;
 	        
 	        $scope.loadAll = function() {
-//	            Ads.query({page: $scope.page, size: 1000000}, function(result, headers) {
+//	            Ads.query({page: $scope.page}, function(result, headers) {
 //	                $scope.links = ParseLinks.parse(headers('link'));
 //	                $scope.adss = result;
 //	            });
+	        	$http.get("/api/adId")
+	        	.success(function(response){
+	        		console.log(response);
+	        	})
+	        	.error(function(reason){
+	        		
+	        	});
 	        	
-	        	$http.get("/api/allAdss")
-	        		.success(function(response){
-	        			$scope.adss = response;
-		            	$scope.image.adsId = $scope.adss.length + 1;
-	        		})
-	        		.error(function(reason){
+	        	$http.get("/api/adId")
+	        	.success(function(response){
+	        		console.log(response.id);
+	        		$scope.ads.id = response.id;
+		            $scope.image.adsId = response.id;
+		            console.log($scope.ads.id);
+		            console.log($scope.image.adsId);
+	        	})
+	        	.error(function(reason){
 	        			
-	        		});
+	        	});
 	            
 	            Categorie.query({page: $scope.page, size: 63}, function(result, headers) {
 	                $scope.links = ParseLinks.parse(headers('link'));
@@ -64,14 +71,6 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	        
 	        //$scope.categories = Categorie.query();
 	        //$scope.images = Image.query();
-	        $scope.load = function(id) {
-	            Ads.get({id : id}, function(result) {
-	                $scope.ads = result;
-	            });
-	            Image.get({id : id}, function(result) {
-	                $scope.image = result;
-	            });
-	        };
 	        
 	        Principal.identity(true).then(function(account) {
 	            $scope.settingsAccount = account;
@@ -94,15 +93,20 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	                Image.update($scope.image, onSaveImgFinished);
 	            } else {
 	            	
-	            	$scope.ads.nameCategorie = $scope.categories[$scope.ads.categorieId - 1].nameCategorie;
-	            	$scope.ads.identif = $scope.image.identif;
+	            	$scope.ads.nameCategorie = $scope.categories[$scope.ads.categorieId].nameCategorie;
+	            	$scope.ads.pays = $scope.payss[$scope.ads.pays - 1].namePays;
 	            	$scope.image.nameAds = $scope.ads.nameAds;
-	                Ads.save($scope.ads, onSaveAdFinished);
-	                Image.save($scope.image, onSaveImgFinished);
+	            	Ads.save($scope.ads, onSaveAdFinished);
+	            	Image.save($scope.image, onSaveImgFinished);
 	                $state.go("posting-success");
 	            }
 	        	
 	        };
+	        
+//	        $scope.searcCity = function(){
+//	        	$scope.ads.pays = $scope.payss[$scope.ads.pays - 1].namePays;
+//	        	console.log($scope.ads.pays);
+//	        }
 	        
 	        $scope.byteSize = function (base64String) {
 	            if (!angular.isString(base64String)) {

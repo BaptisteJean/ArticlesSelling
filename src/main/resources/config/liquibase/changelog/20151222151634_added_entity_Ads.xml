@@ -18,16 +18,13 @@
     -->
     <changeSet id="20151222151634" author="jhipster">
         <createTable tableName="ads">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+            <column name="id" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name_ads" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="identif" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-            <column name="date_ajout" type="date"/>
+            <column name="date_ajout" type="varchar(255)"/>
             <column name="pays" type="varchar(255)"/>
             <column name="ville" type="varchar(255)"/>
             <column name="price" type="bigint">
@@ -38,7 +35,6 @@
             <column name="nbre_image" type="bigint"/>
             <column name="nbre_vue" type="bigint"/>
             <column name="login" type="varchar(255)"/>
-            <column name="main_image" type="varchar(255)"/>
             <column name="negociable" type="bit"/>
             <column name="categorie_id" type="bigint"/>
         </createTable>
