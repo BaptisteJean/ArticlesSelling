@@ -12,6 +12,11 @@ angular.module('articleSellingApp')
             $scope.image = result;
         });
         $scope.$on('$destroy', unsubscribe);
+        
+        
+        
+        $scope.t = "tonton";
+        
 
 
         $scope.byteSize = function (base64String) {

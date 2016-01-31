@@ -13,6 +13,5 @@ public interface AdsRepository extends JpaRepository<Ads,Long> {
 	
 	public Ads  findById(Long id);
 
-    Ads findById(Long id);
-    List<Ads> findByLoginAndBlocked(String login, boolean blocked);
+    public List<Ads> findByLoginAndBlocked(String login, boolean blocked);
 }
