@@ -4,10 +4,12 @@ import com.codahale.metrics.annotation.Timed;
 import com.thedevbrige.articleselling.domain.Ads;
 import com.thedevbrige.articleselling.repository.AdsRepository;
 import com.thedevbrige.articleselling.security.SecurityUtils;
+import com.thedevbrige.articleselling.service.AdsService;
 import com.thedevbrige.articleselling.web.rest.util.HeaderUtil;
 import com.thedevbrige.articleselling.web.rest.util.PaginationUtil;
 import com.thedevbrige.articleselling.web.rest.dto.AdsDTO;
 import com.thedevbrige.articleselling.web.rest.mapper.AdsMapper;
+
 
 
 
@@ -53,6 +55,9 @@ public class AdsResource {
 
     @Inject
     private AdsMapper adsMapper;
+    
+    @Inject
+    private AdsService adsService;
 
     /**
      * POST  /adss -> Create a new ads.
@@ -63,7 +68,7 @@ public class AdsResource {
     @Timed
     public ResponseEntity<AdsDTO> createAds(@Valid @RequestBody AdsDTO adsDTO) throws URISyntaxException {
         log.debug("REST request to save Ads : {}", adsDTO);
-        if (adsDTO.getId() == null) {
+        if (adsDTO.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "Thi image already exist").body(null);
         }
         Ads ads = adsMapper.adsDTOToAds(adsDTO);
@@ -71,7 +76,11 @@ public class AdsResource {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         ads.setDateAjout(dateFormat.format(date));
+        adsService.generateId();
+        ads.setId(adsService.getId());
         Ads result = adsRepository.save(ads);
+        adsService.setAds(result);
+        adsService.setSemaphore(true);
         return ResponseEntity.created(new URI("/api/adss/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("ads", result.getId().toString()))
             .body(adsMapper.adsToAdsDTO(result));
@@ -152,19 +161,6 @@ public class AdsResource {
                 adsDTO,
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-    
-    /**
-     * GET  /adss/:id -> get the "id" ads.
-     */
-    @RequestMapping(value = "/adId",
-        method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    public Ads getAll(){
-    	Ads ad = new Ads();
-    	ad.setId(UUID.randomUUID().toString());
-    	return ad;
     }
 
     /**

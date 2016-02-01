@@ -102,9 +102,12 @@ angular.module('articleSellingApp')
         
         
         
-       
-        $scope.recuperer = function(id){
-        	$http.put('/api/nbreVue/ads/'+id)
+        $scope.Mid = null;
+        $scope.recuperer = function(adsId){
+        	
+        	$scope.Mid = adsId;
+        	
+        	$http.put('/api/nbreVue/ads/'+adsId)
         	.success(function(response){
         		console.log(response);
         	})
@@ -112,7 +115,7 @@ angular.module('articleSellingApp')
         		console.log(response);
         	})
         }
-              
+           
         
         ////////////Automobiles///////////
         $scope.Automobiles=function(){    
