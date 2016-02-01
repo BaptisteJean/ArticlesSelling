@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('articleSellingApp').controller('PostAdsController',
-		['$state','$scope', '$http', '$stateParams', 'Ads', 'Categorie', 'Pays', 'Image', 'Principal', 'ParseLinks',
-	        function($state, $scope, $http, $stateParams, Ads, Categorie, Pays, Image, Principal, ParseLinks) {
+		['$state','$scope', '$http', '$stateParams', '$timeout', 'Ads', 'Categorie', 'Pays', 'Image', 'Principal', 'ParseLinks',
+	        function($state, $scope, $http, $stateParams, $timeout, Ads, Categorie, Pays, Image, Principal, ParseLinks) {
 
 	        $scope.ads = {
 	        		categorieId: null,
@@ -79,14 +79,15 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	                Ads.update($scope.ads, onSaveAdFinished);
 	                Image.update($scope.image, onSaveImgFinished);
 	            } else {
-	            	
 	            	$scope.ads.nameCategorie = $scope.categories[$scope.ads.categorieId].nameCategorie;
 	            	$scope.ads.pays = $scope.payss[$scope.ads.pays - 1].namePays;
-	            	//$scope.ads.ville = $scope.villes[$scope.ads.ville - 1].nameVille;
 	            	$scope.image.nameAds = $scope.ads.nameAds;
 		            	Ads.save($scope.ads, onSaveAdFinished);
 		            	Image.save($scope.image, onSaveImgFinished);
 	                $state.go("posting-success");
+	                $timeout(function() {
+	                    $state.go('account-myads');
+	                    }, 3000);
 	            }
 
 	        };

@@ -75,6 +75,9 @@ public class ImageResource {
         while(ok == true){
         	if(adsService.getSemaphore() == true){
 	        	image.setAds(adsService.getAds());
+//	        	if(image.getMainImg() == null){
+//	        		image.
+//	        	}
 	        	result = imageRepository.save(image);
 	        	adsService.setSemaphore(false);
 	        	ok = false;
