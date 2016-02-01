@@ -26,9 +26,9 @@ public class Image implements Serializable {
     @Column(name = "img_thumbnail")
     private byte[] imgThumbnail;
 
-
     @Column(name = "img_thumbnail_content_type")
     private String imgThumbnailContentType;
+    
     @Lob
     @Column(name = "img_normal")
     private byte[] imgNormal;
@@ -36,6 +36,28 @@ public class Image implements Serializable {
 
     @Column(name = "img_normal_content_type")
     private String imgNormalContentType;
+    
+    @Lob
+    @Column(name = "main_img")
+    private byte[] mainImg;
+
+    @Column(name = "main_img_content_type")
+    private String mainImgContentType;
+    
+    @Lob
+    @Column(name = "img_thumbnail1")
+    private byte[] imgThumbnail1;
+
+    @Column(name = "img_thumbnail_content_type1")
+    private String imgThumbnailContentType1;
+    
+    @Lob
+    @Column(name = "img_normal1")
+    private byte[] imgNormal1;
+
+
+    @Column(name = "img_normal_content_type1")
+    private String imgNormalContentType1;
 
     @ManyToOne
     private Ads ads;
@@ -78,6 +100,54 @@ public class Image implements Serializable {
 
     public void setImgNormalContentType(String imgNormalContentType) {
         this.imgNormalContentType = imgNormalContentType;
+    }
+    
+    public byte[] getMainImg() {
+        return mainImg;
+    }
+
+    public void setMainImg(byte[] mainImg) {
+        this.mainImg = mainImg;
+    }
+    
+    public String getMainImgContentType() {
+        return mainImgContentType;
+    }
+
+    public void setMainImgContentType(String mainImgContentType) {
+        this.mainImgContentType = mainImgContentType;
+    }
+    
+    public byte[] getImgThumbnail1() {
+        return imgThumbnail1;
+    }
+
+    public void setImgThumbnail1(byte[] imgThumbnail1) {
+        this.imgThumbnail1 = imgThumbnail1;
+    }
+
+    public String getImgThumbnailContentType1() {
+        return imgThumbnailContentType1;
+    }
+
+    public void setImgThumbnailContentType1(String imgThumbnailContentType1) {
+        this.imgThumbnailContentType1 = imgThumbnailContentType1;
+    }
+
+    public byte[] getImgNormal1() {
+        return imgNormal1;
+    }
+
+    public void setImgNormal1(byte[] imgNormal1) {
+        this.imgNormal1 = imgNormal1;
+    }
+
+    public String getImgNormalContentType1() {
+        return imgNormalContentType1;
+    }
+
+    public void setImgNormalContentType1(String imgNormalContentType1) {
+        this.imgNormalContentType1 = imgNormalContentType1;
     }
 
     public Ads getAds() {
