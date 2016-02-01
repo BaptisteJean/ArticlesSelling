@@ -18,7 +18,7 @@ public interface ImageMapper {
     @Mapping(source = "adsId", target = "ads")
     Image imageDTOToImage(ImageDTO imageDTO);
 
-    default Ads adsFromId(Long id) {
+    default Ads adsFromId(String id) {
         if (id == null) {
             return null;
         }

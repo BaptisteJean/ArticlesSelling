@@ -1,14 +1,13 @@
 'use strict';
 
 angular.module('articleSellingApp').controller('PostAdsController',
-		['$scope', '$stateParams', 'Ads', 'Categorie', 'Image', 'Principal', 'ParseLinks',
-	        function($scope, $stateParams, Ads, Categorie, Image, Principal, ParseLinks) {
+		['$state','$scope', '$http', '$stateParams', 'Ads', 'Categorie', 'Pays', 'Image', 'Principal', 'ParseLinks',
+	        function($state, $scope, $http, $stateParams, Ads, Categorie, Pays, Image, Principal, ParseLinks) {
 
 	        $scope.ads = {
 	        		categorieId: null,
 	        		nameCategorie: null,
                     nameAds: null,
-                    identif: null,
                     dateAjout: null,
                     pays: null,
                     ville: null,
@@ -25,31 +24,31 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	        	    adsId: null,
 	        	    nameAds: null,
 	        	    id: null,
-	        	    identif: null,
 	        	    imgNormalContentType: null,
 	        	    imgThumbnailContentType: null
 	        	  };
-	        $scope.ok = true;
-	        $scope.adss = [];
 	        $scope.categories = [];
+	        $scope.payss = [];
+	        $scope.villes = [];
 	        $scope.page = 0;
 
 	        $scope.loadAll = function() {
-	            Ads.query({page: $scope.page}, function(result, headers) {
-	                $scope.links = ParseLinks.parse(headers('link'));
-	                $scope.adss = result;
-	            });
-
-	            Categorie.query({page: $scope.page}, function(result, headers) {
+	            
+	            Categorie.query({page: $scope.page, size: 63}, function(result, headers) {
 	                $scope.links = ParseLinks.parse(headers('link'));
 	                $scope.categories = result;
 	            });
-	            console.log($scope.categories.length);
+	            
+	            Pays.query({page: $scope.page, size: 243}, function(result, headers) {
+	                $scope.links = ParseLinks.parse(headers('link'));
+	                $scope.payss = result;
+	            });
 	        };
 	        $scope.loadAll();
 
 	        //$scope.categories = Categorie.query();
 	        //$scope.images = Image.query();
+	        
 	        $scope.load = function(id) {
 	            Ads.get({id : id}, function(result) {
 	                $scope.ads = result;
@@ -79,16 +78,33 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	                Ads.update($scope.ads, onSaveAdFinished);
 	                Image.update($scope.image, onSaveImgFinished);
 	            } else {
-	            	$scope.ads.nameCategorie = $scope.categories[$scope.ads.categorieId - 1].nameCategorie;
-	            	$scope.ads.identif = $scope.image.identif;
-	            	$scope.image.adsId = $scope.adss.length + 1;
+	            	
+	            	$scope.ads.nameCategorie = $scope.categories[$scope.ads.categorieId].nameCategorie;
+	            	$scope.ads.pays = $scope.payss[$scope.ads.pays - 1].namePays;
+	            	//$scope.ads.ville = $scope.villes[$scope.ads.ville - 1].nameVille;
 	            	$scope.image.nameAds = $scope.ads.nameAds;
-	                Ads.save($scope.ads, onSaveAdFinished);
-	                Image.save($scope.image, onSaveImgFinished);
-	                //console.log($scope.image.adsId + " and " + $scope.image.nameAds);
+		            	Ads.save($scope.ads, onSaveAdFinished);
+		            	Image.save($scope.image, onSaveImgFinished);
+	                $state.go("posting-success");
 	            }
 
 	        };
+	        
+	        $scope.searcCity = function(){
+	        	if($scope.ads.pays - 1 > 0){
+		        	$http.get("/api/listvillesforcountry/" + $scope.payss[$scope.ads.pays - 1].namePays)
+		        	.success(function(response){
+		        		$scope.villes = response;
+		        	})
+		        	.error(function(reason){
+		        		
+		        	});
+		        }else{
+		        	$scope.villes = [];
+		        }
+	        	
+	        };
+	        
 
 	        $scope.byteSize = function (base64String) {
 	            if (!angular.isString(base64String)) {

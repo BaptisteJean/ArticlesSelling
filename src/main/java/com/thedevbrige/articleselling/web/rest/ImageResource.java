@@ -4,10 +4,12 @@ import com.codahale.metrics.annotation.Timed;
 import com.thedevbrige.articleselling.domain.Image;
 import com.thedevbrige.articleselling.repository.ImageRepository;
 import com.thedevbrige.articleselling.service.ImageService;
+import com.thedevbrige.articleselling.service.AdsService;
 import com.thedevbrige.articleselling.web.rest.util.HeaderUtil;
 import com.thedevbrige.articleselling.web.rest.util.PaginationUtil;
 import com.thedevbrige.articleselling.web.rest.dto.ImageDTO;
 import com.thedevbrige.articleselling.web.rest.mapper.ImageMapper;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -22,11 +24,13 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import java.io.IOException;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -43,6 +47,11 @@ public class ImageResource {
 
     @Inject
     private ImageMapper imageMapper;
+    
+    @Inject
+    private AdsService adsService;
+    
+    private boolean ok = true;
 
     @Inject
     private ImageService imageService;
@@ -61,7 +70,21 @@ public class ImageResource {
             return ResponseEntity.badRequest().header("Failure", "A new image cannot already have an ID").body(null);
         }
         Image image = imageMapper.imageDTOToImage(imageDTO);
-        Image result = imageRepository.save(image);
+        image.setId(UUID.randomUUID().toString());
+        Image result = new Image();
+        while(ok == true){
+        	if(adsService.getSemaphore() == true){
+	        	image.setAds(adsService.getAds());
+	        	result = imageRepository.save(image);
+	        	adsService.setSemaphore(false);
+	        	ok = false;
+        	}
+        	else{
+        		ok = true;
+        	}
+        }
+        ok = true;
+        
         return ResponseEntity.created(new URI("/api/images/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("image", result.getId().toString()))
             .body(imageMapper.imageToImageDTO(result));
@@ -110,9 +133,9 @@ public class ImageResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<ImageDTO> getImage(@PathVariable Long id) {
+    public ResponseEntity<ImageDTO> getImage(@PathVariable String id) {
         log.debug("REST request to get Image : {}", id);
-        return Optional.ofNullable(imageRepository.findOne(id))
+        return Optional.ofNullable(imageRepository.findById(id))
             .map(imageMapper::imageToImageDTO)
             .map(imageDTO -> new ResponseEntity<>(
                 imageDTO,
@@ -127,9 +150,9 @@ public class ImageResource {
         method = RequestMethod.DELETE,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Void> deleteImage(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteImage(@PathVariable String id) {
         log.debug("REST request to delete Image : {}", id);
-        imageRepository.delete(id);
+        imageRepository.delete(imageRepository.findById(id));
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("image", id.toString())).build();
     }
     /**

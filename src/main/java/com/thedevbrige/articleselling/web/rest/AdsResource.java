@@ -4,11 +4,18 @@ import com.codahale.metrics.annotation.Timed;
 import com.thedevbrige.articleselling.domain.Ads;
 import com.thedevbrige.articleselling.repository.AdsRepository;
 import com.thedevbrige.articleselling.security.SecurityUtils;
+import com.thedevbrige.articleselling.service.AdsService;
 import com.thedevbrige.articleselling.web.rest.util.HeaderUtil;
 import com.thedevbrige.articleselling.web.rest.util.PaginationUtil;
 import com.thedevbrige.articleselling.web.rest.dto.AdsDTO;
 import com.thedevbrige.articleselling.web.rest.mapper.AdsMapper;
 
+
+
+
+
+
+//import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -25,9 +32,13 @@ import javax.validation.Valid;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -44,6 +55,9 @@ public class AdsResource {
 
     @Inject
     private AdsMapper adsMapper;
+    
+    @Inject
+    private AdsService adsService;
 
     /**
      * POST  /adss -> Create a new ads.
@@ -55,11 +69,18 @@ public class AdsResource {
     public ResponseEntity<AdsDTO> createAds(@Valid @RequestBody AdsDTO adsDTO) throws URISyntaxException {
         log.debug("REST request to save Ads : {}", adsDTO);
         if (adsDTO.getId() != null) {
-            return ResponseEntity.badRequest().header("Failure", "A new ads cannot already have an ID").body(null);
+            return ResponseEntity.badRequest().header("Failure", "Thi image already exist").body(null);
         }
         Ads ads = adsMapper.adsDTOToAds(adsDTO);
         ads.setLogin(SecurityUtils.getCurrentUserLogin());
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        ads.setDateAjout(dateFormat.format(date));
+        adsService.generateId();
+        ads.setId(adsService.getId());
         Ads result = adsRepository.save(ads);
+        adsService.setAds(result);
+        adsService.setSemaphore(true);
         return ResponseEntity.created(new URI("/api/adss/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("ads", result.getId().toString()))
             .body(adsMapper.adsToAdsDTO(result));
@@ -108,9 +129,9 @@ public class AdsResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<AdsDTO> getAds(@PathVariable Long id) {
+    public ResponseEntity<AdsDTO> getAds(@PathVariable String id) {
         log.debug("REST request to get Ads : {}", id);
-        return Optional.ofNullable(adsRepository.findOne(id))
+        return Optional.ofNullable(adsRepository.findById(id))
             .map(adsMapper::adsToAdsDTO)
             .map(adsDTO -> new ResponseEntity<>(
                 adsDTO,
@@ -125,9 +146,9 @@ public class AdsResource {
         method = RequestMethod.DELETE,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Void> deleteAds(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteAds(@PathVariable String id) {
         log.debug("REST request to delete Ads : {}", id);
-        adsRepository.delete(id);
+        adsRepository.delete(adsRepository.findById(id));
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("ads", id.toString())).build();
     }
 
@@ -138,7 +159,7 @@ public class AdsResource {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public void blockedOrDeblocked(@PathVariable Long id) {
+    public void blockedOrDeblocked(@PathVariable String id) {
         log.debug("REST request to blocked Or Deblocked ads : {}", id);
 
         Ads ads = adsRepository.findById(id);
