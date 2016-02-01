@@ -27,16 +27,12 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	        	    imgNormalContentType: null,
 	        	    imgThumbnailContentType: null
 	        	  };
-	        $scope.adss = [];
 	        $scope.categories = [];
 	        $scope.payss = [];
+	        $scope.villes = [];
 	        $scope.page = 0;
 
 	        $scope.loadAll = function() {
-//	            Ads.query({page: $scope.page}, function(result, headers) {
-//	                $scope.links = ParseLinks.parse(headers('link'));
-//	                $scope.adss = result;
-//	            });
 	            
 	            Categorie.query({page: $scope.page, size: 63}, function(result, headers) {
 	                $scope.links = ParseLinks.parse(headers('link'));
@@ -85,6 +81,7 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	            	
 	            	$scope.ads.nameCategorie = $scope.categories[$scope.ads.categorieId].nameCategorie;
 	            	$scope.ads.pays = $scope.payss[$scope.ads.pays - 1].namePays;
+	            	//$scope.ads.ville = $scope.villes[$scope.ads.ville - 1].nameVille;
 	            	$scope.image.nameAds = $scope.ads.nameAds;
 		            	Ads.save($scope.ads, onSaveAdFinished);
 		            	Image.save($scope.image, onSaveImgFinished);
@@ -93,10 +90,20 @@ angular.module('articleSellingApp').controller('PostAdsController',
 
 	        };
 	        
-//	        $scope.searcCity = function(){
-//	        	$scope.ads.pays = $scope.payss[$scope.ads.pays - 1].namePays;
-//	        	console.log($scope.ads.pays);
-//	        }
+	        $scope.searcCity = function(){
+	        	if($scope.ads.pays - 1 > 0){
+		        	$http.get("/api/listvillesforcountry/" + $scope.payss[$scope.ads.pays - 1].namePays)
+		        	.success(function(response){
+		        		$scope.villes = response;
+		        	})
+		        	.error(function(reason){
+		        		
+		        	});
+		        }else{
+		        	$scope.villes = [];
+		        }
+	        	
+	        };
 	        
 
 	        $scope.byteSize = function (base64String) {
