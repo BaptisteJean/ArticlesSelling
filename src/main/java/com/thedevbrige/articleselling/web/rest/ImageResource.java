@@ -3,6 +3,7 @@ package com.thedevbrige.articleselling.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.thedevbrige.articleselling.domain.Image;
 import com.thedevbrige.articleselling.repository.ImageRepository;
+import com.thedevbrige.articleselling.service.AdsService;
 import com.thedevbrige.articleselling.web.rest.util.HeaderUtil;
 import com.thedevbrige.articleselling.web.rest.util.PaginationUtil;
 import com.thedevbrige.articleselling.web.rest.dto.ImageDTO;
@@ -44,6 +45,11 @@ public class ImageResource {
 
     @Inject
     private ImageMapper imageMapper;
+    
+    @Inject
+    private AdsService adsService;
+    
+    private boolean ok = true;
 
     /**
      * POST  /images -> Create a new image.
@@ -59,7 +65,19 @@ public class ImageResource {
         }
         Image image = imageMapper.imageDTOToImage(imageDTO);
         image.setId(UUID.randomUUID().toString());
-        Image result = imageRepository.save(image);
+        Image result = new Image();
+        while(ok == true){
+        	if(adsService.getSemaphore() == true){
+	        	image.setAds(adsService.getAds());
+	        	result = imageRepository.save(image);
+	        	adsService.setSemaphore(false);
+	        	ok = false;
+        	}
+        	else{
+        		ok = true;
+        	}
+        }
+        
         return ResponseEntity.created(new URI("/api/images/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("image", result.getId().toString()))
             .body(imageMapper.imageToImageDTO(result));

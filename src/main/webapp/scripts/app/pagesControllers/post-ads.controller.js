@@ -37,22 +37,6 @@ angular.module('articleSellingApp').controller('PostAdsController',
 //	                $scope.links = ParseLinks.parse(headers('link'));
 //	                $scope.adss = result;
 //	            });
-	        	$http.get("/api/adId")
-	        	.success(function(response){
-	        		console.log(response);
-	        	})
-	        	.error(function(reason){
-	        		
-	        	});
-	        	
-	        	$http.get("/api/adId")
-	        	.success(function(response){
-	        		$scope.ads.id = response.id;
-		            $scope.image.adsId = response.id;
-	        	})
-	        	.error(function(reason){
-	        			
-	        	});
 	            
 	            Categorie.query({page: $scope.page, size: 63}, function(result, headers) {
 	                $scope.links = ParseLinks.parse(headers('link'));
@@ -102,8 +86,8 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	            	$scope.ads.nameCategorie = $scope.categories[$scope.ads.categorieId].nameCategorie;
 	            	$scope.ads.pays = $scope.payss[$scope.ads.pays - 1].namePays;
 	            	$scope.image.nameAds = $scope.ads.nameAds;
-	            	Ads.save($scope.ads, onSaveAdFinished);
-	            	Image.save($scope.image, onSaveImgFinished);
+		            	Ads.save($scope.ads, onSaveAdFinished);
+		            	Image.save($scope.image, onSaveImgFinished);
 	                $state.go("posting-success");
 	            }
 
