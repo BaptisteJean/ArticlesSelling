@@ -343,9 +343,8 @@
                     <div class="form-group">
                       <label class="col-md-3 control-label" for="seller-area">City</label>
                       <div class="col-md-8">
-                        <select id="seller-area" name="seller-area" class="form-control">
-                          <option value="1">Option one</option>
-                          <option value="2">Option two</option>
+                        <select id="seller-area" name="seller-area" required class="form-control" ng-model="ads.ville" ng-options="ville.nameVille as ville.nameVille for ville in villes">
+                          <option value="">Select a city... </option>
                         </select>
                       </div>
                     </div>

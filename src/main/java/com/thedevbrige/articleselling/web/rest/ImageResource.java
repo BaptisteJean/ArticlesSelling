@@ -77,6 +77,7 @@ public class ImageResource {
         		ok = true;
         	}
         }
+        ok = true;
         
         return ResponseEntity.created(new URI("/api/images/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("image", result.getId().toString()))
