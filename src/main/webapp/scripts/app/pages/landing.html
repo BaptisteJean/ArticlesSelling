@@ -34,7 +34,7 @@
         <div class="row">
             <div class="col-md-4 col-sm-4 ">
                 <div class="cat-list">
-                    <h3 class="cat-title"><a href="#/category"><i class="fa fa-car ln-shadow"></i> Automobiles <span class="count">277,959</span> </a>
+                    <h3 class="cat-title"><a href="#/category"><i class="fa fa-car ln-shadow"></i> Automobiles <span class="count">{{Automobiles}}</span> </a>
 
                         <span data-target=".cat-id-1" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
                     </h3>
@@ -48,7 +48,7 @@
                     </ul>
                 </div>
                 <div class="cat-list">
-                    <h3 class="cat-title"><a href="#/category"><i class="icon-home ln-shadow"></i> Property <span class="count">228,705</span></a>     <span data-target=".cat-id-2" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span></h3>
+                    <h3 class="cat-title"><a href="#/category"><i class="icon-home ln-shadow"></i> Property <span class="count">  {{Property}}</span></a>     <span data-target=".cat-id-2" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span></h3>
 
 
 
@@ -64,7 +64,7 @@
                     </ul>
                 </div>
                 <div class="cat-list">
-                    <h3 class="cat-title"><a href="#/category"><i class="icon-home ln-shadow"></i> Jobs <span class="count">6375</span></a>
+                    <h3 class="cat-title"><a href="#/category"><i class="icon-home ln-shadow"></i> Jobs <span class="count"> {{Jobs}}</span></a>
 
                         <span data-target=".cat-id-3" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
                     </h3>
@@ -80,7 +80,7 @@
             </div>
             <div class="col-md-4 col-sm-4">
                 <div class="cat-list">
-                    <h3 class="cat-title"><a href="#/category"><i class="fa fa-briefcase ln-shadow"></i> Services <span class="count">45,526</span></a>
+                    <h3 class="cat-title"><a href="#/category"><i class="fa fa-briefcase ln-shadow"></i> Services <span class="count">{{Services}} </span></a>
                         <span data-target=".cat-id-4" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
                     </h3>
                     <ul class="cat-collapse collapse in cat-id-4">
@@ -96,7 +96,7 @@
                     </ul>
                 </div>
                 <div class="cat-list">
-                    <h3 class="cat-title"><a href="#/category"><i class="icon-book-open ln-shadow"></i> Learning <span class="count">26,529</span></a>       <span data-target=".cat-id-5" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
+                    <h3 class="cat-title"><a href="#/category"><i class="icon-book-open ln-shadow"></i> Learning <span class="count">  {{Learning}}</span></a>       <span data-target=".cat-id-5" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
                     </h3>
                     <ul class="cat-collapse collapse in cat-id-5">
                         <li> <a href="#/category/30"> Automotive Classes </a> </li>
@@ -110,7 +110,7 @@
                     </ul>
                 </div>
                 <div class="cat-list">
-                    <h3 class="cat-title"><a href="#/category"><i class="icon-guidedog ln-shadow"></i> Pets <span class="count">42,111</span></a>   <span data-target=".cat-id-6" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
+                    <h3 class="cat-title"><a href="#/category"><i class="icon-guidedog ln-shadow"></i> Pets <span class="count">  {{Pets}}</span></a>   <span data-target=".cat-id-6" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
                     </h3>
                     <ul class="cat-collapse collapse in cat-id-6">
                         <li> <a href="#/category/38">Pets for Sale</a> </li>
@@ -122,7 +122,7 @@
             </div>
             <div class="col-md-4 col-sm-4   last-column">
                 <div class="cat-list">
-                    <h3 class="cat-title"><a href="#/category"><i class=" icon-basket-1 ln-shadow"></i> For Sale <span class="count">64,526</span></a>    <span data-target=".cat-id-7" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
+                    <h3 class="cat-title"><a href="#/category"><i class=" icon-basket-1 ln-shadow"></i> For Sale <span class="count">{{ForSale}}</span></a>    <span data-target=".cat-id-7" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
                     </h3>
                     <ul class="cat-collapse collapse in cat-id-7">
                         <li> <a href="#/category/42">Audio &amp; Stereo</a> </li>
@@ -145,7 +145,7 @@
                     </ul>
                 </div>
                 <div class="cat-list ">
-                    <h3 class="cat-title"><a href="#/category"><i class=" icon-theatre ln-shadow"></i> Community <span class="count">5,30</span> </a>   <span data-target=".cat-id-8" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
+                    <h3 class="cat-title"><a href="#/category"><i class=" icon-theatre ln-shadow"></i> Community <span class="count"> {{Community}}</span> </a>   <span data-target=".cat-id-8" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
                     </h3>
                     <ul class="cat-collapse collapse in cat-id-8">
                         <li> <a href="#/category/59">Announcements </a> </li>
@@ -240,16 +240,17 @@
             <h2 class="title-2">Popular Categories </h2>
             <div class="inner-box-content">
                 <ul class="cat-list arrow">
-                    <li> <a href="#/sub-category-sub-location"> Apparel (1,386) </a></li>
+             <!--       <li> <a href="#/sub-category-sub-location"> Apparel (1,386) </a></li>
                     <li> <a href="#/sub-category-sub-location"> Art (1,163) </a></li>
                     <li> <a href="#/sub-category-sub-location"> Business Opportunities (4,974) </a></li>
                     <li> <a href="#/sub-category-sub-location"> Community and Events (1,258) </a></li>
                     <li> <a href="#/sub-category-sub-location"> Electronics and Appliances (1,578) </a></li>
-                    <li> <a href="#/sub-category-sub-location"> Jobs and Employment (3,609) </a></li>
+                -->
+                    <li> <a href="#/sub-category-sub-location"> Jobs and Employment ({{Jobs}}) </a></li>
                     <li> <a href="#/sub-category-sub-location"> Motorcycles (968) </a></li>
-                    <li> <a href="#/sub-category-sub-location"> Pets (1,188) </a></li>
-                    <li> <a href="#/sub-category-sub-location"> Services (7,583) </a></li>
-                    <li> <a href="#/sub-category-sub-location"> Vehicles (1,129) </a></li>
+                    <li> <a href="#/sub-category-sub-location"> Pets ({{Pets}}) </a></li>
+                    <li> <a href="#/sub-category-sub-location"> Services ({{Services}}) </a></li>
+                    <li> <a href="#/sub-category-sub-location"> Vehicles ({{Automobiles }}) </a></li>
                 </ul>
             </div>
         </div>

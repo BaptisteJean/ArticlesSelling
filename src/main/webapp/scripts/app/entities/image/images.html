@@ -43,7 +43,7 @@
                     <th translate="global.field.id">ID</th>
                     <th translate="articleSellingApp.image.imgThumbnail">ImgThumbnail</th>
                     <th translate="articleSellingApp.image.imgNormal">ImgNormal</th>
-                    <th translate="articleSellingApp.image.identif">Identif</th>
+                    <!-- <th translate="articleSellingApp.image.identif">Identif</th> -->
                     <th translate="articleSellingApp.image.ads">ads</th>
                     <th></th>
                 </tr>
@@ -57,7 +57,7 @@
                     <td>
                         <img data-ng-src="{{'data:' + image.imgNormalContentType + ';base64,' + image.imgNormal}}" style="max-height: 30px;" ng-if="image.imgNormal"/> {{image.imgNormalContentType}} {{byteSize(image.imgNormal)}}
                     </td>
-                    <td>{{image.identif}}</td>
+                    <!-- <td>{{image.identif}}</td> -->
                     <td>
                         <a ui-sref="ads.detail({id:image.adsId})">{{image.adsNameAds}}</a>
                     </td>

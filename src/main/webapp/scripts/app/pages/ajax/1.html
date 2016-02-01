@@ -4,7 +4,7 @@
 				</div>
                 
                 <div class="col-sm-2 no-padding photobox">
-                  <div class="add-image" ng-click="recuperer({id:image.id})"> <span class="photo-count"><i class="fa fa-camera"></i> 2 </span> 
+                  <div class="add-image" ng-click="recuperer({id:image.adsId})"> <span class="photo-count"><i class="fa fa-camera"></i> 2 </span> 
                   <a ui-sref="image.detail({id:image.id})">{{image.id}}
                   <img class="thumbnail no-margin" src="{{'data:' + image.imgThumbnailContentType + ';base64,' + image.imgThumbnail}}" alt="img"/> {{image.imgThumbnailContentType}} {{byteSize(image.imgThumbnail)}}
                   </a> </div>

@@ -13,7 +13,7 @@ import javax.persistence.Lob;
  */
 public class ImageDTO implements Serializable {
 
-    private Long id;
+    private String id;
 
     @Lob
     private byte[] imgThumbnail;
@@ -25,18 +25,15 @@ public class ImageDTO implements Serializable {
 
     private String imgNormalContentType;
 
-    @NotNull
-    private String identif;
-
-    private Long adsId;
+    private String adsId;
 
     private String adsNameAds;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -72,19 +69,11 @@ public class ImageDTO implements Serializable {
         this.imgNormalContentType = imgNormalContentType;
     }
 
-    public String getIdentif() {
-        return identif;
-    }
-
-    public void setIdentif(String identif) {
-        this.identif = identif;
-    }
-
-    public Long getAdsId() {
+    public String getAdsId() {
         return adsId;
     }
 
-    public void setAdsId(Long adsId) {
+    public void setAdsId(String adsId) {
         this.adsId = adsId;
     }
 
@@ -123,7 +112,6 @@ public class ImageDTO implements Serializable {
             "id=" + id +
             ", imgThumbnail='" + imgThumbnail + "'" +
             ", imgNormal='" + imgNormal + "'" +
-            ", identif='" + identif + "'" +
             '}';
     }
 }

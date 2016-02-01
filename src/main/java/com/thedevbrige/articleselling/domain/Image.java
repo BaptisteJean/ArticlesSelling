@@ -19,8 +19,8 @@ import java.util.Objects;
 public class Image implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    private String id;
 
     @Lob
     @Column(name = "img_thumbnail")
@@ -36,18 +36,15 @@ public class Image implements Serializable {
 
     @Column(name = "img_normal_content_type")
     private String imgNormalContentType;
-    @NotNull
-    @Column(name = "identif", nullable = false)
-    private String identif;
 
     @ManyToOne
     private Ads ads;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -81,14 +78,6 @@ public class Image implements Serializable {
 
     public void setImgNormalContentType(String imgNormalContentType) {
         this.imgNormalContentType = imgNormalContentType;
-    }
-
-    public String getIdentif() {
-        return identif;
-    }
-
-    public void setIdentif(String identif) {
-        this.identif = identif;
     }
 
     public Ads getAds() {
@@ -128,7 +117,6 @@ public class Image implements Serializable {
             ", imgThumbnailContentType='" + imgThumbnailContentType + "'" +
             ", imgNormal='" + imgNormal + "'" +
             ", imgNormalContentType='" + imgNormalContentType + "'" +
-            ", identif='" + identif + "'" +
             '}';
     }
 }

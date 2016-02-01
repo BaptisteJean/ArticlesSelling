@@ -42,7 +42,6 @@
                 <tr>
                     <th translate="global.field.id">ID</th>
                     <th translate="articleSellingApp.ads.nameAds">NameAds</th>
-                    <th translate="articleSellingApp.ads.identif">Identif</th>
                     <th translate="articleSellingApp.ads.dateAjout">DateAjout</th>
                     <th translate="articleSellingApp.ads.pays">Pays</th>
                     <th translate="articleSellingApp.ads.ville">Ville</th>
@@ -51,7 +50,6 @@
                     <th translate="articleSellingApp.ads.description">Description</th>
                     <th translate="articleSellingApp.ads.nbreImage">NbreImage</th>
                     <th translate="articleSellingApp.ads.nbreVue">NbreVue</th>
-                    <th translate="articleSellingApp.ads.mainImage">MainImage</th>
                     <th translate="articleSellingApp.ads.negociable">Negociable</th>
                     <th translate="articleSellingApp.ads.categorie">categorie</th>
                     <th>Blocker</th>
@@ -62,8 +60,7 @@
                 <tr ng-repeat="ads in adss track by ads.id">
                     <td><a ui-sref="ads.detail({id:ads.id})">{{ads.id}}</a></td>
                     <td>{{ads.nameAds}}</td>
-                    <td>{{ads.identif}}</td>
-                    <td>{{ads.dateAjout | date:'mediumDate'}}</td>
+                        <td>{{ads.dateAjout | date:'mediumDate'}}</td>
                     <td>{{ads.pays}}</td>
                     <td>{{ads.ville}}</td>
                     <td>{{ads.price}}</td>
@@ -71,9 +68,6 @@
                     <td>{{ads.description}}</td>
                     <td>{{ads.nbreImage}}</td>
                     <td>{{ads.nbreVue}}</td>
-                    <td>
-                        {{ads.mainImage}}
-                    </td>
                     <td>{{ads.negociable}}</td>
                     <td>
                         <a ui-sref="categorie.detail({id:ads.categorieId})">{{ads.categorieNameCategorie}}</a>

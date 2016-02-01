@@ -1,11 +1,15 @@
 package com.thedevbrige.articleselling.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
 
 import java.time.LocalDate;
+//import org.joda.time.LocalDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -24,19 +28,15 @@ import java.util.Objects;
 public class Ads implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    private String id;
 
     @NotNull
     @Column(name = "name_ads", nullable = false)
     private String nameAds;
 
-    @NotNull
-    @Column(name = "identif", nullable = false)
-    private String identif;
-
     @Column(name = "date_ajout", nullable = false)
-    private LocalDate dateAjout;
+    private String dateAjout;
 
     @Column(name = "pays")
     private String pays;
@@ -63,9 +63,6 @@ public class Ads implements Serializable {
     @Column(name = "login")
     private String login;
 
-    @Column(name = "main_image")
-    private String mainImage;
-
     @Column(name = "negociable")
     private Boolean negociable;
 
@@ -80,11 +77,11 @@ public class Ads implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Image> images = new HashSet<>();
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -96,19 +93,11 @@ public class Ads implements Serializable {
         this.nameAds = nameAds;
     }
 
-    public String getIdentif() {
-        return identif;
-    }
-
-    public void setIdentif(String identif) {
-        this.identif = identif;
-    }
-
-    public LocalDate getDateAjout() {
+    public String getDateAjout() {
         return dateAjout;
     }
 
-    public void setDateAjout(LocalDate dateAjout) {
+    public void setDateAjout(String dateAjout) {
         this.dateAjout = dateAjout;
     }
 
@@ -179,14 +168,6 @@ public class Ads implements Serializable {
     public boolean isBlocked() {
         return blocked;
     }
-
-    public String getMainImage() {
-        return mainImage;
-    }
-
-    public void setMainImage(String mainImage) {
-        this.mainImage = mainImage;
-    }
     public Boolean getNegociable() {
         return negociable;
     }
@@ -245,7 +226,6 @@ public class Ads implements Serializable {
         return "Ads{" +
             "id=" + id +
             ", nameAds='" + nameAds + '\'' +
-            ", identif='" + identif + '\'' +
             ", dateAjout=" + dateAjout +
             ", pays='" + pays + '\'' +
             ", ville='" + ville + '\'' +
@@ -255,7 +235,6 @@ public class Ads implements Serializable {
             ", nbreImage=" + nbreImage +
             ", nbreVue=" + nbreVue +
             ", login='" + login + '\'' +
-            ", mainImage='" + mainImage + '\'' +
             ", negociable=" + negociable +
             ", blocked=" + blocked +
             ", categorie=" + categorie +
