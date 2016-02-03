@@ -189,8 +189,8 @@ angular.module('articleSellingApp')
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/pages/account-myads.html'
-                        //controller: 'MainController'
+                        templateUrl: 'scripts/app/pages/account-myads.html',
+                        controller: 'AccountMyadsController'
                     }
                 },
                 resolve: {
@@ -354,26 +354,26 @@ angular.module('articleSellingApp')
                     }]
                 }
             })
-            
-            
-            
-            
+
+
+
+
             .state('categorie1', {
                 url: '/categorie1',
                 views: {
                     'content@': {
                         templateUrl: 'scripts/app/pages/menu_link.html',
-                        
+
                        // controller: 'MainController'
-                        
+
                     }
                 },
             })
-            
-            
-            
-            
-            
+
+
+
+
+
                 .state('categorie2', {
                 url: '/categorie2',
                 views: {

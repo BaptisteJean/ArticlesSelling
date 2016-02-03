@@ -47,10 +47,10 @@ public class ImageResource {
 
     @Inject
     private ImageMapper imageMapper;
-    
+
     @Inject
     private AdsService adsService;
-    
+
     private boolean ok = true;
 
     @Inject
@@ -87,7 +87,7 @@ public class ImageResource {
         	}
         }
         ok = true;
-        
+
         return ResponseEntity.created(new URI("/api/images/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("image", result.getId().toString()))
             .body(imageMapper.imageToImageDTO(result));
@@ -165,7 +165,7 @@ public class ImageResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<byte[]> getImageAds(@PathVariable Long adsId) throws IOException {
+    public ResponseEntity<byte[]> getImageAds(@PathVariable String adsId) throws IOException {
         log.debug("REST request to get Image ads : {}", adsId);
 
         Image imageads = imageRepository.findByAdsId(adsId);

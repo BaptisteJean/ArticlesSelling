@@ -55,7 +55,7 @@ public class AdsResource {
 
     @Inject
     private AdsMapper adsMapper;
-    
+
     @Inject
     private AdsService adsService;
 
@@ -104,8 +104,8 @@ public class AdsResource {
             .headers(HeaderUtil.createEntityUpdateAlert("ads", adsDTO.getId().toString()))
             .body(adsMapper.adsToAdsDTO(result));
     }
-    
-    
+
+
     //incrémentation et sauvegarde du nbre de vues à partir de l'id venant du front
     @RequestMapping(value = "/nbreVue/ads/{id}",
             method = RequestMethod.PUT,
@@ -125,9 +125,9 @@ public class AdsResource {
         	}
         	adsRepository.save(ads);
         }
-    
- 
-    
+
+
+
 
     /**
      * GET  /adss -> get all the adss.
@@ -146,8 +146,8 @@ public class AdsResource {
             .collect(Collectors.toCollection(LinkedList::new)), headers, HttpStatus.OK);
     }
 
-     
-    
+
+
     /**
      * GET  /adss/:id -> get the "id" ads.
      */
@@ -176,6 +176,19 @@ public class AdsResource {
         log.debug("REST request to delete Ads : {}", id);
         adsRepository.delete(adsRepository.findById(id));
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("ads", id.toString())).build();
+    }
+
+    /**
+     * DELETE  /delete/:id -> delete the "id" ads.
+     */
+    @RequestMapping(value = "/delete/{id}",
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public void delete(@PathVariable String id) {
+        log.debug("REST request to delete : {}", id);
+        Ads ads = adsRepository.findById(id);
+        adsRepository.delete(ads);
     }
 
     /**
