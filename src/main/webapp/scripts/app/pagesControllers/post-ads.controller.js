@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('articleSellingApp').controller('PostAdsController',
-		['$state','$scope', '$http', '$stateParams', 'Ads', 'Categorie', 'Pays', 'Image', 'Principal', 'ParseLinks',
-	        function($state, $scope, $http, $stateParams, Ads, Categorie, Pays, Image, Principal, ParseLinks) {
+		['$state','$scope', '$http', '$stateParams', '$timeout', 'Ads', 'Categorie', 'Pays', 'Image', 'Principal', 'ParseLinks',
+	        function($state, $scope, $http, $stateParams, $timeout, Ads, Categorie, Pays, Image, Principal, ParseLinks) {
 
 	        $scope.ads = {
 	        		categorieId: null,
@@ -25,7 +25,8 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	        	    nameAds: null,
 	        	    id: null,
 	        	    imgNormalContentType: null,
-	        	    imgThumbnailContentType: null
+	        	    imgThumbnailContentType: null,
+	        	    mainImgContentType: null
 	        	  };
 	        $scope.categories = [];
 	        $scope.payss = [];
@@ -78,14 +79,15 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	                Ads.update($scope.ads, onSaveAdFinished);
 	                Image.update($scope.image, onSaveImgFinished);
 	            } else {
-	            	
 	            	$scope.ads.nameCategorie = $scope.categories[$scope.ads.categorieId].nameCategorie;
 	            	$scope.ads.pays = $scope.payss[$scope.ads.pays - 1].namePays;
-	            	//$scope.ads.ville = $scope.villes[$scope.ads.ville - 1].nameVille;
 	            	$scope.image.nameAds = $scope.ads.nameAds;
 		            	Ads.save($scope.ads, onSaveAdFinished);
 		            	Image.save($scope.image, onSaveImgFinished);
 	                $state.go("posting-success");
+	                $timeout(function() {
+	                    $state.go('account-myads');
+	                    }, 3000);
 	            }
 
 	        };
@@ -131,6 +133,23 @@ angular.module('articleSellingApp').controller('PostAdsController',
 
 	            return formatAsBytes(size(base64String));
 	        };
+	        
+	        $scope.setMainImg = function ($file, image) {
+	            if ($file && $file.$error == 'pattern') {
+	                return;
+	            }
+	            if ($file) {
+	                var fileReader = new FileReader();
+	                fileReader.readAsDataURL($file);
+	                fileReader.onload = function (e) {
+	                    var base64Data = e.target.result.substr(e.target.result.indexOf('base64,') + 'base64,'.length);
+	                    $scope.$apply(function() {
+	                        image.mainImg = base64Data;
+	                        image.mainImgContentType = $file.type;
+	                    });
+	                };
+	            }
+	        };
 
 	        $scope.setImgThumbnail = function ($file, image) {
 	            if ($file && $file.$error == 'pattern') {
@@ -161,6 +180,40 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	                    $scope.$apply(function() {
 	                        image.imgNormal = base64Data;
 	                        image.imgNormalContentType = $file.type;
+	                    });
+	                };
+	            }
+	        };
+	        
+	        $scope.setImgThumbnail1 = function ($file, image) {
+	            if ($file && $file.$error == 'pattern') {
+	                return;
+	            }
+	            if ($file) {
+	                var fileReader = new FileReader();
+	                fileReader.readAsDataURL($file);
+	                fileReader.onload = function (e) {
+	                    var base64Data = e.target.result.substr(e.target.result.indexOf('base64,') + 'base64,'.length);
+	                    $scope.$apply(function() {
+	                        image.imgThumbnail1 = base64Data;
+	                        image.imgThumbnailContentType1 = $file.type;
+	                    });
+	                };
+	            }
+	        };
+
+	        $scope.setImgNormal1 = function ($file, image) {
+	            if ($file && $file.$error == 'pattern') {
+	                return;
+	            }
+	            if ($file) {
+	                var fileReader = new FileReader();
+	                fileReader.readAsDataURL($file);
+	                fileReader.onload = function (e) {
+	                    var base64Data = e.target.result.substr(e.target.result.indexOf('base64,') + 'base64,'.length);
+	                    $scope.$apply(function() {
+	                        image.imgNormal1 = base64Data;
+	                        image.imgNormalContentType1 = $file.type;
 	                    });
 	                };
 	            }

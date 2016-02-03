@@ -1,10 +1,12 @@
 package com.thedevbrige.articleselling.web.rest.dto;
 
 import javax.validation.constraints.*;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
+
 import javax.persistence.Lob;
 
 
@@ -24,6 +26,21 @@ public class ImageDTO implements Serializable {
     private byte[] imgNormal;
 
     private String imgNormalContentType;
+    
+    @Lob
+    private byte[] mainImg;
+    
+    @Lob
+    private byte[] imgThumbnail1;
+
+    private String imgThumbnailContentType1;
+
+    @Lob
+    private byte[] imgNormal1;
+
+    private String imgNormalContentType1;
+    
+    private String mainImgContentType;
 
     private String adsId;
 
@@ -67,6 +84,54 @@ public class ImageDTO implements Serializable {
 
     public void setImgNormalContentType(String imgNormalContentType) {
         this.imgNormalContentType = imgNormalContentType;
+    }
+    
+    public byte[] getMainImg() {
+        return mainImg;
+    }
+
+    public void setMainImg(byte[] mainImg) {
+        this.mainImg = mainImg;
+    }
+    
+    public String getMainImgContentType() {
+        return mainImgContentType;
+    }
+
+    public void setMainImgContentType(String mainImgContentType) {
+        this.mainImgContentType = mainImgContentType;
+    }
+    
+    public byte[] getImgThumbnail1() {
+        return imgThumbnail1;
+    }
+
+    public void setImgThumbnail1(byte[] imgThumbnail1) {
+        this.imgThumbnail1 = imgThumbnail1;
+    }
+
+    public String getImgThumbnailContentType1() {
+        return imgThumbnailContentType1;
+    }
+
+    public void setImgThumbnailContentType1(String imgThumbnailContentType1) {
+        this.imgThumbnailContentType1 = imgThumbnailContentType1;
+    }
+
+    public byte[] getImgNormal1() {
+        return imgNormal1;
+    }
+
+    public void setImgNormal1(byte[] imgNormal1) {
+        this.imgNormal1 = imgNormal1;
+    }
+
+    public String getImgNormalContentType1() {
+        return imgNormalContentType1;
+    }
+
+    public void setImgNormalContentType1(String imgNormalContentType1) {
+        this.imgNormalContentType1 = imgNormalContentType1;
     }
 
     public String getAdsId() {

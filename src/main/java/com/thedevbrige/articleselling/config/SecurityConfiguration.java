@@ -90,6 +90,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/myads").permitAll()
             .antMatchers("/api/pays/*").permitAll()
             .antMatchers("/api/listvillesforcountry/*").permitAll()
+            .antMatchers("/api/imagesads/**").permitAll()
+            .antMatchers("/api/images").permitAll()
             .antMatchers("/api/ads/blockedOrDeblocked/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/api/villes/*").permitAll()
             .antMatchers("/api/activate").permitAll()

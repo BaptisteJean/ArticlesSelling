@@ -3,6 +3,7 @@ package com.thedevbrige.articleselling.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.thedevbrige.articleselling.domain.Image;
 import com.thedevbrige.articleselling.repository.ImageRepository;
+import com.thedevbrige.articleselling.service.ImageService;
 import com.thedevbrige.articleselling.service.AdsService;
 import com.thedevbrige.articleselling.web.rest.util.HeaderUtil;
 import com.thedevbrige.articleselling.web.rest.util.PaginationUtil;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
+import java.io.IOException;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -51,6 +53,10 @@ public class ImageResource {
     
     private boolean ok = true;
 
+    @Inject
+    private ImageService imageService;
+
+
     /**
      * POST  /images -> Create a new image.
      */
@@ -69,6 +75,9 @@ public class ImageResource {
         while(ok == true){
         	if(adsService.getSemaphore() == true){
 	        	image.setAds(adsService.getAds());
+//	        	if(image.getMainImg() == null){
+//	        		image.
+//	        	}
 	        	result = imageRepository.save(image);
 	        	adsService.setSemaphore(false);
 	        	ok = false;
@@ -148,5 +157,28 @@ public class ImageResource {
         log.debug("REST request to delete Image : {}", id);
         imageRepository.delete(imageRepository.findById(id));
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("image", id.toString())).build();
+    }
+    /**
+     * DELETE  /images/:id -> delete the "id" image.
+     */
+    @RequestMapping(value = "/imagesads/{adsId}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<byte[]> getImageAds(@PathVariable Long adsId) throws IOException {
+        log.debug("REST request to get Image ads : {}", adsId);
+
+        Image imageads = imageRepository.findByAdsId(adsId);
+
+        byte[] img = imageads.getImgThumbnail();
+
+        final HttpHeaders headers = new HttpHeaders();
+
+        String mime = imageService.checkMime(img);
+
+        headers.setContentType(MediaType.parseMediaType(mime));
+
+        return new ResponseEntity<byte[]>(img, headers, HttpStatus.CREATED);
+
     }
 }

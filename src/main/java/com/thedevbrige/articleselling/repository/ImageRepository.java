@@ -11,8 +11,7 @@ import java.util.List;
  */
 public interface ImageRepository extends JpaRepository<Image,Long> {
 
+    Image findByAdsId(Long adsId);
 	public Image findById(String id);
-
-	//void delete(String id);
 
 }
