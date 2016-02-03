@@ -2,7 +2,9 @@ package com.thedevbrige.articleselling.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.thedevbrige.articleselling.domain.Ads;
+import com.thedevbrige.articleselling.domain.Image;
 import com.thedevbrige.articleselling.repository.AdsRepository;
+import com.thedevbrige.articleselling.repository.ImageRepository;
 import com.thedevbrige.articleselling.security.SecurityUtils;
 import com.thedevbrige.articleselling.service.AdsService;
 import com.thedevbrige.articleselling.web.rest.util.HeaderUtil;
@@ -37,6 +39,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -52,6 +55,9 @@ public class AdsResource {
 
     @Inject
     private AdsRepository adsRepository;
+
+    @Inject
+    private ImageRepository imageRepository;
 
     @Inject
     private AdsMapper adsMapper;
@@ -174,6 +180,7 @@ public class AdsResource {
     @Timed
     public ResponseEntity<Void> deleteAds(@PathVariable String id) {
         log.debug("REST request to delete Ads : {}", id);
+        imageRepository.delete(imageRepository.findByAdsId(id));
         adsRepository.delete(adsRepository.findById(id));
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("ads", id.toString())).build();
     }
@@ -187,7 +194,9 @@ public class AdsResource {
     @Timed
     public void delete(@PathVariable String id) {
         log.debug("REST request to delete : {}", id);
+        Image image = imageRepository.findByAdsId(id);
         Ads ads = adsRepository.findById(id);
+        imageRepository.delete(image);
         adsRepository.delete(ads);
     }
 
@@ -228,6 +237,19 @@ public class AdsResource {
         boolean blocked = false;
         List<Ads> myads = adsRepository.findByLoginAndBlocked(SecurityUtils.getCurrentUserLogin(),blocked);
         return myads;
+    }
+    /**
+     * GET  /getAllAdsByCategories/{id}
+     */
+    @RequestMapping(value = "/getAllAdsByCategories/{categorieId}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<Ads> getAllAdsByCategories(@PathVariable Long categorieId) {
+      List<Ads> allAds = new ArrayList<Ads>();
+        boolean blocked = false;
+      allAds = adsRepository.findByCategorieIdAndBlocked(categorieId,blocked);
+      return allAds;
     }
 
 }

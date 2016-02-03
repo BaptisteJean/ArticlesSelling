@@ -78,12 +78,12 @@
                   <tr ng-repeat="ads in myads">
                     <td style="width:2%" class="add-img-selector"><div class="checkbox">
                       </div></td>
-                    <td style="width:14%" class="add-img-td"><a href="#/ads-details"><img  class="thumbnail  img-responsive" data-ng-src="/api/imagesads/{{ads.id}}"></a></td>
+                    <td style="width:14%" class="add-img-td"><a href="#/ads-details/{{ads.id}}"><img  class="thumbnail  img-responsive" data-ng-src="/api/imagesads/{{ads.id}}"></a></td>
                     <td style="width:58%" class="ads-details-td"><div>
                         <p><strong> <a href="#/ads-details">{{ads.nameAds}}</a> </strong></p>
                         <p> <strong> Posted On </strong>:
                             {{ads.dateAjout}}</p>
-                        <p> <strong>Vue </strong>: {{ads.nbreVue}} <strong>Located In:</strong> {{ads.ville}} </p>
+                        <p> <strong>Vue </strong>: {{ads.nbreVue}} <strong>&nbsp;&nbsp;&nbsp;Located In:</strong> {{ads.ville}} </p>
                       </div></td>
                     <td style="width:16%" class="price-td"><div><strong> {{ads.price}} FCFA</strong></div></td>
                     <td style="width:10%" class="action-td"><div>

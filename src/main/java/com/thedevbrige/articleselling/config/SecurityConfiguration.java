@@ -87,6 +87,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
             .antMatchers("/api/categories/parentVu/**").permitAll()
             .antMatchers("/api/register").permitAll()
+            .antMatchers("/api/getAllAdsByCategories/**").permitAll()
             .antMatchers("/api/myads").permitAll()
             .antMatchers("/api/pays/*").permitAll()
             .antMatchers("/api/listvillesforcountry/*").permitAll()

@@ -10,12 +10,14 @@ import java.util.List;
  * Spring Data JPA repository for the Ads entity.
  */
 public interface AdsRepository extends JpaRepository<Ads,Long> {
-	
-	
+
+
 
     public List<Ads> findByLoginAndBlocked(String login, boolean blocked);
-	
+
+    List<Ads> findByCategorieIdAndBlocked(Long categorieId, boolean blocked);
+
     public Ads findById(String id);
 
-  
+
 }
