@@ -107,7 +107,7 @@ public class AdsResource {
     
     
     //incrémentation et sauvegarde du nbre de vues à partir de l'id venant du front
-    @RequestMapping(value = "nbreVue/ads/{id}",
+    @RequestMapping(value = "/nbreVue/ads/{id}",
             method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE)
         @Timed
@@ -120,11 +120,13 @@ public class AdsResource {
         	ads.setNbreVue(nbreVue);
         	}
         	else{
-        		nbreVue = (long) 1;
+        		nbreVue = (long)1;
+        		ads.setNbreVue(nbreVue);
         	}
         	adsRepository.save(ads);
-        	
         }
+    
+ 
     
 
     /**

@@ -40,14 +40,15 @@ angular.module('articleSellingApp')
                 }
             })
             .state('ads-details', {
-                url: '/ads-details',
+            	parent: 'site',
+                url: '/ads-details/{id}',
                 data: {
                     authorities: []
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/pages/ads-details.html'
-                        //controller: 'AdsDetailsController'
+                        templateUrl: 'scripts/app/pages/ads-details.html',
+                        controller: 'DetailController'
                     }
                 },
                 resolve: {

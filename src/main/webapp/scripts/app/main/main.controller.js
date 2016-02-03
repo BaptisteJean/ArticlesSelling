@@ -14,8 +14,20 @@ angular.module('articleSellingApp')
             $scope.isAuthenticated = Principal.isAuthenticated;       
         });
 
-        
-        
+//        $scope.Mid = null;
+//        $scope.recuperer = function(adsId){
+//        	$scope.Mid = adsId;
+//        	$http.put('/api/nbreVue/ads/'+adsId)
+//        	.success(function(response){
+//        		console.log(response);
+//        		$scope.nbreVue = response;
+//        	})
+//        	.error(function(response){
+//        		console.log(response);
+//        	})
+//        }
+//        
+//        $scope.recuperer();
         
        
         $scope.images = [];
@@ -102,19 +114,7 @@ angular.module('articleSellingApp')
         
         
         
-        $scope.Mid = null;
-        $scope.recuperer = function(adsId){
-        	
-        	$scope.Mid = adsId;
-        	
-        	$http.put('/api/nbreVue/ads/'+adsId)
-        	.success(function(response){
-        		console.log(response);
-        	})
-        	.error(function(response){
-        		console.log(response);
-        	})
-        }
+      
            
         
         ////////////Automobiles///////////

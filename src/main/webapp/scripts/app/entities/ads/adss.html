@@ -1,3 +1,4 @@
+<div ng-controller="AdsController">
 <div class="container">
     <h2 translate="articleSellingApp.ads.home.title">Adss</h2>
     <jh-alert></jh-alert>
@@ -49,7 +50,7 @@
                     <th translate="articleSellingApp.ads.etat">Etat</th>
                     <th translate="articleSellingApp.ads.description">Description</th>
                     <th translate="articleSellingApp.ads.nbreImage">NbreImage</th>
-                    <th translate="articleSellingApp.ads.nbreVue">NbreVue</th>
+                    <th>NbreVue</th>
                     <th translate="articleSellingApp.ads.negociable">Negociable</th>
                     <th translate="articleSellingApp.ads.categorie">categorie</th>
                     <th>Blocker</th>
@@ -74,6 +75,9 @@
                     </td>
                     <td>{{ads.blocked}}</td>
                     <td>
+                    
+                    {{Mid}}
+                    
                         <button type="submit"
                                 ui-sref="ads.detail({id:ads.id})"
                                 class="btn btn-info btn-sm">
@@ -112,4 +116,5 @@
             </ul>
         </nav>
     </div>
+</div>
 </div>
