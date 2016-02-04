@@ -1,6 +1,7 @@
 package com.thedevbrige.articleselling.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.mysql.fabric.xmlrpc.base.Array;
 import com.thedevbrige.articleselling.domain.Ads;
 import com.thedevbrige.articleselling.repository.AdsRepository;
 import com.thedevbrige.articleselling.security.SecurityUtils;
@@ -9,6 +10,8 @@ import com.thedevbrige.articleselling.web.rest.util.HeaderUtil;
 import com.thedevbrige.articleselling.web.rest.util.PaginationUtil;
 import com.thedevbrige.articleselling.web.rest.dto.AdsDTO;
 import com.thedevbrige.articleselling.web.rest.mapper.AdsMapper;
+
+
 
 
 
@@ -34,6 +37,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -126,7 +130,19 @@ public class AdsResource {
         	adsRepository.save(ads);
         }
     
- 
+    	
+    
+    @RequestMapping(value = "/top10",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+        @Timed
+        public List <Ads> top10Ads(){
+          List top10 = new ArrayList();
+          top10 = adsRepository.findAll();
+    	return top10;
+        }
+    
+    
     
 
     /**

@@ -17,5 +17,7 @@ public interface AdsRepository extends JpaRepository<Ads,Long> {
 	
     public Ads findById(String id);
 
+    @Query("select top 10  nbre_vue  from ads")
+    public List <Ads> findAll();
   
 }
