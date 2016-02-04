@@ -87,11 +87,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
             .antMatchers("/api/categories/parentVu/**").permitAll()
             .antMatchers("/api/register").permitAll()
+            .antMatchers("/api/ads/**").permitAll()
             .antMatchers("/api/getAllAdsByCategories/**").permitAll()
             .antMatchers("/api/myads").permitAll()
             .antMatchers("/api/pays/*").permitAll()
             .antMatchers("/api/listvillesforcountry/*").permitAll()
             .antMatchers("/api/imagesads/**").permitAll()
+            .antMatchers("/api/allimagesads/**").permitAll()
             .antMatchers("/api/images").permitAll()
             .antMatchers("/api/ads/blockedOrDeblocked/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/api/villes/*").permitAll()

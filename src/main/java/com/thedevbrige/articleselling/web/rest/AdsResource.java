@@ -161,14 +161,21 @@ public class AdsResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<AdsDTO> getAds(@PathVariable String id) {
+    public Ads getAds(@PathVariable String id) {
         log.debug("REST request to get Ads : {}", id);
-        return Optional.ofNullable(adsRepository.findById(id))
-            .map(adsMapper::adsToAdsDTO)
-            .map(adsDTO -> new ResponseEntity<>(
-                adsDTO,
-                HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return adsRepository.findById(id);
+    }
+ /**
+     * GET  /ads/:id -> get the "id" ads.
+     */
+    @RequestMapping(value = "/ads/{id}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public Ads getAdsById(@PathVariable String id) {
+
+        return adsRepository.findById(id);
+
     }
 
     /**

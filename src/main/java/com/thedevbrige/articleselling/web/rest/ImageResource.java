@@ -159,7 +159,7 @@ public class ImageResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("image", id.toString())).build();
     }
     /**
-     * DELETE  /images/:id -> delete the "id" image.
+     * get  /images/:id -> get the "id" image.
      */
     @RequestMapping(value = "/imagesads/{adsId}",
         method = RequestMethod.GET,
@@ -180,5 +180,16 @@ public class ImageResource {
 
         return new ResponseEntity<byte[]>(img, headers, HttpStatus.CREATED);
 
+    }
+    /**
+     * get  /images/:id -> get the "id" image.
+     */
+    @RequestMapping(value = "/allimagesads/{adsId}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public Image getAllImageAds(@PathVariable String adsId){
+
+        return imageRepository.findByAdsId(adsId);
     }
 }
