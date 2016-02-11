@@ -21,6 +21,7 @@
             <column name="id" type="varchar(50)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="img" type="blob"/>
             <column name="img_thumbnail" type="blob"/>
             <column name="img_thumbnail_content_type" type="varchar(50)"/>
             <column name="img_normal" type="blob"/>

@@ -1,10 +1,12 @@
 package com.thedevbrige.articleselling.domain;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,6 +23,11 @@ public class Image implements Serializable {
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
+    
+    @JsonIgnore
+    @Lob
+    @Column(name = "img")
+    private byte[] img;
 
     @Lob
     @Column(name = "img_thumbnail")
@@ -68,6 +75,14 @@ public class Image implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+    
+    public byte[] getImg() {
+        return img;
+    }
+
+    public void setImg(byte[] img) {
+        this.img = img;
     }
 
     public byte[] getImgThumbnail() {

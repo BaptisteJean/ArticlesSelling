@@ -13,4 +13,6 @@ public interface CategorieRepository extends JpaRepository<Categorie,Long> {
 	Categorie findById(Long id);
 	long countByParent(String p);
 	 List<Categorie> findByParent(String parent);
+	 
+	 public Categorie findByNameCategorie(String nameCategorie);
 }

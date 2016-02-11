@@ -16,7 +16,7 @@ angular.module('articleSellingApp').controller('PostAdsController',
                     description: null,
                     nbreImage: null,
                     nbreVue: null,
-                    mainImage: null,
+                    //mainImage: null,
                     negociable: null,
                     id: null
                 };
@@ -32,6 +32,7 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	        $scope.payss = [];
 	        $scope.villes = [];
 	        $scope.page = 0;
+	        $scope.nbreImg = 0;
 
 	        $scope.loadAll = function() {
 	            
@@ -82,8 +83,25 @@ angular.module('articleSellingApp').controller('PostAdsController',
 	            	$scope.ads.nameCategorie = $scope.categories[$scope.ads.categorieId].nameCategorie;
 	            	$scope.ads.pays = $scope.payss[$scope.ads.pays - 1].namePays;
 	            	$scope.image.nameAds = $scope.ads.nameAds;
+	            	if($scope.image.mainImg != null){
+	            		$scope.nbreImg += 1;
+	            	}
+	            	if($scope.image.imgThumbnail != null){
+	            		$scope.nbreImg += 1;
+	            	}
+	            	if($scope.image.imgNormal != null){
+	            		$scope.nbreImg += 1;
+	            	}
+	            	if($scope.image.imgThumbnail1 != null){
+	            		$scope.nbreImg += 1;
+	            	}
+	            	if($scope.image.imgNormal1 != null){
+	            		$scope.nbreImg += 1;
+	            	}
+	            	$scope.ads.nbreImage = $scope.nbreImg;
 		            	Ads.save($scope.ads, onSaveAdFinished);
 		            	Image.save($scope.image, onSaveImgFinished);
+		            	$scope.nbreImg = 0;
 	                $state.go("posting-success");
 	                $timeout(function() {
 	                    $state.go('account-myads');

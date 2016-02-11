@@ -16,6 +16,9 @@ import javax.persistence.Lob;
 public class ImageDTO implements Serializable {
 
     private String id;
+    
+    @Lob
+    private byte[] img;
 
     @Lob
     private byte[] imgThumbnail;
@@ -52,6 +55,14 @@ public class ImageDTO implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+    
+    public byte[] getImg() {
+        return img;
+    }
+
+    public void setImg(byte[] img) {
+        this.img = img;
     }
 
     public byte[] getImgThumbnail() {

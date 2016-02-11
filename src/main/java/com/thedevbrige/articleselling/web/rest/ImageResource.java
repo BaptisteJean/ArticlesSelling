@@ -44,7 +44,7 @@ public class ImageResource {
 
     @Inject
     private ImageRepository imageRepository;
-
+    
     @Inject
     private ImageMapper imageMapper;
     
@@ -70,7 +70,6 @@ public class ImageResource {
             return ResponseEntity.badRequest().header("Failure", "A new image cannot already have an ID").body(null);
         }
         Image image = imageMapper.imageDTOToImage(imageDTO);
-        image.setId(UUID.randomUUID().toString());
         Image result = new Image();
         while(ok == true){
         	if(adsService.getSemaphore() == true){
@@ -78,7 +77,7 @@ public class ImageResource {
 //	        	if(image.getMainImg() == null){
 //	        		image.
 //	        	}
-	        	result = imageRepository.save(image);
+	        	result = imageService.createImage(image);
 	        	adsService.setSemaphore(false);
 	        	ok = false;
         	}
