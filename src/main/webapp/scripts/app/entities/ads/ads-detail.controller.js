@@ -12,5 +12,5 @@ angular.module('articleSellingApp')
             $scope.ads = result;
         });
         $scope.$on('$destroy', unsubscribe);
-
+       
     });

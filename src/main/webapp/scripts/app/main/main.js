@@ -40,14 +40,15 @@ angular.module('articleSellingApp')
                 }
             })
             .state('ads-details', {
-                url: '/ads-details',
+            	parent: 'site',
+                url: '/ads-details/{id}',
                 data: {
                     authorities: []
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/pages/ads-details.html'
-                        //controller: 'AdsDetailsController'
+                        templateUrl: 'scripts/app/pages/ads-details.html',
+                        controller: 'DetailController'
                     }
                 },
                 resolve: {
@@ -88,8 +89,8 @@ angular.module('articleSellingApp')
                         return $translate.refresh();
                     }]
                 }
-            }).state('contact', {
-                url: '/contact',
+            }).state('contactss', {
+                url: '/contacts',
                 data: {
                     authorities: []
                 },
@@ -188,8 +189,8 @@ angular.module('articleSellingApp')
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/pages/account-myads.html'
-                        //controller: 'MainController'
+                        templateUrl: 'scripts/app/pages/account-myads.html',
+                        controller: 'AccountMyadsController'
                     }
                 },
                 resolve: {
@@ -353,4 +354,5 @@ angular.module('articleSellingApp')
                     }]
                 }
             });
+
     });

@@ -11,7 +11,13 @@ import java.util.List;
  */
 public interface AdsRepository extends JpaRepository<Ads,Long> {
 
-	public Ads findById(String id);
-//    Ads findById(Long id);
-    List<Ads> findByLoginAndBlocked(String login, boolean blocked);
+
+
+    public List<Ads> findByLoginAndBlocked(String login, boolean blocked);
+
+    List<Ads> findByCategorieIdAndBlocked(Long categorieId, boolean blocked);
+
+    public Ads findById(String id);
+
+
 }

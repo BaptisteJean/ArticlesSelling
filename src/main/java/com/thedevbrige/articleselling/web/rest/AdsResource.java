@@ -2,7 +2,9 @@ package com.thedevbrige.articleselling.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.thedevbrige.articleselling.domain.Ads;
+import com.thedevbrige.articleselling.domain.Image;
 import com.thedevbrige.articleselling.repository.AdsRepository;
+import com.thedevbrige.articleselling.repository.ImageRepository;
 import com.thedevbrige.articleselling.security.SecurityUtils;
 import com.thedevbrige.articleselling.service.AdsService;
 import com.thedevbrige.articleselling.web.rest.util.HeaderUtil;
@@ -37,6 +39,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -54,8 +57,11 @@ public class AdsResource {
     private AdsRepository adsRepository;
 
     @Inject
+    private ImageRepository imageRepository;
+
+    @Inject
     private AdsMapper adsMapper;
-    
+
     @Inject
     private AdsService adsService;
 
@@ -105,6 +111,30 @@ public class AdsResource {
             .body(adsMapper.adsToAdsDTO(result));
     }
 
+
+    //incrémentation et sauvegarde du nbre de vues à partir de l'id venant du front
+    @RequestMapping(value = "/nbreVue/ads/{id}",
+            method = RequestMethod.PUT,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+        @Timed
+        public void nbreVue(@PathVariable String id){
+        	Ads ads = new Ads();
+        	ads = adsRepository.findById(id);
+        	Long nbreVue = ads.getNbreVue();
+        	if(nbreVue != null){
+        	nbreVue = nbreVue + 1;
+        	ads.setNbreVue(nbreVue);
+        	}
+        	else{
+        		nbreVue = (long)1;
+        		ads.setNbreVue(nbreVue);
+        	}
+        	adsRepository.save(ads);
+        }
+
+
+
+
     /**
      * GET  /adss -> get all the adss.
      */
@@ -122,6 +152,8 @@ public class AdsResource {
             .collect(Collectors.toCollection(LinkedList::new)), headers, HttpStatus.OK);
     }
 
+
+
     /**
      * GET  /adss/:id -> get the "id" ads.
      */
@@ -129,14 +161,21 @@ public class AdsResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<AdsDTO> getAds(@PathVariable String id) {
+    public Ads getAds(@PathVariable String id) {
         log.debug("REST request to get Ads : {}", id);
-        return Optional.ofNullable(adsRepository.findById(id))
-            .map(adsMapper::adsToAdsDTO)
-            .map(adsDTO -> new ResponseEntity<>(
-                adsDTO,
-                HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return adsRepository.findById(id);
+    }
+ /**
+     * GET  /ads/:id -> get the "id" ads.
+     */
+    @RequestMapping(value = "/ads/{id}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public Ads getAdsById(@PathVariable String id) {
+
+        return adsRepository.findById(id);
+
     }
 
     /**
@@ -148,8 +187,24 @@ public class AdsResource {
     @Timed
     public ResponseEntity<Void> deleteAds(@PathVariable String id) {
         log.debug("REST request to delete Ads : {}", id);
+        imageRepository.delete(imageRepository.findByAdsId(id));
         adsRepository.delete(adsRepository.findById(id));
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("ads", id.toString())).build();
+    }
+
+    /**
+     * DELETE  /delete/:id -> delete the "id" ads.
+     */
+    @RequestMapping(value = "/delete/{id}",
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public void delete(@PathVariable String id) {
+        log.debug("REST request to delete : {}", id);
+        Image image = imageRepository.findByAdsId(id);
+        Ads ads = adsRepository.findById(id);
+        imageRepository.delete(image);
+        adsRepository.delete(ads);
     }
 
     /**
@@ -189,6 +244,19 @@ public class AdsResource {
         boolean blocked = false;
         List<Ads> myads = adsRepository.findByLoginAndBlocked(SecurityUtils.getCurrentUserLogin(),blocked);
         return myads;
+    }
+    /**
+     * GET  /getAllAdsByCategories/{id}
+     */
+    @RequestMapping(value = "/getAllAdsByCategories/{categorieId}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<Ads> getAllAdsByCategories(@PathVariable Long categorieId) {
+      List<Ads> allAds = new ArrayList<Ads>();
+        boolean blocked = false;
+      allAds = adsRepository.findByCategorieIdAndBlocked(categorieId,blocked);
+      return allAds;
     }
 
 }

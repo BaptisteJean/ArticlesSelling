@@ -22,7 +22,8 @@ angular.module('articleSellingApp')
                 $('#deleteAdsConfirmation').modal('show');
             });
         };
-
+        
+    
         $scope.blockerOrDeblocker = function(index){
             $http.put('api/ads/blockedOrDeblocked/' + $scope.adss[index].id)
                 .success(function(response){
