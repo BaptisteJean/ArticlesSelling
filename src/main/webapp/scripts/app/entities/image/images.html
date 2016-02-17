@@ -41,8 +41,11 @@
             <thead>
                 <tr>
                     <th translate="global.field.id">ID</th>
+                    <th translate="">MainImg</th>
                     <th translate="articleSellingApp.image.imgThumbnail">ImgThumbnail</th>
                     <th translate="articleSellingApp.image.imgNormal">ImgNormal</th>
+                    <th translate="">ImgThumbnail_1</th>
+                    <th translate="">ImgNormal_1</th>
                     <!-- <th translate="articleSellingApp.image.identif">Identif</th> -->
                     <th translate="articleSellingApp.image.ads">ads</th>
                     <th></th>
@@ -52,10 +55,19 @@
                 <tr ng-repeat="image in images track by image.id">
                     <td><a ui-sref="image.detail({id:image.id})">{{image.id}}</a></td>
                     <td>
+                        <img data-ng-src="{{'data:' + image.mainImgContentType + ';base64,' + image.mainImg}}" style="max-height: 30px;" ng-if="image.mainImg"/> {{image.mainImgContentType}} {{byteSize(image.mainImg)}}
+                    </td>
+                    <td>
                         <img data-ng-src="{{'data:' + image.imgThumbnailContentType + ';base64,' + image.imgThumbnail}}" style="max-height: 30px;" ng-if="image.imgThumbnail"/> {{image.imgThumbnailContentType}} {{byteSize(image.imgThumbnail)}}
                     </td>
                     <td>
                         <img data-ng-src="{{'data:' + image.imgNormalContentType + ';base64,' + image.imgNormal}}" style="max-height: 30px;" ng-if="image.imgNormal"/> {{image.imgNormalContentType}} {{byteSize(image.imgNormal)}}
+                    </td>
+                    <td>
+                        <img data-ng-src="{{'data:' + image.imgThumbnailContentType1 + ';base64,' + image.imgThumbnail1}}" style="max-height: 30px;" ng-if="image.imgThumbnail1"/> {{image.imgThumbnailContentType1}} {{byteSize(image.imgThumbnail1)}}
+                    </td>
+                    <td>
+                        <img data-ng-src="{{'data:' + image.imgNormalContentType1 + ';base64,' + image.imgNormal1}}" style="max-height: 30px;" ng-if="image.imgNormal1"/> {{image.imgNormalContentType1}} {{byteSize(image.imgNormal1)}}
                     </td>
                     <!-- <td>{{image.identif}}</td> -->
                     <td>

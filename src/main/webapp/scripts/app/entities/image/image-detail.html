@@ -12,6 +12,15 @@
             <tbody>
             <tr>
                 <td>
+                    <span translate="">MainImg</span>
+                </td>
+                <td>
+                    <img data-ng-src="{{'data:' + image.mainImgContentType + ';base64,' + image.mainImg}}" style="max-width: 100%;" ng-if="image.mainImg"/>
+                    <div>{{image.mainImgContentType}}  {{byteSize(image.mainImg)}}</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <span translate="articleSellingApp.image.imgThumbnail">ImgThumbnail</span>
                 </td>
                 <td>
@@ -30,6 +39,24 @@
              
                     {{nbreVues.nbre_vu}}
                     
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="">ImgThumbnail_1</span>
+                </td>
+                <td>
+                    <img data-ng-src="{{'data:' + image.imgThumbnailContentType1 + ';base64,' + image.imgThumbnail1}}" style="max-width: 100%;" ng-if="image.imgThumbnail1"/>
+                    <div>{{image.imgThumbnailContentType1}}  {{byteSize(image.imgThumbnail1)}}</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="">ImgNormal_1</span>
+                </td>
+                <td>
+                    <img data-ng-src="{{'data:' + image.imgNormalContentType1 + ';base64,' + image.imgNormal1}}" style="max-width: 100%;" ng-if="image.imgNormal1"/>
+                    <div>{{image.imgNormalContentType1}}  {{byteSize(image.imgNormal1)}}</div>
                 </td>
             </tr>
             <!-- <tr>

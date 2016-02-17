@@ -12,20 +12,20 @@
       <div class="row">
         <div class="col-sm-9 page-content col-thin-right">
           <div class="inner inner-box ads-details-wrapper">
-            <h2> {{ads.nameAds}} available <small class="label label-default adlistingtype">Company ad</small> </h2>
+            <h2> {{ads.nameAds}}  <small class="label label-default adlistingtype">{{ads.login}}</small> </h2>
             <span class="info-row"> <span class="date"><i class=" icon-clock"> </i> {{ads.dateAjout}} </span> - <span class="category">{{ads.categorie.parent}} </span>- <span class="item-location"><i class="fa fa-map-marker"></i> {{ads.ville}} </span> </span>
             <div class="ads-image">
               <h1 class="pricetag"> {{ads.price}} FCFA</h1>
               <ul class="bxslider">
-                <li><img src="images/item/tp-big/Image00014.jpg" alt="img" /></li>
+                <li><img data-ng-src="/api/imagesads/{{ads.id}}"alt="img"/></li>
                 <li><img src="images/item/tp-big/Image00015.jpg" alt="img" /></li>
                 <li><img src="images/item/tp-big/Image00013.jpg" alt="img" /></li>
               </ul>
-              <div id="bx-pager">
-                <a class="thumb-item-link" data-slide-index="0" href=""><img src="images/item/tp/Image00014.jpg" alt="img" /></a>
+              <!--<div id="bx-pager">
+                <a class="thumb-item-link" data-slide-index="0" href=""><img lazy-img="{{'data:' + images.imgThumbnailContentType + ';base64,' + images.imgThumbnail}}" alt="img" /></a>
                 <a class="thumb-item-link"  data-slide-index="1" href=""><img src="images/item/tp/Image00015.jpg" alt="img" /></a>
                 <a class="thumb-item-link"  data-slide-index="2" href=""><img src="images/item/tp/Image00013.jpg" alt="img" /></a>
-              </div>
+              </div>-->
             </div>
             <!--ads-image-->
 
@@ -65,16 +65,16 @@
                   <aside class="panel panel-body panel-details">
                     <ul>
                       <li>
-                        <p class=" no-margin "><strong>Price:</strong> $ 2,45</p>
+                        <p class=" no-margin "><strong>Price:</strong> {{ads.price}} FCFA</p>
                       </li>
                       <li>
-                        <p class="no-margin"><strong>Type:</strong> Mobile Mobiles,For sale</p>
+                        <p class="no-margin"><strong>Type:</strong> {{ads.categorie.nameCategorie}},{{ads.categorie.parent}}</p>
                       </li>
                       <li>
-                        <p class="no-margin"><strong>Location:</strong> New York </p>
+                        <p class="no-margin"><strong>Location:</strong> {{ads.pays}} </p>
                       </li>
                       <li>
-                        <p class=" no-margin "><strong>Condition:</strong> New</p>
+                        <p class=" no-margin "><strong>Condition:</strong> {{ads.etat}}</p>
                       </li>
                       <li>
                         <p class="no-margin"><strong>Brand:</strong> Sony</p>
@@ -106,9 +106,9 @@
               <div class="panel-content user-info">
                 <div class="panel-body text-center">
                   <div class="seller-info">
-                    <h3 class="no-margin">Richard Aki</h3>
-                    <p>Location: <strong>New York</strong></p>
-                    <p> Joined: <strong>12 Mar 2009</strong></p>
+                    <h3 class="no-margin">{{ads.login}}</h3>
+                    <p>Location: <strong>{{ads.pays}}</strong></p>
+                    <p> Joined: <strong>{{ads.dateAjout}}</strong></p>
                   </div>
                   <div class="user-ads-action"> <a data-target="#contactAdvertiser" data-toggle="modal" class="btn   btn-default btn-block"><i class=" icon-mail-2"></i> Send a message </a> <a class="btn  btn-info btn-block"><i class=" icon-phone-1"></i> 01680 531 352 </a> </div>
                 </div>
