@@ -158,56 +158,52 @@
             </div>
         </div>
     </div>
+    
+    
+    
+    
+    
+   <!-- Affichage du top 10 des articles les plus vus --> 
+    <!-- il est contrôllé par le fichier "main.controller" -->
     <div class="inner-box relative">
         <h2 class="title-2">Featured Listings
-
-            <a id="nextItem" next-item class="link  pull-right carousel-nav"> <i class="icon-right-open-big"></i></a>
-            <a id="prevItem" prev-item class="link pull-right carousel-nav"> <i class="icon-left-open-big"></i> </a>
-
         </h2>
         <div class="row">
-            <div class="col-lg-12">
-                <wrap-owlcarousel class="no-margin item-carousel owl-carousel owl-theme">
-
-                    <div class="item"> <a href="#/ads-details">
-                     <span class="item-carousel-thumb">
-                    	<img class="img-responsive" src="images/item/tp/Image00011.jpg" alt="img" >
-                     </span>
-                        <span class="item-name"> Lorem ipsum dolor sit amet </span>
-                        <span class="price"> $ 260 </span>
-                    </a>
-                    </div>
-
-                    <div class="item"> <a href="#/ads-details">
-                        <span class="item-carousel-thumb"> <img class="item-img" src="images/item/tp/Image00006.jpg" alt="img" > </span>
-                        <span class="item-name"> consectetuer adipiscing elit </span>
-                        <span class="price"> $ 240 </span></a> </div>
-
-
-                    <div class="item"><a href="#/ads-details">
-                        <span class="item-carousel-thumb"> <img class="item-img" src="images/item/tp/Image00022.jpg" alt="img" > </span> <span class="item-name"> sed diam nonummy  </span> <span class="price"> $ 140</span></a></div>
-
-                    <div class="item"><a href="#/ads-details">
-                        <span class="item-carousel-thumb"> <img class="item-img" src="images/item/tp/Image00013.jpg" alt="img" >  </span><span class="item-name"> feugiat nulla facilisis  </span> <span class="price"> $ 140 </span></a></div>
-
-                    <div class="item"><a href="#/ads-details">
-                        <span class="item-carousel-thumb"> <img class="item-img" src="images/item/FreeGreatPicture.com-46404-google-drops-nexus-4-by-100-offers-15-day-price-protection-refund.jpg" alt="img" > </span> <span class="item-name"> praesent luptatum zzril  </span> <span class="price"> $ 220 </span></a></div>
-
-                    <div class="item"><a href="#/ads-details">
-                        <span class="item-carousel-thumb"> <img class="item-img"  src="images/item/FreeGreatPicture.com-46405-google-drops-price-of-nexus-4-smartphone.jpg" alt="img" > </span> <span class="item-name"> delenit augue duis dolore  </span> <span class="price"> $ 120 </span></a></div>
-
-                    <div class="item"><a href="#/ads-details">
-                        <span class="item-carousel-thumb"> <img class="item-img" src="images/item/FreeGreatPicture.com-46407-nexus-4-starts-at-199.jpg" alt="img" > </span> <span class="item-name"> te feugait nulla facilisi </span> <span class="price"> $ 251 </span></a></div>
-
-                </wrap-owlcarousel>
+            <div class="col-lg-12"  >  
+              <data-owl-carousel  class="no-margin item-carousel owl-carousel owl-theme" data-options="{navigation: true, pagination: false, rewindNav : false}" >
+                
+                <!-- le code javaScript de ce "owl-carousel" se trouve dans le fichier "directives.js" -->
+                
+                <div owl-carousel-item="" ng-repeat="item in top10" class="item">
+                  <div class="item"> 
+                  	<a href="ads-details.html">
+	                     <span class="item-carousel-thumb"> 
+	                    	 <img data-ng-src="data:image/png;base64,{{item.mainImg}}"  class="img-responsive" alt="img" >
+	                     </span> 
+	                     <span class="item-name"> {{item.ads.nameAds}} </span>     
+	                     <span class="price"> {{item.ads.price}} </span>       
+                 	</a> 
+                 </div>
+                </div>  
+             </data-owl-carousel>                       
             </div>
+    	</div>
+	</div>
 
-    </div>
-</div>
 
-
-        </div>
-        <div class="col-sm-3 page-sidebar col-thin-left">
+ </div>
+      
+            
+            
+            
+            
+ 
+                
+                
+                
+                
+                
+  <div class="col-sm-3 page-sidebar col-thin-left">
           <aside>
             <div class="inner-box no-padding">
               <div class="inner-box-content"> <a href="#"><img class="img-responsive" src="images/site/app.jpg" alt="tv"></a> </div>
@@ -318,5 +314,3 @@
 
       </div>
   </div>
-</div>
-</div>

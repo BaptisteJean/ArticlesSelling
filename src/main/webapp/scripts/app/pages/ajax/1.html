@@ -1,18 +1,18 @@
 <div ng-controller="CategorieController">
-    <div class="item-list" ng-repeat="ads in allAds">
+    <div class="item-list" ng-repeat="ads in allAds track by ads.id">
         <div class="cornerRibbons topAds">
             <a href="#"> Top Ads</a>
         </div>
 
         <div class="col-sm-2 no-padding photobox">
-            <div class="add-image"> <span class="photo-count"><i class="fa fa-camera"></i> 2 </span>
+            <div class="add-image"> <span class="photo-count"><i class="fa fa-camera"></i> {{ads.nbreImage}} </span>
                 <a href="#/ads-details/{{ads.id}}">
                     <img class="thumbnail no-margin" data-ng-src="/api/imagesads/{{ads.id}}" />
                 </a>
             </div>
         </div>
                     <!--/.photobox-->
-        <div class="col-sm-7 add-desc-box">
+        <div class="col-sm-7 add-desc-box" style="padding-right: 0px;">
             <div class="add-details">
                 <h5 class="add-title">
                     <a href="#/ads-details/{{ads.id}}">
@@ -25,33 +25,41 @@
                     </span>
                     <span class="date"><i class=" icon-clock"> </i>
                         {{ads.dateAjout}}
-                    </span> &nbsp;&nbsp;&nbsp;
-                    <span class="category"><strong>Catergory : </strong>{{ads.categorie.parent}} </span>&nbsp;&nbsp;&nbsp;
-                    <span class="item-location"><i class="fa fa-map-marker"></i>
+                    </span> &nbsp;&nbsp;
+                    <span class="item-location">
+                       <i class="fa fa-flag fa-2x"> </i>&nbsp;&nbsp;{{ads.pays}}
+                    </span>&nbsp;&nbsp;
+                    <span class="item-location"><i class="fa fa-map-marker fa-2x"></i>
                         {{ads.ville}}
+                    </span>&nbsp;&nbsp;
+                    <span class="date btn btn-sm btn-primary">
+                    <i class="icon-note"> </i>negociable
                     </span>
                 </span>
             </div>
             <br>
             <div class="add-details">
                 <span class="info-row">
+                	<span class="category">
+                		<i class="fa fa-filter fa-2x"></i>&nbsp;&nbsp;{{ads.categorie.parent}}
+                	</span>&nbsp;&nbsp;&nbsp;
                     <span class="date">
                        <strong>Sous Category :</strong>  {{ads.categorie.nameCategorie}}
                     </span> &nbsp;&nbsp;&nbsp;
-                    <span class="category"><strong>Etat :</strong> {{ads.etat}} </span>&nbsp;&nbsp;&nbsp;
-                    <span class="item-location">
-                       <strong> Country : </strong>{{ads.pays}}
+                    <span class="category">
+                    	<strong>Etat :</strong> {{ads.etat}}
                     </span>
+
                 </span>
             </div>
             <br>
-            <div class="add-details" ng-show="ads.negociable==true">
+            <!-- <div class="add-details" ng-show="ads.negociable==true">
                 <span class="info-row">
                     <span class="date btn btn-sm btn-primary"><i class="icon-note"> </i>
                          negociable
                     </span>
                 </span>
-            </div>
+            </div> -->
         </div>
                     <!--/.add-desc-box-->
         <div class="col-sm-3 text-right  price-box">
@@ -68,5 +76,19 @@
                     <!--/.add-desc-box-->
 
     </div>
+
+    <nav class="pagination-bar text-center">
+        <ul class="pagination">
+            <li ng-show="links['first'] >= 0" ng-click="loadPage(links['first'])"><a>&lt;&lt;</a></li>
+            <li ng-show="page > 0" ng-click="loadPage(links['prev'] || 0)"><a>&lt;</a></li>
+            <li ng-show="page > 1" ng-click="loadPage(page - 2)"><a>{{page - 1}}</a></li>
+            <li ng-show="page > 0" ng-click="loadPage(page - 1)"><a>{{page}}</a></li>
+            <li class="active"><a>{{page + 1}}</a></li>
+            <li ng-show="page < links['last']" ng-click="loadPage(page + 1)"><a>{{page + 2}}</a></li>
+            <li ng-show="page < links['last'] - 1" ng-click="loadPage(page + 2)"><a>{{page + 3}}</a></li>
+            <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a>&gt;</a></li>
+            <li ng-show="links['last'] > 0" ng-click="loadPage(links['last'])"><a>&gt;&gt;</a></li>
+        </ul>
+    </nav>
                   <!--/.item-list-->
 </div>
