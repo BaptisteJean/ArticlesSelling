@@ -3,12 +3,50 @@
 angular.module('articleSellingApp')
     .controller('CategorieController', function ($http,$stateParams,$scope, Categorie, ParseLinks) {
         $scope.categories = [];
+        $scope.category = [];
         $scope.allAds = [];
         $scope.page = 0;
+        //$scope.itemsPerPage = 5;
+        //$scope.currentPage = 0;
+        //$scope.items = [];
+
+    //    for (var i=0; i<50; i++) {
+    //        $scope.items.push({
+    //           items
+    //        });
+    //    }
+    //
+    //    $scope.prevPage = function() {
+    //        if ($scope.currentPage > 0) {
+    //            $scope.currentPage--;
+    //        }
+    //    };
+    //
+    //    $scope.prevPageDisabled = function() {
+    //        return $scope.currentPage === 0 ? "disabled" : "";
+    //    };
+    //
+    //    $scope.pageCount = function() {
+    //        return Math.ceil($scope.items.length/$scope.itemsPerPage)-1;
+    //    };
+    //
+    //    $scope.nextPage = function() {
+    //        if ($scope.currentPage < $scope.pageCount()) {
+    //            $scope.currentPage++;
+    //        }
+    //    };
+    //
+    //    $scope.nextPageDisabled = function() {
+    //        return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
+    //    };
+    //
+    //});
+
         $scope.loadAll = function() {
-            Categorie.query({page: $scope.page, size: 20}, function(result, headers) {
+            Categorie.query({page: $scope.page, size: 10}, function(result, headers) {
                 $scope.links = ParseLinks.parse(headers('link'));
                 $scope.categories = result;
+                $scope.category = result;
             });
         };
         $scope.loadPage = function(page) {
@@ -62,6 +100,6 @@ angular.module('articleSellingApp')
                 description: null,
                 nbreAds: null,
                 id: null
-            };
+            }
         };
-    });
+        });

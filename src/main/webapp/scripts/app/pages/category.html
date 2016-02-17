@@ -236,17 +236,38 @@
 
                   <div class="tab-box  save-search-bar text-center"> <a href=""> <i class=" icon-star-empty"></i> Save Search </a> </div>
               </div>
-              <div class="pagination-bar text-center">
+
+
+
+
+              <nav>
                   <ul class="pagination">
-                      <li  class="active"><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">5</a></li>
-                      <li><a href="#"> ...</a></li>
-                      <li><a class="pagination-btn" href="#">Next &raquo;</a></li>
+                      <li ng-show="links['first'] >= 0" ng-click="loadPage(links['first'])"><a>&lt;&lt;</a></li>
+                      <li ng-show="page > 0" ng-click="loadPage(links['prev'] || 0)"><a>&lt;</a></li>
+                      <li ng-show="page > 1" ng-click="loadPage(page - 2)"><a>{{page - 1}}</a></li>
+                      <li ng-show="page > 0" ng-click="loadPage(page - 1)"><a>{{page}}</a></li>
+                      <li class="active"><a>{{page + 1}}</a></li>
+                      <li ng-show="page < links['last']" ng-click="loadPage(page + 1)"><a>{{page + 2}}</a></li>
+                      <li ng-show="page < links['last'] - 1" ng-click="loadPage(page + 2)"><a>{{page + 3}}</a></li>
+                      <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a>&gt;</a></li>
+                      <li ng-show="links['last'] > 0" ng-click="loadPage(links['last'])"><a>&gt;&gt;</a></li>
                   </ul>
-              </div>
+              </nav>
+
+
+
+
+              <!--<div class="pagination-bar text-center">-->
+                  <!--<ul class="pagination">-->
+                      <!--<li  class="active"><a href="#">1</a></li>-->
+                      <!--<li><a href="#">2</a></li>-->
+                      <!--<li><a href="#">3</a></li>-->
+                      <!--<li><a href="#">4</a></li>-->
+                      <!--<li><a href="#">5</a></li>-->
+                      <!--<li><a href="#"> ...</a></li>-->
+                      <!--<li><a class="pagination-btn" href="#">Next &raquo;</a></li>-->
+                  <!--</ul>-->
+              <!--</div>-->
               <!--/.pagination-bar -->
 
               <div class="post-promo text-center">
