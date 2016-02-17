@@ -1,29 +1,72 @@
+<div ng-controller="CategorieController">
+    <div class="item-list" ng-repeat="ads in allAds">
+        <div class="cornerRibbons topAds">
+            <a href="#"> Top Ads</a>
+        </div>
 
-<div class="item-list" ng-repeat="image in images track by image.id">
-              <div class="cornerRibbons topAds">
- 					 <a href="#"> Top Ads</a>
-				</div>
-                
-                <div class="col-sm-2 no-padding photobox">
-                  <div class="add-image"> <span class="photo-count"><i class="fa fa-camera"></i> 2 </span> 
-                  <a href="#/ads-details/{{image.adsId}}">  
-                  <img class="thumbnail no-margin" src="{{'data:' + image.imgThumbnailContentType + ';base64,' + image.imgThumbnail}}" alt="img"/> {{image.imgThumbnailContentType}} {{byteSize(image.imgThumbnail)}}
-                  </a> </div>
-                </div>
-                <!--/.photobox-->
-                <div class="col-sm-7 add-desc-box">
-                  <div class="add-details">
-                    <h5 class="add-title"> <a href="ads-details.html"> 
-Brand New Samsung Phones  </a> </h5>
-                    <span class="info-row"> <span class="add-type business-ads tooltipHere" data-toggle="tooltip" data-placement="right" title="Business Ads">B </span> <span class="date"><i class=" icon-clock"> </i> Today 1:21 pm </span> - <span class="category">Electronics </span>- <span class="item-location"><i class="fa fa-map-marker"></i> London </span> </span> </div>
-                </div>
-                <!--/.add-desc-box-->
-                <div class="col-sm-3 text-right  price-box">
-                  <h2 class="item-price"> $ 320 </h2>
-                  <a class="btn btn-danger  btn-sm make-favorite"> <i class="fa fa-certificate"></i> <span>Top Ads</span> </a> <a class="btn btn-default  btn-sm make-favorite"> <i class="fa fa-heart"></i> <span>Save</span> </a> </div>
-                <!--/.add-desc-box--> 
-         
-              </div>
-              <!--/.item-list-->
-            
-            
+        <div class="col-sm-2 no-padding photobox">
+            <div class="add-image"> <span class="photo-count"><i class="fa fa-camera"></i> 2 </span>
+                <a href="#/ads-details/{{ads.id}}">
+                    <img class="thumbnail no-margin" data-ng-src="/api/imagesads/{{ads.id}}" />
+                </a>
+            </div>
+        </div>
+                    <!--/.photobox-->
+        <div class="col-sm-7 add-desc-box">
+            <div class="add-details">
+                <h5 class="add-title">
+                    <a href="#/ads-details/{{ads.id}}">
+                       {{ads.nameAds}}
+                    </a>
+                </h5>
+                <span class="info-row">
+                    <span class="add-type business-ads tooltipHere" data-toggle="tooltip" data-placement="right" title="Business Ads">
+                        B
+                    </span>
+                    <span class="date"><i class=" icon-clock"> </i>
+                        {{ads.dateAjout}}
+                    </span> &nbsp;&nbsp;&nbsp;
+                    <span class="category"><strong>Catergory : </strong>{{ads.categorie.parent}} </span>&nbsp;&nbsp;&nbsp;
+                    <span class="item-location"><i class="fa fa-map-marker"></i>
+                        {{ads.ville}}
+                    </span>
+                </span>
+            </div>
+            <br>
+            <div class="add-details">
+                <span class="info-row">
+                    <span class="date">
+                       <strong>Sous Category :</strong>  {{ads.categorie.nameCategorie}}
+                    </span> &nbsp;&nbsp;&nbsp;
+                    <span class="category"><strong>Etat :</strong> {{ads.etat}} </span>&nbsp;&nbsp;&nbsp;
+                    <span class="item-location">
+                       <strong> Country : </strong>{{ads.pays}}
+                    </span>
+                </span>
+            </div>
+            <br>
+            <div class="add-details" ng-show="ads.negociable==true">
+                <span class="info-row">
+                    <span class="date btn btn-sm btn-primary"><i class="icon-note"> </i>
+                         negociable
+                    </span>
+                </span>
+            </div>
+        </div>
+                    <!--/.add-desc-box-->
+        <div class="col-sm-3 text-right  price-box">
+            <h2 class="item-price"><i class="icon-money"> </i> {{ads.price}} FCFA </h2>
+            <a class="btn btn-danger  btn-sm make-favorite">
+                <i class="fa fa-certificate"></i>
+                <span>Top Ads</span>
+            </a>
+            <a class="btn btn-default btn-sm make-favorite">
+                <i class="fa fa-heart"></i>
+                <span>Save</span>
+            </a>
+        </div>
+                    <!--/.add-desc-box-->
+
+    </div>
+                  <!--/.item-list-->
+</div>

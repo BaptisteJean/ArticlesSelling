@@ -89,8 +89,8 @@ angular.module('articleSellingApp')
                         return $translate.refresh();
                     }]
                 }
-            }).state('contact', {
-                url: '/contact',
+            }).state('contactss', {
+                url: '/contacts',
                 data: {
                     authorities: []
                 },
@@ -189,8 +189,8 @@ angular.module('articleSellingApp')
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/pages/account-myads.html'
-                        //controller: 'MainController'
+                        templateUrl: 'scripts/app/pages/account-myads.html',
+                        controller: 'AccountMyadsController'
                     }
                 },
                 resolve: {
@@ -353,106 +353,6 @@ angular.module('articleSellingApp')
                         return $translate.refresh();
                     }]
                 }
-            })
-            
-            
-            
-            
-            .state('categorie1', {
-                url: '/categorie1',
-                views: {
-                    'content@': {
-                        templateUrl: 'scripts/app/pages/menu_link.html',
-                        
-                       // controller: 'MainController'
-                        
-                    }
-                },
-            })
-            
-            
-            
-            
-            
-                .state('categorie2', {
-                url: '/categorie2',
-                views: {
-                    'content@': {
-                        templateUrl: 'scripts/app/pages/menu_link.html',
-                      //  controller: 'MainController'
-                    }
-                },
-            })
-                .state('categorie3', {
-                url: '/categorie3',
-                views: {
-                    'content@': {
-                        templateUrl: 'scripts/app/pages/menu_link.html',
-                      //  controller: 'MainController'
-                    }
-                },
-            })
-                .state('categorie4', {
-                url: '/categorie4',
-                views: {
-                    'content@': {
-                        templateUrl: 'scripts/app/pages/menu_link.html',
-                      //  controller: 'MainController'
-                    }
-                },
-            })
-                .state('categorie5', {
-                url: '/categorie5',
-                views: {
-                    'content@': {
-                        templateUrl: 'scripts/app/pages/menu_link.html',
-                      //  controller: 'MainController'
-                    }
-                },
-            })
-                .state('categorie6', {
-                url: '/categorie6',
-                views: {
-                    'content@': {
-                        templateUrl: 'scripts/app/pages/menu_link.html',
-                      //  controller: 'MainController'
-                    }
-                },
-            })
-                .state('categorie7', {
-                url: '/categorie7',
-                views: {
-                    'content@': {
-                        templateUrl: 'scripts/app/pages/menu_link.html',
-                      //  controller: 'MainController'
-                    }
-                },
-            })
-                .state('categorie8', {
-                url: '/categorie8',
-                views: {
-                    'content@': {
-                        templateUrl: 'scripts/app/pages/menu_link.html',
-                      //  controller: 'MainController'
-                    }
-                },
-            })
-                .state('categorie9', {
-                url: '/categorie9',
-                views: {
-                    'content@': {
-                        templateUrl: 'scripts/app/pages/menu_link.html',
-                       // controller: 'MainController'
-                    }
-                },
-            })
-                .state('categorie10', {
-                url: '/categorie10',
-                views: {
-                    'content@': {
-                        templateUrl: 'scripts/app/pages/menu_link.html',
-                       // controller: 'MainController'
-                    }
-                },
             });
+
     });

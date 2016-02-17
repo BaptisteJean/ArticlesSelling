@@ -3,29 +3,35 @@
 angular.module('articleSellingApp')
     .controller('CategorieController', function ($http,$stateParams,$scope, Categorie, ParseLinks) {
         $scope.categories = [];
+        $scope.allAds = [];
         $scope.page = 0;
         $scope.loadAll = function() {
             Categorie.query({page: $scope.page, size: 20}, function(result, headers) {
                 $scope.links = ParseLinks.parse(headers('link'));
                 $scope.categories = result;
             });
-            console.log($stateParams.id);
         };
         $scope.loadPage = function(page) {
             $scope.page = page;
             $scope.loadAll();
         };
         $scope.loadAll();
-        
-        
+
+        $scope.adsByCategories = function(){
+            $http.get("/api/getAllAdsByCategories/"+$stateParams.id).success(function(response){
+                $scope.allAds = response;
+            }).error(function(reason){
+                console.log(reason);
+            })
+        };
+        $scope.adsByCategories();
+
         $scope.numbreVue=function(){
-    		$http.put("/api/categories/addvue/"+$stateParams.id).success(function(response){ 
-    			console.log("succes count"+ $stateParams.id);
+    		$http.put("/api/categories/addvue/"+$stateParams.id).success(function(response){
     		}).error(function(reason){
     			console.log(reason);
     		});
-    		
-    	}
+    	};
         $scope.numbreVue();
 
         $scope.delete = function (id) {
@@ -42,10 +48,6 @@ angular.module('articleSellingApp')
                     $('#deleteCategorieConfirmation').modal('hide');
                     $scope.clear();
                 });
-        };
-
-        $scope.selectRegion = function(){
-            $('#selectRegion').modal('show');
         };
 
         $scope.refresh = function () {
