@@ -17,7 +17,11 @@
             <div class="ads-image">
               <h1 class="pricetag"> {{ads.price}} FCFA</h1>
               <ul class="bxslider">
-              	<img class="thumbnail no-margin" data-ng-src="/api/imagesads/{{ads.id}}" />
+              	<!-- <img class="thumbnail no-margin" data-ng-src="/api/imagesads/{{ads.id}}" /> -->
+              	<li>
+              		<img data-ng-src="data:image/png;base64,{{images.mainImg}}"  class="img-responsive" alt="img" >
+              		{{byteSize(images.mainImg)}}
+              	</li>
                 <!-- <li><img data-ng-src="/api/imagesads/{{ads.id}}"alt="img"/></li> -->
                 <!-- <li><img src="images/item/tp-big/Image00015.jpg"alt="img"/></li>
                 <li><img src="images/item/tp-big/Image00015.jpg" alt="img" /></li>

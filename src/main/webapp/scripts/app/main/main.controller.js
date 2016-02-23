@@ -17,7 +17,6 @@ angular.module('articleSellingApp')
         	$http.get("/api/top10Images") 
         	.success(function(response){  
         		$scope.top10 = response;
-        		console.log(response);
         	})
         	.error(function(reason){
         		

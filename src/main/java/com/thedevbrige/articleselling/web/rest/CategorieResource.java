@@ -43,6 +43,7 @@ import java.util.stream.Collectors;
 /**
  * REST controller for managing Categorie.
  */
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("/api")
 public class CategorieResource {
