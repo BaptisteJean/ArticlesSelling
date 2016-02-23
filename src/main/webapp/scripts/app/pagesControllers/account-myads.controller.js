@@ -14,6 +14,15 @@ angular.module('articleSellingApp').controller('AccountMyadsController',
 	        };
 	        $scope.loadAll();
 
+                //$scope.loadAll = function() {
+                //$http.get("/api/imagesads/{{ads.id}}").success(function(response){
+                //    $scope.myads = response;
+                //}).error(function(reason){
+                //    console.log(reason);
+                //})
+                //};
+
+
 
                 $scope.delete = function (myadsId) {
                         $http.post('/api/delete/'+myadsId).success(function(response){

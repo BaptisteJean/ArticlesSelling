@@ -1,10 +1,12 @@
 'use strict';
 
 angular.module('articleSellingApp')
-    .controller('CategorieController', function ($http,$stateParams,$scope, Categorie, ParseLinks) {
+    .controller('CategorieController', function ($http,$stateParams,$scope, Categorie, Ads, ParseLinks) {
         $scope.categories = [];
         $scope.allAds = [];
         $scope.page = 0;
+
+
         $scope.loadAll = function() {
             Categorie.query({page: $scope.page, size: 20}, function(result, headers) {
                 $scope.links = ParseLinks.parse(headers('link'));
@@ -25,6 +27,22 @@ angular.module('articleSellingApp')
             })
         };
         $scope.adsByCategories();
+
+
+
+        $scope.loadAlls = function() {
+            Ads.query({page: $scope.page, size: 10}, function(result, headers) {
+                $scope.links = ParseLinks.parse(headers('link'));
+                $scope.allAds = result;
+            });
+        };
+        $scope.loadPage = function(page) {
+            $scope.page = page;
+            $scope.loadAlls();
+        };
+        $scope.loadAlls();
+
+
 
         $scope.numbreVue=function(){
     		$http.put("/api/categories/addvue/"+$stateParams.id).success(function(response){
@@ -62,6 +80,6 @@ angular.module('articleSellingApp')
                 description: null,
                 nbreAds: null,
                 id: null
-            };
+            }
         };
-    });
+        });
