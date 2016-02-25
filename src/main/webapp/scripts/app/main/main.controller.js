@@ -9,6 +9,25 @@ angular.module('articleSellingApp')
             $scope.account = account;
             $scope.isAuthenticated = Principal.isAuthenticated;
         });
+        
+        
+        
+        $scope.top10 = [];
+        $scope.loadTop10 = function(){
+        	$http.get("/api/top10Images") 
+        	.success(function(response){  
+        		$scope.top10 = response;
+        	})
+        	.error(function(reason){
+        		
+        	});
+        };
+        
+        $scope.loadTop10();
+        
+        
+        	
+        
 
         ////////////Automobiles///////////
         $scope.Automobiles=function(){

@@ -43,6 +43,7 @@ import java.util.stream.Collectors;
 /**
  * REST controller for managing Categorie.
  */
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("/api")
 public class CategorieResource {
@@ -119,7 +120,7 @@ public class CategorieResource {
     @Timed
     public ResponseEntity<CategorieDTO> getCategorie(@PathVariable Long id) {
         log.debug("REST request to get Categorie : {}", id);
-       
+
         return Optional.ofNullable(categorieRepository.findOne(id))
             .map(categorieMapper::categorieToCategorieDTO)
             .map(categorieDTO -> new ResponseEntity<>(
@@ -140,7 +141,7 @@ public class CategorieResource {
         categorieRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("categorie", id.toString())).build();
     }
-    
+
     //////////////////////////////
     /**
      * put  /categories/:id -> get the "id" categorie.
@@ -160,10 +161,10 @@ public class CategorieResource {
         	 nuvue=(long) 1;
         	 cat.setNbre_vu(nuvue);
          }
-         
+
          categorieRepository.save(cat);
     }
-    
+
     /*
      * get amount of click on parent category
      * */
@@ -175,8 +176,8 @@ public class CategorieResource {
     	List<Categorie> list= categorieRepository.findAll();
     	ArrayList<String> listOfparent = new ArrayList<String> ();
     	String jesonobject=null;
-    	
-    	
+
+
     	for(int i=0; i<list.size(); i++){
     		if(!listOfparent.contains(list.get(i).getParent()) )
     		listOfparent.add(list.get(i).getParent());
@@ -189,11 +190,11 @@ public class CategorieResource {
     		}
     		i++;
     	}while (i<listOfparent.size()&& find==0);
-    	
+
     	return tab[1][j];
     	}
-    	
-    
+
+
     public long getCountForparent( String parent){
     	List<Categorie> list= categorieRepository.findByParent(parent);
     	long amtvu=0;
@@ -204,7 +205,7 @@ public class CategorieResource {
     	//return categorieRepository.countByParent(parent);
     	return amtvu;
     }
-    
+
     public String[][] catparentByVu(ArrayList<String> listOfparent){
     	String[][] tab= new String[listOfparent.size()][listOfparent.size()];
     	for(int i=0; i<listOfparent.size(); i++){
@@ -212,6 +213,6 @@ public class CategorieResource {
     		tab[1][i]=getCountForparent(listOfparent.get(i))+"";
     	}
 		return tab;
-    	
+
     }
 }

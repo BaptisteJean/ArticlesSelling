@@ -82,10 +82,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
 
             .antMatchers("/api/nbreVue/ads/**").permitAll()
-
             .antMatchers("/api/categories/addvue/**").permitAll()
+            .antMatchers("/api/top10Images").permitAll()
 
             .antMatchers("/api/categories/parentVu/**").permitAll()
+            
+            .antMatchers("/api/categories").permitAll()
+            
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/adss/**").permitAll()
             .antMatchers("/api/getAllAdsByCategories/**").permitAll()

@@ -1,6 +1,7 @@
 package com.thedevbrige.articleselling.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.mysql.fabric.xmlrpc.base.Array;
 import com.thedevbrige.articleselling.domain.Ads;
 import com.thedevbrige.articleselling.domain.Image;
 import com.thedevbrige.articleselling.repository.AdsRepository;
@@ -17,11 +18,19 @@ import com.thedevbrige.articleselling.web.rest.mapper.AdsMapper;
 
 
 
+
+
+
+
+
+import org.hibernate.Hibernate;
 //import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -36,6 +45,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -132,9 +142,10 @@ public class AdsResource {
         	adsRepository.save(ads);
         }
 
-
-
-
+    
+    
+    
+    
     /**
      * GET  /adss -> get all the adss.
      */

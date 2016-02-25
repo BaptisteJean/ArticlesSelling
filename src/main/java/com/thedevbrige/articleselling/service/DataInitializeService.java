@@ -122,11 +122,11 @@ private static String REPERTOIRE = "images";
             
           //initialize some ads and image
 			for(int i=1;i<26;i++){
-				createAdsAndImage("Ads", (long)150.000, "Beautiful Car Parts & Accessories", categImg1, i);
+				createAdsAndImage("Ads", (long)150000, "Beautiful Car Parts & Accessories", categImg1, i);
 			}
 			
 			for(int i=26;i<51;i++){
-				createAdsAndImage("Ads", (long)85.000, "Beautiful Phones, Mobile Phones & Telecoms", categImg2, i);
+				createAdsAndImage("Ads", (long)85000, "Beautiful Phones, Mobile Phones & Telecoms", categImg2, i);
 			}
         }
 
@@ -155,6 +155,8 @@ private static String REPERTOIRE = "images";
         ads.setCategorie(categImg);
         ads.setPays("Cameroon");
         ads.setVille("Douala");
+        ads.setEtat("New");
+        ads.setNegociable(true);
         
         image.setId(id);
         String filePathImg = REPERTOIRE+"/"+nbre+".jpg";
